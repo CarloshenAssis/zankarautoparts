@@ -1,14 +1,16 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { getProductBySlug, getRelatedProducts, getStoreSettings } from "@/lib/queries";
+import { getProductBySlugAndVehicle, getRelatedProducts, getStoreSettings } from "@/lib/queries";
 import {
   ProductDetailPage,
   ProductNotFound,
   buildProductHead,
 } from "@/components/product-detail-page";
 
-export const Route = createFileRoute("/produto/$id")({
+export const Route = createFileRoute("/produto/$id/$modeloSlug")({
   loader: async ({ params }) => {
-    const product = await getProductBySlug({ data: params.id });
+    const product = await getProductBySlugAndVehicle({
+      data: { slug: params.id, modeloSlug: params.modeloSlug },
+    });
     if (!product) throw notFound();
     const [related, storeSettings] = await Promise.all([
       product.category
@@ -18,9 +20,9 @@ export const Route = createFileRoute("/produto/$id")({
     ]);
     return { product, related, storeSettings };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData) return {};
-    return buildProductHead(loaderData.product);
+    return buildProductHead(loaderData.product, params.modeloSlug);
   },
   component: RouteComponent,
   notFoundComponent: ProductNotFound,

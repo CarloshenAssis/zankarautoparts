@@ -13,7 +13,7 @@ const PRODUCT_SELECT = `
     versao_id, is_primary, ano_especifico,
     versao:versoes_veiculo (
       nome, ano_inicio, ano_fim,
-      modelo:modelos_veiculo ( nome, marca:marcas_veiculo ( nome ) )
+      modelo:modelos_veiculo ( nome, slug, marca:marcas_veiculo ( nome, slug ) )
     )
   )
 `;
@@ -42,7 +42,11 @@ type ProductRow = {
       nome: string;
       ano_inicio: number;
       ano_fim: number | null;
-      modelo: { nome: string; marca: { nome: string } | null } | null;
+      modelo: {
+        nome: string;
+        slug: string;
+        marca: { nome: string; slug: string } | null;
+      } | null;
     } | null;
   }[];
 };
@@ -59,7 +63,9 @@ function mapProductRow(row: ProductRow): Product {
         ano_inicio: versao?.ano_inicio ?? 0,
         ano_fim: versao?.ano_fim ?? null,
         modelo_nome: modelo?.nome ?? "",
+        modelo_slug: modelo?.slug ?? "",
         marca_nome: marca?.nome ?? "",
+        marca_slug: marca?.slug ?? "",
         is_primary: c.is_primary,
         ano_especifico: c.ano_especifico,
       };
@@ -194,37 +200,30 @@ export const getProductBySlug = createServerFn({ method: "GET" })
 
 export const getProductBySlugAndVehicle = createServerFn({ method: "GET" })
   .validator((input: { slug: string; modeloSlug: string }) => input)
-  .handler(
-    async ({
-      data: { slug, modeloSlug },
-    }): Promise<Product | null> => {
-      const supabase = createSupabaseServerClient();
-      const { data, error } = await supabase
-        .from("products")
-        .select(PRODUCT_SELECT)
-        .eq("slug", slug)
-        .eq("status", "active")
-        .maybeSingle();
-      if (error) throw error;
-      if (!data) return null;
+  .handler(async ({ data: { slug, modeloSlug } }): Promise<Product | null> => {
+    const supabase = createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("products")
+      .select(PRODUCT_SELECT)
+      .eq("slug", slug)
+      .eq("status", "active")
+      .maybeSingle();
+    if (error) throw error;
+    if (!data) return null;
 
-      const product = mapProductRow(data as unknown as ProductRow);
+    const product = mapProductRow(data as unknown as ProductRow);
 
-      const modeloMatch = product.compatibility.find((c) => {
-        const marcaSlug = c.marca_nome.toLowerCase().replace(/\s+/g, "-");
-        const modeloSlugNorm = c.modelo_nome.toLowerCase().replace(/\s+/g, "-");
-        const vehicleSlug = `${marcaSlug}-${modeloSlugNorm}`;
-        return vehicleSlug === modeloSlug;
-      });
+    const modeloMatch = product.compatibility.find(
+      (c) => `${c.marca_slug}-${c.modelo_slug}` === modeloSlug,
+    );
 
-      if (!modeloMatch) return null;
+    if (!modeloMatch) return null;
 
-      return {
-        ...product,
-        compatibility: [modeloMatch],
-      };
-    },
-  );
+    return {
+      ...product,
+      compatibility: [modeloMatch],
+    };
+  });
 
 export const getRelatedProducts = createServerFn({ method: "GET" })
   .validator((input: { categoryId: string; excludeId: string }) => input)

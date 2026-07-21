@@ -5,28 +5,26 @@ import { formatBRL } from "@/lib/types";
 import { productImageUrl } from "@/lib/storage";
 import { useCart } from "@/lib/cart";
 import { Button } from "@/components/ui/button";
+import { vehicleSlugFor } from "@/components/product-detail-page";
 
 export function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
   const primaryImage = product.images.find((i) => i.is_primary) ?? product.images[0];
   const compat = product.compatibility[0];
 
-  const getProductLink = () => {
-    if (product.compatibilityModel === "1" && compat) {
-      const marcaSlug = compat.marca_nome.toLowerCase().replace(/\s+/g, "-");
-      const modeloSlug = compat.modelo_nome.toLowerCase().replace(/\s+/g, "-");
-      return {
-        to: "/produto/$id[/$modeloSlug]" as const,
-        params: { id: product.slug, modeloSlug: `${marcaSlug}-${modeloSlug}` },
-      };
-    }
-    return {
-      to: "/produto/$id[/$modeloSlug]" as const,
-      params: { id: product.slug },
-    };
-  };
-
-  const linkProps = getProductLink();
+  const linkProps =
+    product.compatibilityModel === "1" && compat
+      ? {
+          to: "/produto/$id/$modeloSlug" as const,
+          params: {
+            id: product.slug,
+            modeloSlug: vehicleSlugFor(compat),
+          },
+        }
+      : {
+          to: "/produto/$id" as const,
+          params: { id: product.slug },
+        };
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-card transition hover:border-primary/60">

@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { generateSitemapXml } from "./lib/sitemap";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -44,8 +45,29 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+async function handleSitemapRequest(request: Request): Promise<Response | undefined> {
+  const url = new URL(request.url);
+  if (url.pathname !== "/sitemap.xml") return undefined;
+
+  try {
+    const xml = await generateSitemapXml();
+    return new Response(xml, {
+      headers: {
+        "content-type": "application/xml; charset=utf-8",
+        "cache-control": "public, max-age=3600",
+      },
+    });
+  } catch (error) {
+    console.error("Failed to generate sitemap.xml", error);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const sitemapResponse = await handleSitemapRequest(request);
+    if (sitemapResponse) return sitemapResponse;
+
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
