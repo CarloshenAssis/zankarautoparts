@@ -159,7 +159,14 @@ para o histórico completo dessa decisão).
    do `__root.tsx`). Adicionado também JSON-LD `Product` (preço,
    disponibilidade, marca, compatibilidade em `additionalProperty`) via
    `{ "script:ld+json": {...} }` na meta — suporte nativo do TanStack
-   Router pra isso, não precisou de lib extra.
+   Router pra isso, não precisou de lib extra. Também adicionado
+   `loading`/`decoding` em todas as `<img>` públicas (catálogo, carrinho,
+   galeria de produto): `lazy` nas abaixo da dobra, e a imagem principal da
+   página de produto (candidata a LCP) com `loading="eager"` +
+   `fetchPriority="high"`. Upload de imagem já gravava
+   `cacheControl: "31536000"` no Storage desde antes, não precisou mexer.
+   Resto do polish de performance da Fase 6 (ex: `hreflang` — não se aplica
+   aqui, site é só pt-BR) fica pra quando houver algo concreto a otimizar.
 5. **Ajuste da logo** — o cliente já avisou que a logo atual está errada e
    será trocada antes de produção (não bloqueia nada, é cosmético, fica pro
    fim).

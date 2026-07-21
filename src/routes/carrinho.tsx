@@ -125,6 +125,8 @@ function CartPage() {
                         <img
                           src={productImageUrl(image.storage_path)}
                           alt={product.name}
+                          loading="lazy"
+                          decoding="async"
                           className="absolute inset-0 h-full w-full object-cover"
                         />
                       ) : (

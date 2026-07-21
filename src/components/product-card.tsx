@@ -37,6 +37,8 @@ export function ProductCard({ product }: { product: Product }) {
           <img
             src={productImageUrl(primaryImage.storage_path)}
             alt={primaryImage.alt_text ?? product.name}
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (

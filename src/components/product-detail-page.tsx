@@ -144,6 +144,9 @@ export function ProductDetailPage({
               <img
                 src={productImageUrl(activeImage.storage_path)}
                 alt={activeImage.alt_text ?? product.name}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover"
               />
             ) : (
@@ -170,6 +173,8 @@ export function ProductDetailPage({
                   <img
                     src={productImageUrl(img.storage_path)}
                     alt={img.alt_text ?? product.name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover"
                   />
                 </button>
