@@ -85,10 +85,10 @@ para o histórico completo dessa decisão).
 
 ## O que falta (nessa ordem, seguindo o plano)
 
-1. **Importar o repo no Vercel** e cadastrar as env vars — é o próximo passo
-   óbvio pra efetivamente *ver* o app funcionando (ninguém conseguiu ver ainda
-   por causa da política de rede do sandbox onde essas mudanças foram feitas,
-   ver nota abaixo).
+1. ~~**Importar o repo no Vercel** e cadastrar as env vars~~ — feito, deploy
+   aprovado pelo cliente. `main` já é a branch de produção na Vercel.
+   Pendente menor: cadastrar `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY`
+   como secrets no GitHub Actions (o CI builda hoje com valores vazios).
 2. **Clientes (Fase 4)**: conta de cliente com login/senha, criada só pelo
    lojista (não é autocadastro), fluxo de convite por e-mail. Depende de
    configurar o **Resend** (ou SMTP do Supabase) — ainda não escolhido/feito.
@@ -100,6 +100,22 @@ para o histórico completo dessa decisão).
    fim).
 6. Nenhum produto real foi cadastrado ainda — o CRUD já permite fazer isso
    pelo painel assim que houver uma conta admin logada.
+7. **Base de veículos (marcas/modelos/versões) para compatibilidade** —
+   `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo` estão vazias hoje. O
+   schema já suporta tudo que é preciso (inclusive `versoes_veiculo.familia`
+   para a sugestão automática por plataforma da seção 2.1.1 do
+   `PLANEJAMENTO.md` — não precisou de migration nova). Encomendei uma
+   pesquisa (prompt já enviado em outra conversa) de veículos vendidos no
+   Brasil desde 1980, formato JSON `[{marca, modelos:[{modelo,
+   versoes:[{nome, ano_inicio, ano_fim, motorizacao, combustivel,
+   plataforma}]}]}]`. Quando o resultado voltar:
+   1. Salvar o(s) JSON(s) em `data/vehicles-seed/` (pasta ainda não existe,
+      criar).
+   2. Rodar `bun scripts/seed-vehicles/generate-sql.mjs data/vehicles-seed/<arquivo>.json > /tmp/seed.sql`
+      (script já testado e commitado — gera SQL idempotente com
+      `ON CONFLICT`/`NOT EXISTS`, seguro rodar em lotes/mais de uma vez).
+   3. Aplicar o SQL gerado via MCP do Supabase (`execute_sql` ou
+      `apply_migration`, dependendo se quer versionar como migration).
 
 ## Nota importante sobre o ambiente
 
