@@ -113,7 +113,24 @@ para o histórico completo dessa decisão).
    configurar o **Resend** (ou SMTP do Supabase) — ainda não escolhido/feito.
    A tela `/admin/clientes` ainda está 100% em `src/lib/mock-data.ts`.
 3. ~~**Editar categoria**~~ — feito, CRUD completo.
-4. **Sitemap.xml dinâmico + resto do polish de SEO/performance** (Fase 6).
+4. ~~**Sitemap.xml dinâmico**~~ — feito. `src/server.ts` intercepta
+   `/sitemap.xml` antes de delegar pro handler do TanStack Start (essa
+   versão do `@tanstack/react-start`/`router-plugin` ainda não tem rotas de
+   API/server nativas via arquivo, então a interceptação manual no fetch
+   handler é o jeito confiável de servir XML com content-type correto).
+   Gerado por `src/lib/sitemap.ts` (produtos ativos + categorias, usando um
+   client Supabase anônimo direto, sem depender do contexto de cookies da
+   request). Resto do polish de SEO/performance da Fase 6 ainda em aberto.
+   Também corrigido nessa leva: a página de produto agora tem duas rotas de
+   arquivo (`produto.$id.tsx` genérico e `produto.$id.$modeloSlug.tsx` por
+   veículo — Modelo 1 vs Modelo 2 da estratégia de SEO condicional por
+   número de compatibilidades, ≤4 veículos ganha URL específica com
+   canonical apontando pra genérica, >4 fica só na genérica). UI
+   compartilhada extraída pra `src/components/product-detail-page.tsx`. O
+   slug de veículo na URL usa as colunas `slug` reais de
+   `marcas_veiculo`/`modelos_veiculo` (não reconstrói a partir do nome de
+   exibição — nomes como "Le Baron / Magnum" quebravam slug se
+   reconstruídos ingenuamente a partir do texto).
 5. **Ajuste da logo** — o cliente já avisou que a logo atual está errada e
    será trocada antes de produção (não bloqueia nada, é cosmético, fica pro
    fim).
