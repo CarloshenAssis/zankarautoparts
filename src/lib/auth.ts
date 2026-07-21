@@ -17,3 +17,21 @@ export const getCurrentAdmin = createServerFn({ method: "GET" }).handler(async (
 
   return adminRow ? { ...adminRow, email: user.email ?? "" } : null;
 });
+
+export const getCurrentCustomer = createServerFn({ method: "GET" }).handler(async () => {
+  const supabase = createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data: customerRow } = await supabase
+    .from("customers")
+    .select("id, name, email, phone")
+    .eq("auth_user_id", user.id)
+    .eq("status", "active")
+    .is("deleted_at", null)
+    .maybeSingle();
+
+  return customerRow;
+});

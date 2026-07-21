@@ -108,10 +108,31 @@ para o histórico completo dessa decisão).
    aprovado pelo cliente. `main` já é a branch de produção na Vercel.
    Pendente menor: cadastrar `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY`
    como secrets no GitHub Actions (o CI builda hoje com valores vazios).
-2. **Clientes (Fase 4)**: conta de cliente com login/senha, criada só pelo
-   lojista (não é autocadastro), fluxo de convite por e-mail. Depende de
-   configurar o **Resend** (ou SMTP do Supabase) — ainda não escolhido/feito.
-   A tela `/admin/clientes` ainda está 100% em `src/lib/mock-data.ts`.
+2. ~~**Clientes (Fase 4)**~~ — feito, mas com fluxo simplificado (decisão do
+   cliente): em vez do convite por e-mail original (que dependia de
+   Resend/SMTP, nunca configurado), o lojista agora cria a conta do cliente
+   já com e-mail e senha definidos na hora, direto em `/admin/clientes`
+   (`createCustomerAccount` em `src/lib/admin-queries.ts`). Usa
+   `createSupabaseServiceClient()` (service role) para criar o usuário no
+   Supabase Auth com `email_confirm: true` — **por isso
+   `SUPABASE_SERVICE_ROLE_KEY` precisa estar configurado em
+   `.env.local`/secrets do Vercel para essa tela funcionar**, é a primeira
+   feature que de fato usa essa chave. A checagem de que quem chama é um
+   admin autenticado é feita dentro do próprio `createCustomerAccount`
+   (`getCurrentAdmin()`), já que o client de service role ignora RLS. O
+   registro em `customers` usa `customer_type: 'account'`,
+   `status: 'active'`, `activated_at` = agora (sem os campos de convite
+   `invite_token_hash`/`invited_at` do desenho original — continuam na
+   tabela mas não são mais usados por esse fluxo). Cliente loga em
+   `/conta/entrar` (`getCurrentCustomer()` em `src/lib/auth.ts`, mesmo
+   padrão do `/login` do admin mas checando a tabela `customers`) e cai
+   numa área mínima em `/conta` (nome, e-mail, link pro catálogo, sair) —
+   não tem histórico de pedidos ainda, é só a casca de acesso. Link "Minha
+   conta" adicionado no header (desktop e mobile). Página de admin
+   (`admin.clientes.tsx`) tem dialog de criação com campo de senha (input
+   editável + botão "Gerar" senha aleatória + "Copiar credenciais" pra
+   lojista repassar por WhatsApp) e lista real via `getCustomers()`
+   (`src/lib/mock-data.ts` não é mais usado aqui).
 3. ~~**Editar categoria**~~ — feito, CRUD completo.
 4. ~~**Sitemap.xml dinâmico**~~ — feito. `src/server.ts` intercepta
    `/sitemap.xml` antes de delegar pro handler do TanStack Start (essa
@@ -130,7 +151,15 @@ para o histórico completo dessa decisão).
    slug de veículo na URL usa as colunas `slug` reais de
    `marcas_veiculo`/`modelos_veiculo` (não reconstrói a partir do nome de
    exibição — nomes como "Le Baron / Magnum" quebravam slug se
-   reconstruídos ingenuamente a partir do texto).
+   reconstruídos ingenuamente a partir do texto). Corrigido também um bug
+   real do canonical: estava sendo devolvido dentro do array `meta` do
+   `head()` (`{ rel: "canonical", href }`), mas `rel`/`href` são atributos
+   de `<link>`, não de `<meta>` — nunca teria virado uma tag `<link
+   rel="canonical">` de verdade. Agora vai na chave `links` (mesmo padrão
+   do `__root.tsx`). Adicionado também JSON-LD `Product` (preço,
+   disponibilidade, marca, compatibilidade em `additionalProperty`) via
+   `{ "script:ld+json": {...} }` na meta — suporte nativo do TanStack
+   Router pra isso, não precisou de lib extra.
 5. **Ajuste da logo** — o cliente já avisou que a logo atual está errada e
    será trocada antes de produção (não bloqueia nada, é cosmético, fica pro
    fim).

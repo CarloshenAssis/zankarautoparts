@@ -93,6 +93,12 @@ export function SiteHeader() {
           </Link>
           <div className="ml-auto flex items-center gap-4 text-xs text-muted-foreground">
             <span>Atendimento: Seg-Sáb 8h às 18h</span>
+            <Link
+              to="/conta/entrar"
+              className="font-semibold text-foreground/80 hover:text-primary"
+            >
+              Minha conta
+            </Link>
             <Link to="/login" className="font-semibold text-foreground/80 hover:text-primary">
               Área do Lojista →
             </Link>
@@ -123,6 +129,13 @@ export function SiteHeader() {
               className="rounded px-3 py-3 hover:bg-accent"
             >
               Meu Pedido
+            </Link>
+            <Link
+              to="/conta/entrar"
+              onClick={() => setMenuOpen(false)}
+              className="rounded px-3 py-3 hover:bg-accent"
+            >
+              Minha conta
             </Link>
             <Link
               to="/admin"

@@ -13,12 +13,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CarrinhoRouteImport } from './routes/carrinho'
 import { Route as CatalogoRouteImport } from './routes/catalogo'
+import { Route as ContaRouteImport } from './routes/conta'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminCategoriasRouteImport } from './routes/admin.categorias'
 import { Route as AdminClientesRouteImport } from './routes/admin.clientes'
 import { Route as AdminConfiguracoesRouteImport } from './routes/admin.configuracoes'
 import { Route as AdminPedidosRouteImport } from './routes/admin.pedidos'
+import { Route as ContaEntrarRouteImport } from './routes/conta.entrar'
 import { Route as ProdutoIdRouteImport } from './routes/produto.$id'
 import { Route as AdminProdutosIndexRouteImport } from './routes/admin.produtos.index'
 import { Route as AdminProdutosIdRouteImport } from './routes/admin.produtos.$id'
@@ -43,6 +45,11 @@ const CarrinhoRoute = CarrinhoRouteImport.update({
 const CatalogoRoute = CatalogoRouteImport.update({
   id: '/catalogo',
   path: '/catalogo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContaRoute = ContaRouteImport.update({
+  id: '/conta',
+  path: '/conta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -75,6 +82,11 @@ const AdminPedidosRoute = AdminPedidosRouteImport.update({
   path: '/pedidos',
   getParentRoute: () => AdminRoute,
 } as any)
+const ContaEntrarRoute = ContaEntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
+  getParentRoute: () => ContaRoute,
+} as any)
 const ProdutoIdRoute = ProdutoIdRouteImport.update({
   id: '/produto/$id',
   path: '/produto/$id',
@@ -106,11 +118,13 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/carrinho': typeof CarrinhoRoute
   '/catalogo': typeof CatalogoRoute
+  '/conta': typeof ContaRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/categorias': typeof AdminCategoriasRoute
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/configuracoes': typeof AdminConfiguracoesRoute
   '/admin/pedidos': typeof AdminPedidosRoute
+  '/conta/entrar': typeof ContaEntrarRoute
   '/produto/$id': typeof ProdutoIdRouteWithChildren
   '/admin/': typeof AdminIndexRoute
   '/admin/produtos/$id': typeof AdminProdutosIdRoute
@@ -122,11 +136,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/carrinho': typeof CarrinhoRoute
   '/catalogo': typeof CatalogoRoute
+  '/conta': typeof ContaRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/categorias': typeof AdminCategoriasRoute
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/configuracoes': typeof AdminConfiguracoesRoute
   '/admin/pedidos': typeof AdminPedidosRoute
+  '/conta/entrar': typeof ContaEntrarRoute
   '/produto/$id': typeof ProdutoIdRouteWithChildren
   '/admin': typeof AdminIndexRoute
   '/admin/produtos/$id': typeof AdminProdutosIdRoute
@@ -140,11 +156,13 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/carrinho': typeof CarrinhoRoute
   '/catalogo': typeof CatalogoRoute
+  '/conta': typeof ContaRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/categorias': typeof AdminCategoriasRoute
   '/admin/clientes': typeof AdminClientesRoute
   '/admin/configuracoes': typeof AdminConfiguracoesRoute
   '/admin/pedidos': typeof AdminPedidosRoute
+  '/conta/entrar': typeof ContaEntrarRoute
   '/produto/$id': typeof ProdutoIdRouteWithChildren
   '/admin/': typeof AdminIndexRoute
   '/admin/produtos/$id': typeof AdminProdutosIdRoute
@@ -159,11 +177,13 @@ export interface FileRouteTypes {
     | '/admin'
     | '/carrinho'
     | '/catalogo'
+    | '/conta'
     | '/login'
     | '/admin/categorias'
     | '/admin/clientes'
     | '/admin/configuracoes'
     | '/admin/pedidos'
+    | '/conta/entrar'
     | '/produto/$id'
     | '/admin/'
     | '/admin/produtos/$id'
@@ -175,11 +195,13 @@ export interface FileRouteTypes {
     | '/'
     | '/carrinho'
     | '/catalogo'
+    | '/conta'
     | '/login'
     | '/admin/categorias'
     | '/admin/clientes'
     | '/admin/configuracoes'
     | '/admin/pedidos'
+    | '/conta/entrar'
     | '/produto/$id'
     | '/admin'
     | '/admin/produtos/$id'
@@ -192,11 +214,13 @@ export interface FileRouteTypes {
     | '/admin'
     | '/carrinho'
     | '/catalogo'
+    | '/conta'
     | '/login'
     | '/admin/categorias'
     | '/admin/clientes'
     | '/admin/configuracoes'
     | '/admin/pedidos'
+    | '/conta/entrar'
     | '/produto/$id'
     | '/admin/'
     | '/admin/produtos/$id'
@@ -210,6 +234,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   CarrinhoRoute: typeof CarrinhoRoute
   CatalogoRoute: typeof CatalogoRoute
+  ContaRoute: typeof ContaRouteWithChildren
   LoginRoute: typeof LoginRoute
   ProdutoIdRoute: typeof ProdutoIdRouteWithChildren
 }
@@ -242,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/catalogo'
       fullPath: '/catalogo'
       preLoaderRoute: typeof CatalogoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conta': {
+      id: '/conta'
+      path: '/conta'
+      fullPath: '/conta'
+      preLoaderRoute: typeof ContaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -285,6 +317,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/pedidos'
       preLoaderRoute: typeof AdminPedidosRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/conta/entrar': {
+      id: '/conta/entrar'
+      path: '/entrar'
+      fullPath: '/conta/entrar'
+      preLoaderRoute: typeof ContaEntrarRouteImport
+      parentRoute: typeof ContaRoute
     }
     '/produto/$id': {
       id: '/produto/$id'
@@ -348,6 +387,16 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface ContaRouteChildren {
+  ContaEntrarRoute: typeof ContaEntrarRoute
+}
+
+const ContaRouteChildren: ContaRouteChildren = {
+  ContaEntrarRoute: ContaEntrarRoute,
+}
+
+const ContaRouteWithChildren = ContaRoute._addFileChildren(ContaRouteChildren)
+
 interface ProdutoIdRouteChildren {
   ProdutoIdModeloSlugRoute: typeof ProdutoIdModeloSlugRoute
 }
@@ -365,6 +414,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   CarrinhoRoute: CarrinhoRoute,
   CatalogoRoute: CatalogoRoute,
+  ContaRoute: ContaRouteWithChildren,
   LoginRoute: LoginRoute,
   ProdutoIdRoute: ProdutoIdRouteWithChildren,
 }

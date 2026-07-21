@@ -24,6 +24,42 @@ export function vehicleSlugFor(compat: { marca_slug: string; modelo_slug: string
   return `${compat.marca_slug}-${compat.modelo_slug}`;
 }
 
+const SITE_URL = "https://zankar.com.br";
+
+function buildProductJsonLd(product: Product) {
+  const image = product.images.map((img) => productImageUrl(img.storage_path));
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    sku: product.sku,
+    description:
+      product.description_short || product.description || `${product.name} — Cód. ${product.sku}`,
+    ...(image.length ? { image } : {}),
+    ...(product.brand ? { brand: { "@type": "Brand", name: product.brand.name } } : {}),
+    offers: {
+      "@type": "Offer",
+      url: `${SITE_URL}/produto/${product.slug}`,
+      priceCurrency: "BRL",
+      price: product.price,
+      availability:
+        product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+    ...(product.compatibility.length
+      ? {
+          additionalProperty: product.compatibility.map((c) => ({
+            "@type": "PropertyValue",
+            name: "Compatível com",
+            value: `${c.marca_nome} ${c.modelo_nome} ${c.versao_nome} (${
+              c.ano_especifico ?? `${c.ano_inicio}–${c.ano_fim ?? "atual"}`
+            })`,
+          })),
+        }
+      : {}),
+  };
+}
+
 export function buildProductHead(product: Product, modeloSlug?: string) {
   const displayVehicle =
     modeloSlug && product.compatibility[0]
@@ -52,8 +88,9 @@ export function buildProductHead(product: Product, modeloSlug?: string) {
       { name: "twitter:card", content: image ? "summary_large_image" : "summary" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
-      ...(modeloSlug ? [{ rel: "canonical", href: canonicalUrl }] : []),
+      { "script:ld+json": buildProductJsonLd(product) },
     ],
+    links: modeloSlug ? [{ rel: "canonical", href: canonicalUrl }] : [],
   };
 }
 

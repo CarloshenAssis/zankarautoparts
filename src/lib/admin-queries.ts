@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseServerClient, createSupabaseServiceClient } from "@/lib/supabase/server";
+import { getCurrentAdmin } from "@/lib/auth";
 import { slugify } from "@/lib/utils";
 
 export type AdminOrderItem = {
@@ -574,4 +575,79 @@ export const suggestRelatedVersions = createServerFn({ method: "GET" })
         marca_nome: marca?.nome ?? "",
       };
     });
+  });
+
+// ---------------------------------------------------------------------------
+// Clientes
+// ---------------------------------------------------------------------------
+
+export type AdminCustomer = {
+  id: string;
+  name: string;
+  email: string | null;
+  phone: string | null;
+  document: string | null;
+  status: string;
+  created_at: string;
+};
+
+export const getCustomers = createServerFn({ method: "GET" }).handler(
+  async (): Promise<AdminCustomer[]> => {
+    const supabase = createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("customers")
+      .select("id, name, email, phone, document, status, created_at")
+      .is("deleted_at", null)
+      .order("created_at", { ascending: false });
+    if (error) throw error;
+    return data ?? [];
+  },
+);
+
+export const createCustomerAccount = createServerFn({ method: "POST" })
+  .validator(
+    (input: { name: string; email: string; phone: string; document: string; password: string }) =>
+      input,
+  )
+  .handler(async ({ data }) => {
+    const admin = await getCurrentAdmin();
+    if (!admin) throw new Error("Apenas administradores podem criar contas de cliente.");
+
+    const serviceClient = createSupabaseServiceClient();
+    const { data: authUser, error: authError } = await serviceClient.auth.admin.createUser({
+      email: data.email,
+      password: data.password,
+      email_confirm: true,
+    });
+    if (authError) throw authError;
+
+    const supabase = createSupabaseServerClient();
+    const { error } = await supabase.from("customers").insert({
+      name: data.name,
+      email: data.email,
+      phone: data.phone || null,
+      document: data.document || null,
+      auth_user_id: authUser.user.id,
+      customer_type: "account",
+      status: "active",
+      activated_at: new Date().toISOString(),
+    });
+    if (error) {
+      await serviceClient.auth.admin.deleteUser(authUser.user.id);
+      throw error;
+    }
+
+    return { ok: true };
+  });
+
+export const deleteCustomer = createServerFn({ method: "POST" })
+  .validator((id: string) => id)
+  .handler(async ({ data: id }) => {
+    const supabase = createSupabaseServerClient();
+    const { error } = await supabase
+      .from("customers")
+      .update({ deleted_at: new Date().toISOString() })
+      .eq("id", id);
+    if (error) throw error;
+    return { ok: true };
   });
