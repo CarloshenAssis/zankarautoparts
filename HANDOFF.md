@@ -120,7 +120,7 @@ para o histórico completo dessa decisão).
 6. Nenhum produto real foi cadastrado ainda — o CRUD já permite fazer isso
    pelo painel assim que houver uma conta admin logada.
 7. **Base de veículos (marcas/modelos/versões) para compatibilidade** —
-   **lotes 1, 2 e 3 aplicados**: 25 marcas, 210 modelos, 348 versões em
+   **lotes 1, 2, 3 e 4 aplicados**: 32 marcas, 252 modelos, 440 versões em
    `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo`. Lote 1
    (`data/vehicles-seed/lote1.json`): linha de entrada (Gol, Uno, Onix,
    HB20 etc.) das mesmas 14 marcas, Nissan/Mitsubishi/Kia/Jeep parciais.
@@ -138,11 +138,19 @@ para o histórico completo dessa decisão).
    Audi, Subaru, Volvo. As `versoes_veiculo` genéricas dessas 4 marcas do
    lote 1 foram apagadas antes (0 linhas remanescentes confirmado via SQL)
    para dar lugar às entradas detalhadas do lote 3.
+   Lote 4 (`data/vehicles-seed/lote4.json`): clássicos nacionais pré-1990
+   detalhados por fase/motorização em marcas já existentes (VW Fusca/
+   Kombi/Brasília/Variant/TL/SP2/Karmann-Ghia, Chevrolet Opala/Veraneio/
+   Série 10/Série 20, Ford F-1000/F-4000/Maverick/Galaxie-Landau, Toyota
+   Bandeirante) e 7 marcas extintas/nicho novas (DKW-Vemag, Willys-
+   Overland, Simca do Brasil, Puma, Gurgel) além de RAM (Rampage nacional
+   e 1500/2500/3500) e Dodge/Chrysler histórico BR (Dart, Charger R/T, Le
+   Baron/Magnum, Dodge 1800/Polara "Dodginho", Journey). Excluído por não
+   ter existido no mercado brasileiro: "Dodge 3000".
    Schema não precisou de migration nova (`versoes_veiculo.familia` já
    existia para a sugestão automática por plataforma da seção 2.1.1 do
    `PLANEJAMENTO.md`).
-   **Falta**: lote 4 (clássicos nacionais pré-1990, depois RAM e Dodge/
-   Chrysler) — ainda sendo pesquisado pelo cliente. Fluxo pra aplicar um
+   **Próximo**: sem lote 5 definido ainda pelo cliente. Fluxo pra aplicar um
    lote novo:
    1. Salvar o JSON em `data/vehicles-seed/loteN.json` (mesmo formato de
       `lote1.json`: `[{marca, modelos:[{modelo, versoes:[{nome, ano_inicio,

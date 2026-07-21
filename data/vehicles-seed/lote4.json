@@ -1,0 +1,359 @@
+[
+  {
+    "marca": "Volkswagen",
+    "modelos": [
+      {
+        "modelo": "Fusca",
+        "versoes": [
+          {"nome": "Fusca/Sedan 1200-1300 (1ª fase)", "ano_inicio": 1959, "ano_fim": 1966, "motorizacao": "1.2 / 1.3 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca"},
+          {"nome": "Fusca 1300 (12V)", "ano_inicio": 1967, "ano_fim": 1979, "motorizacao": "1.3 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca"},
+          {"nome": "Fusca 1500 / 1600 (Fuscão)", "ano_inicio": 1970, "ano_fim": 1983, "motorizacao": "1.5 / 1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca"},
+          {"nome": "Fusca 1600 (freio disco diant.)", "ano_inicio": 1984, "ano_fim": 1986, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca"},
+          {"nome": "Fusca 1600 álcool", "ano_inicio": 1985, "ano_fim": 1986, "motorizacao": "1.6 boxer ar", "combustivel": "etanol", "plataforma": "VW-Fusca"},
+          {"nome": "Fusca 1600 'Itamar' (2ª fase)", "ano_inicio": 1993, "ano_fim": 1996, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca"}
+        ]
+      },
+      {
+        "modelo": "Kombi",
+        "versoes": [
+          {"nome": "Kombi T1 'corujinha' (boxer ar)", "ano_inicio": 1957, "ano_fim": 1975, "motorizacao": "1.2 / 1.5 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Kombi-T1/T2"},
+          {"nome": "Kombi Clipper (reestilização)", "ano_inicio": 1976, "ano_fim": 1996, "motorizacao": "1.5 / 1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Kombi-T1/T2"},
+          {"nome": "Kombi Diesel (pick-up/furgão)", "ano_inicio": 1981, "ano_fim": 1985, "motorizacao": "1.6 diesel (Passat) água", "combustivel": "diesel", "plataforma": "VW-Kombi-T1/T2"},
+          {"nome": "Kombi 'cara-chata' (teto alto, porta corrediça) boxer ar", "ano_inicio": 1997, "ano_fim": 2005, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Kombi-T2-BR"},
+          {"nome": "Kombi 1.4 Total Flex (água)", "ano_inicio": 2006, "ano_fim": 2013, "motorizacao": "1.4 água (Fox/Polo)", "combustivel": "flex", "plataforma": "VW-Kombi-T2-BR"}
+        ]
+      },
+      {
+        "modelo": "Brasília",
+        "versoes": [
+          {"nome": "Brasília 1600 (1 carburador)", "ano_inicio": 1973, "ano_fim": 1975, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Brasilia"},
+          {"nome": "Brasília 1600 (dupla carburação)", "ano_inicio": 1976, "ano_fim": 1982, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Brasilia"},
+          {"nome": "Brasília 1300 álcool", "ano_inicio": 1980, "ano_fim": 1981, "motorizacao": "1.3 boxer ar", "combustivel": "etanol", "plataforma": "VW-ar-Brasilia"}
+        ]
+      },
+      {
+        "modelo": "VW 1600 (Type 3 - 'Zé do Caixão')",
+        "versoes": [
+          {"nome": "VW 1600 sedã 4 portas", "ano_inicio": 1968, "ano_fim": 1971, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Type3"}
+        ]
+      },
+      {
+        "modelo": "TL",
+        "versoes": [
+          {"nome": "VW TL (fastback 2/4 portas)", "ano_inicio": 1970, "ano_fim": 1975, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Type3"}
+        ]
+      },
+      {
+        "modelo": "Variant",
+        "versoes": [
+          {"nome": "Variant (I)", "ano_inicio": 1969, "ano_fim": 1977, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Type3"},
+          {"nome": "Variant II", "ano_inicio": 1977, "ano_fim": 1981, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Brasilia"}
+        ]
+      },
+      {
+        "modelo": "SP2",
+        "versoes": [
+          {"nome": "SP2 (esportivo)", "ano_inicio": 1972, "ano_fim": 1976, "motorizacao": "1.7 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Type3"}
+        ]
+      },
+      {
+        "modelo": "Karmann-Ghia",
+        "versoes": [
+          {"nome": "Karmann-Ghia (Typ 14)", "ano_inicio": 1962, "ano_fim": 1971, "motorizacao": "1.2 / 1.5 / 1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca"},
+          {"nome": "Karmann-Ghia TC", "ano_inicio": 1972, "ano_fim": 1975, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Type3"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Chevrolet",
+    "modelos": [
+      {
+        "modelo": "Opala",
+        "versoes": [
+          {"nome": "Opala 1ª fase (2500 4cil / 3800 6cil)", "ano_inicio": 1968, "ano_fim": 1974, "motorizacao": "2.5 4cil / 3.8 6cil", "combustivel": "gasolina", "plataforma": "GM-Opala"},
+          {"nome": "Opala/Caravan 4.1 6cil e 2.5 4cil", "ano_inicio": 1975, "ano_fim": 1987, "motorizacao": "2.5 4cil / 4.1 6cil", "combustivel": "gasolina", "plataforma": "GM-Opala"},
+          {"nome": "Opala/Caravan álcool", "ano_inicio": 1980, "ano_fim": 1992, "motorizacao": "2.5 4cil / 4.1 6cil", "combustivel": "etanol", "plataforma": "GM-Opala"},
+          {"nome": "Opala/Caravan facelift final (Diplomata)", "ano_inicio": 1988, "ano_fim": 1992, "motorizacao": "2.5 4cil / 4.1 6cil", "combustivel": "gasolina", "plataforma": "GM-Opala"}
+        ]
+      },
+      {
+        "modelo": "Veraneio",
+        "versoes": [
+          {"nome": "C-1416/Veraneio 1ª geração (Chevrolet Brasil 4.3 6cil)", "ano_inicio": 1964, "ano_fim": 1980, "motorizacao": "4.3 6cil / 2.5 4cil", "combustivel": "gasolina", "plataforma": "GM-C10-Veraneio"},
+          {"nome": "Veraneio 4.1 6cil (Opala)", "ano_inicio": 1981, "ano_fim": 1989, "motorizacao": "4.1 6cil", "combustivel": "gasolina/etanol", "plataforma": "GM-C10-Veraneio"},
+          {"nome": "Veraneio diesel (D-10 base)", "ano_inicio": 1985, "ano_fim": 1989, "motorizacao": "4cil diesel Perkins", "combustivel": "diesel", "plataforma": "GM-C10-Veraneio"},
+          {"nome": "Veraneio 2ª geração (base Série 20/Brasinca)", "ano_inicio": 1989, "ano_fim": 1994, "motorizacao": "4.1 6cil / 4cil diesel", "combustivel": "gasolina/diesel", "plataforma": "GM-Serie20"}
+        ]
+      },
+      {
+        "modelo": "Série 10 (C-10/A-10/D-10)",
+        "versoes": [
+          {"nome": "C-14/C-10 gasolina (Chevrolet Brasil 261 / 4.1 250)", "ano_inicio": 1964, "ano_fim": 1985, "motorizacao": "4.3 6cil / 4.1 6cil / 2.5 4cil", "combustivel": "gasolina", "plataforma": "GM-C10-Veraneio"},
+          {"nome": "D-10 diesel Perkins", "ano_inicio": 1980, "ano_fim": 1985, "motorizacao": "4cil diesel Perkins", "combustivel": "diesel", "plataforma": "GM-C10-Veraneio"},
+          {"nome": "A-10 álcool", "ano_inicio": 1981, "ano_fim": 1985, "motorizacao": "4.1 6cil / 2.5 4cil", "combustivel": "etanol", "plataforma": "GM-C10-Veraneio"}
+        ]
+      },
+      {
+        "modelo": "Série 20 (C-20/A-20/D-20)",
+        "versoes": [
+          {"nome": "D-20 diesel Perkins Q20B / Maxion S4", "ano_inicio": 1985, "ano_fim": 1996, "motorizacao": "3.9 4cil diesel (Perkins/Maxion S4/S4T)", "combustivel": "diesel", "plataforma": "GM-Serie20"},
+          {"nome": "C-20 gasolina 4.1 6cil", "ano_inicio": 1985, "ano_fim": 1996, "motorizacao": "4.1 6cil", "combustivel": "gasolina", "plataforma": "GM-Serie20"},
+          {"nome": "A-20 álcool 4.1 6cil", "ano_inicio": 1985, "ano_fim": 1992, "motorizacao": "4.1 6cil", "combustivel": "etanol", "plataforma": "GM-Serie20"},
+          {"nome": "Bonanza (SUV 2 portas)", "ano_inicio": 1989, "ano_fim": 1994, "motorizacao": "4.1 6cil / 4cil diesel", "combustivel": "gasolina/diesel", "plataforma": "GM-Serie20"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Ford",
+    "modelos": [
+      {
+        "modelo": "F-1000",
+        "versoes": [
+          {"nome": "F-1000 1ª geração diesel MWM", "ano_inicio": 1979, "ano_fim": 1992, "motorizacao": "3.9 diesel MWM D229-4", "combustivel": "diesel", "plataforma": "Ford-F-serie-BR"},
+          {"nome": "F-1000 turbo (MWM TD-229)", "ano_inicio": 1986, "ano_fim": 1992, "motorizacao": "3.9 turbodiesel MWM", "combustivel": "diesel", "plataforma": "Ford-F-serie-BR"},
+          {"nome": "F-1000A álcool 6cil", "ano_inicio": 1982, "ano_fim": 1986, "motorizacao": "3.6 6cil álcool", "combustivel": "etanol", "plataforma": "Ford-F-serie-BR"},
+          {"nome": "F-1000 2ª geração (novo visual, opção ar-cond.)", "ano_inicio": 1993, "ano_fim": 1998, "motorizacao": "3.9 turbodiesel MWM / Cummins", "combustivel": "diesel", "plataforma": "Ford-F-serie-BR"}
+        ]
+      },
+      {
+        "modelo": "F-4000",
+        "versoes": [
+          {"nome": "F-4000 1ª geração diesel MWM", "ano_inicio": 1979, "ano_fim": 1992, "motorizacao": "3.9 diesel MWM D229-4 (turbo desde 1986)", "combustivel": "diesel", "plataforma": "Ford-F-serie-BR"},
+          {"nome": "F-4000 2ª geração (visual F-250, MWM/Cummins)", "ano_inicio": 1993, "ano_fim": 2011, "motorizacao": "MWM / Cummins ISF 2.8 (desde 2012)", "combustivel": "diesel", "plataforma": "Ford-F-serie-BR"}
+        ]
+      },
+      {
+        "modelo": "Maverick (clássico BR)",
+        "versoes": [
+          {"nome": "Maverick 6cil 3.0 / V8 5.0", "ano_inicio": 1973, "ano_fim": 1974, "motorizacao": "3.0 6cil / 5.0 V8", "combustivel": "gasolina", "plataforma": "Ford-Maverick-BR"},
+          {"nome": "Maverick 2.3 4cil / V8 5.0", "ano_inicio": 1975, "ano_fim": 1979, "motorizacao": "2.3 4cil / 5.0 V8", "combustivel": "gasolina", "plataforma": "Ford-Maverick-BR"}
+        ]
+      },
+      {
+        "modelo": "Galaxie / Landau",
+        "versoes": [
+          {"nome": "Galaxie / LTD (V8 292)", "ano_inicio": 1967, "ano_fim": 1976, "motorizacao": "4.8 V8 (292)", "combustivel": "gasolina", "plataforma": "Ford-Galaxie-BR"},
+          {"nome": "Landau / Galaxie V8 302 (canadense)", "ano_inicio": 1976, "ano_fim": 1983, "motorizacao": "5.0 V8 (302)", "combustivel": "gasolina", "plataforma": "Ford-Galaxie-BR"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Toyota",
+    "modelos": [
+      {
+        "modelo": "Bandeirante",
+        "versoes": [
+          {"nome": "FJ (montagem inicial gasolina Toyota)", "ano_inicio": 1958, "ano_fim": 1962, "motorizacao": "3.9/4.0 6cil gasolina Toyota", "combustivel": "gasolina", "plataforma": "Toyota-LandCruiser-40"},
+          {"nome": "Bandeirante OM-324 (Mercedes-Benz diesel)", "ano_inicio": 1962, "ano_fim": 1973, "motorizacao": "diesel MB OM-324", "combustivel": "diesel", "plataforma": "Toyota-LandCruiser-40"},
+          {"nome": "Bandeirante OM-314 (Mercedes-Benz diesel)", "ano_inicio": 1973, "ano_fim": 1989, "motorizacao": "3.8 4cil diesel MB OM-314", "combustivel": "diesel", "plataforma": "Toyota-LandCruiser-40"},
+          {"nome": "Bandeirante OM-364 (Mercedes-Benz diesel)", "ano_inicio": 1990, "ano_fim": 1993, "motorizacao": "diesel MB OM-364", "combustivel": "diesel", "plataforma": "Toyota-LandCruiser-40"},
+          {"nome": "Bandeirante Toyota 14B", "ano_inicio": 1994, "ano_fim": 2001, "motorizacao": "3.7 4cil diesel Toyota 14B", "combustivel": "diesel", "plataforma": "Toyota-LandCruiser-40"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "DKW-Vemag",
+    "modelos": [
+      {
+        "modelo": "Belcar",
+        "versoes": [
+          {"nome": "Grande DKW-Vemag / Belcar 900-1000", "ano_inicio": 1958, "ano_fim": 1967, "motorizacao": "0.9 / 1.0 3cil 2 tempos", "combustivel": "gasolina", "plataforma": "DKW-Vemag"}
+        ]
+      },
+      {
+        "modelo": "Vemaguet",
+        "versoes": [
+          {"nome": "Vemaguet (perua) / Caiçara / Pracinha", "ano_inicio": 1958, "ano_fim": 1967, "motorizacao": "0.9 / 1.0 3cil 2 tempos", "combustivel": "gasolina", "plataforma": "DKW-Vemag"}
+        ]
+      },
+      {
+        "modelo": "Fissore",
+        "versoes": [
+          {"nome": "DKW-Vemag Fissore (cupê)", "ano_inicio": 1964, "ano_fim": 1967, "motorizacao": "1.0 3cil 2 tempos (motor S)", "combustivel": "gasolina", "plataforma": "DKW-Vemag"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Willys-Overland",
+    "modelos": [
+      {
+        "modelo": "Aero Willys",
+        "versoes": [
+          {"nome": "Aero Willys 2.6 6cil", "ano_inicio": 1960, "ano_fim": 1971, "motorizacao": "2.6 6cil (Hurricane)", "combustivel": "gasolina", "plataforma": "Willys-Aero"}
+        ]
+      },
+      {
+        "modelo": "Itamaraty",
+        "versoes": [
+          {"nome": "Itamaraty / Itamaraty Executivo 3.0 6cil", "ano_inicio": 1966, "ano_fim": 1971, "motorizacao": "3.0 6cil (Hurricane)", "combustivel": "gasolina", "plataforma": "Willys-Aero"}
+        ]
+      },
+      {
+        "modelo": "Rural Willys / F-75",
+        "versoes": [
+          {"nome": "Rural Willys 4x2/4x4 6cil", "ano_inicio": 1958, "ano_fim": 1975, "motorizacao": "2.6 / 3.0 6cil", "combustivel": "gasolina", "plataforma": "Willys-Jeep"},
+          {"nome": "Rural / F-75 motor Ford OHC 2.3", "ano_inicio": 1975, "ano_fim": 1977, "motorizacao": "2.3 4cil OHC", "combustivel": "gasolina", "plataforma": "Willys-Jeep"},
+          {"nome": "Pick-up F-75 (Ford, pós-Willys)", "ano_inicio": 1977, "ano_fim": 1983, "motorizacao": "2.3 4cil OHC", "combustivel": "gasolina", "plataforma": "Willys-Jeep"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Simca do Brasil",
+    "modelos": [
+      {
+        "modelo": "Chambord",
+        "versoes": [
+          {"nome": "Chambord V8 Aquilon", "ano_inicio": 1959, "ano_fim": 1963, "motorizacao": "2.4 V8 Aquilon", "combustivel": "gasolina", "plataforma": "Simca-Vedette-BR"},
+          {"nome": "Chambord Tufão V8", "ano_inicio": 1964, "ano_fim": 1966, "motorizacao": "2.4 V8 Tufão", "combustivel": "gasolina", "plataforma": "Simca-Vedette-BR"},
+          {"nome": "Chambord/Présidence Emi-Sul V8", "ano_inicio": 1966, "ano_fim": 1967, "motorizacao": "2.4 V8 Emi-Sul", "combustivel": "gasolina", "plataforma": "Simca-Vedette-BR"}
+        ]
+      },
+      {
+        "modelo": "Esplanada",
+        "versoes": [
+          {"nome": "Esplanada / Regente V8 Emi-Sul", "ano_inicio": 1966, "ano_fim": 1969, "motorizacao": "2.4 V8 Emi-Sul", "combustivel": "gasolina", "plataforma": "Simca-Vedette-BR"}
+        ]
+      },
+      {
+        "modelo": "Rallye",
+        "versoes": [
+          {"nome": "Simca Rallye (esportivado V8)", "ano_inicio": 1962, "ano_fim": 1966, "motorizacao": "2.4 V8", "combustivel": "gasolina", "plataforma": "Simca-Vedette-BR"}
+        ]
+      },
+      {
+        "modelo": "Jangada",
+        "versoes": [
+          {"nome": "Jangada (perua V8)", "ano_inicio": 1962, "ano_fim": 1967, "motorizacao": "2.4 V8", "combustivel": "gasolina", "plataforma": "Simca-Vedette-BR"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Puma",
+    "modelos": [
+      {
+        "modelo": "Puma GT / GTE / GTS / GTI / GTC",
+        "versoes": [
+          {"nome": "Puma GT (DKW)", "ano_inicio": 1966, "ano_fim": 1967, "motorizacao": "1.0 3cil 2 tempos DKW", "combustivel": "gasolina", "plataforma": "DKW-Vemag"},
+          {"nome": "Puma GT 1500/1600 (VW Karmann-Ghia)", "ano_inicio": 1968, "ano_fim": 1970, "motorizacao": "1.5 boxer ar", "combustivel": "gasolina", "plataforma": "VW-Fusca/KG"},
+          {"nome": "Puma GTE/GTS (boxer 1.6, base Brasília a partir de 1976)", "ano_inicio": 1970, "ano_fim": 1980, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Brasilia"},
+          {"nome": "Puma GTI/GTC / P-018", "ano_inicio": 1980, "ano_fim": 1985, "motorizacao": "1.6 boxer ar", "combustivel": "gasolina", "plataforma": "VW-ar-Brasilia"}
+        ]
+      },
+      {
+        "modelo": "Puma GTB",
+        "versoes": [
+          {"nome": "Puma GTB / GTB S2 (mecânica Opala 6cil)", "ano_inicio": 1974, "ano_fim": 1987, "motorizacao": "4.1 6cil", "combustivel": "gasolina", "plataforma": "GM-Opala"}
+        ]
+      },
+      {
+        "modelo": "Puma AM (Araucária/Alfa Metais)",
+        "versoes": [
+          {"nome": "Puma AM1-AM4 (VW AP água traseiro)", "ano_inicio": 1988, "ano_fim": 1995, "motorizacao": "1.6 / 1.8 AP água", "combustivel": "gasolina/álcool", "plataforma": "VW-AP"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Gurgel",
+    "modelos": [
+      {
+        "modelo": "X12 / Xavante / Tocantins",
+        "versoes": [
+          {"nome": "X12/Xavante (mecânica VW boxer ar)", "ano_inicio": 1973, "ano_fim": 1991, "motorizacao": "1.5 / 1.6 boxer ar", "combustivel": "gasolina/álcool", "plataforma": "Gurgel-VW-ar"}
+        ]
+      },
+      {
+        "modelo": "Carajás",
+        "versoes": [
+          {"nome": "Carajás (VW 1.8 água / diesel 1.6)", "ano_inicio": 1984, "ano_fim": 1994, "motorizacao": "1.8 água / 1.6 diesel", "combustivel": "gasolina/álcool/diesel", "plataforma": "Gurgel-Carajas"}
+        ]
+      },
+      {
+        "modelo": "BR-800 / Supermini",
+        "versoes": [
+          {"nome": "BR-800 (motor Enertron 0.8 2cil)", "ano_inicio": 1988, "ano_fim": 1991, "motorizacao": "0.8 2cil água", "combustivel": "gasolina", "plataforma": "Gurgel-Enertron"},
+          {"nome": "Supermini (0.8/1.0 Enertron)", "ano_inicio": 1992, "ano_fim": 1994, "motorizacao": "0.8 / 1.0 2cil água", "combustivel": "gasolina", "plataforma": "Gurgel-Enertron"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "RAM",
+    "modelos": [
+      {
+        "modelo": "Rampage",
+        "versoes": [
+          {"nome": "Rampage 2.0 Multijet diesel", "ano_inicio": 2023, "ano_fim": 2024, "motorizacao": "2.0 turbodiesel Multijet (170 cv / 38,8 kgfm)", "combustivel": "diesel", "plataforma": "Stellantis-SmallWide (Fiat Toro/Jeep Compass)"},
+          {"nome": "Rampage 2.2 Multijet diesel", "ano_inicio": 2024, "ano_fim": 2026, "motorizacao": "2.184 cm³ turbodiesel Multijet (200 cv a 3.500 rpm / 45,9 kgfm), câmbio ZF 9 marchas", "combustivel": "diesel", "plataforma": "Stellantis-SmallWide (Fiat Toro/Jeep Compass)"},
+          {"nome": "Rampage 2.0 Hurricane gasolina", "ano_inicio": 2023, "ano_fim": 2026, "motorizacao": "2.0 Hurricane 4 turbo (272 cv / 40,8 kgfm)", "combustivel": "gasolina", "plataforma": "Stellantis-SmallWide (Fiat Toro/Jeep Compass)"},
+          {"nome": "Rampage 2.0 Hurricane 4 Flex", "ano_inicio": 2026, "ano_fim": 2026, "motorizacao": "2.0 turbo Hurricane flex (272 cv)", "combustivel": "flex", "plataforma": "Stellantis-SmallWide (Fiat Toro/Jeep Compass)"}
+        ]
+      },
+      {
+        "modelo": "1500",
+        "versoes": [
+          {"nome": "1500 Laramie/Rebel V8 Hemi", "ano_inicio": 2020, "ano_fim": 2024, "motorizacao": "5.7 V8 Hemi (400 cv)", "combustivel": "gasolina", "plataforma": "RAM-1500-DT"},
+          {"nome": "1500 Hurricane 6 Biturbo", "ano_inicio": 2024, "ano_fim": 2026, "motorizacao": "3.0 biturbo Hurricane (426 cv)", "combustivel": "gasolina", "plataforma": "RAM-1500-DT"}
+        ]
+      },
+      {
+        "modelo": "2500",
+        "versoes": [
+          {"nome": "2500 SLT 5.9 Cummins (era Dodge)", "ano_inicio": 2005, "ano_fim": 2011, "motorizacao": "5.9 6cil diesel Cummins", "combustivel": "diesel", "plataforma": "RAM-HD"},
+          {"nome": "2500 Laramie (relançamento RAM)", "ano_inicio": 2012, "ano_fim": 2018, "motorizacao": "6.7 6cil diesel Cummins", "combustivel": "diesel", "plataforma": "RAM-HD"},
+          {"nome": "2500 6.7 Cummins nova geração", "ano_inicio": 2019, "ano_fim": 2026, "motorizacao": "6.7 6cil diesel Cummins (365 cv; HO 436 cv desde 2025)", "combustivel": "diesel", "plataforma": "RAM-HD"}
+        ]
+      },
+      {
+        "modelo": "3500",
+        "versoes": [
+          {"nome": "3500 6.7 Cummins", "ano_inicio": 2022, "ano_fim": 2026, "motorizacao": "6.7 6cil diesel Cummins (365 cv; HO 436 cv desde 2025)", "combustivel": "diesel", "plataforma": "RAM-HD"}
+        ]
+      }
+    ]
+  },
+  {
+    "marca": "Dodge/Chrysler (histórico BR)",
+    "modelos": [
+      {
+        "modelo": "Dart",
+        "versoes": [
+          {"nome": "Dart sedã/cupê V8 318", "ano_inicio": 1969, "ano_fim": 1981, "motorizacao": "5.2 V8 (318)", "combustivel": "gasolina", "plataforma": "Chrysler-A-body-BR"}
+        ]
+      },
+      {
+        "modelo": "Charger R/T",
+        "versoes": [
+          {"nome": "Charger LS / R/T V8 318", "ano_inicio": 1971, "ano_fim": 1981, "motorizacao": "5.2 V8 (318)", "combustivel": "gasolina", "plataforma": "Chrysler-A-body-BR"}
+        ]
+      },
+      {
+        "modelo": "Le Baron / Magnum / Gran Sedan / Gran Coupé",
+        "versoes": [
+          {"nome": "Le Baron / Magnum V8 318", "ano_inicio": 1979, "ano_fim": 1981, "motorizacao": "5.2 V8 (318)", "combustivel": "gasolina", "plataforma": "Chrysler-A-body-BR"}
+        ]
+      },
+      {
+        "modelo": "Dodge 1800 / Polara ('Dodginho')",
+        "versoes": [
+          {"nome": "Dodge 1800", "ano_inicio": 1973, "ano_fim": 1976, "motorizacao": "1.8 4cil", "combustivel": "gasolina", "plataforma": "Chrysler-Avenger-BR"},
+          {"nome": "Dodge Polara (facelift, câmbio automático desde 1979)", "ano_inicio": 1976, "ano_fim": 1981, "motorizacao": "1.8 4cil", "combustivel": "gasolina", "plataforma": "Chrysler-Avenger-BR"}
+        ]
+      },
+      {
+        "modelo": "Journey",
+        "versoes": [
+          {"nome": "Journey 2.7 V6 (importado México)", "ano_inicio": 2008, "ano_fim": 2011, "motorizacao": "2.7 V6", "combustivel": "gasolina", "plataforma": "Chrysler-JC"},
+          {"nome": "Journey 3.6 V6 Pentastar", "ano_inicio": 2012, "ano_fim": 2017, "motorizacao": "3.6 V6 Pentastar", "combustivel": "gasolina", "plataforma": "Chrysler-JC"}
+        ]
+      }
+    ]
+  }
+]
