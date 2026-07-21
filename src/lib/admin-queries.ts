@@ -148,7 +148,7 @@ export type AdminProduct = {
   brand: { id: string; name: string } | null;
   category: { id: string; name: string; slug: string } | null;
   images: { id: string; storage_path: string; is_primary: boolean }[];
-  compatibility: { versao_id: string; label: string }[];
+  compatibility: { versao_id: string; label: string; is_primary: boolean }[];
 };
 
 const ADMIN_PRODUCT_SELECT = `
@@ -158,7 +158,7 @@ const ADMIN_PRODUCT_SELECT = `
   category:categories ( id, name, slug ),
   images:product_images ( id, storage_path, is_primary ),
   compatibility:produto_compatibilidade (
-    versao_id,
+    versao_id, is_primary,
     versao:versoes_veiculo ( nome, ano_inicio, ano_fim, modelo:modelos_veiculo ( nome, marca:marcas_veiculo ( nome ) ) )
   )
 `;
@@ -183,6 +183,7 @@ type AdminProductRow = {
   compatibility:
     | {
         versao_id: string;
+        is_primary: boolean;
         versao: {
           nome: string;
           ano_inicio: number;
@@ -211,15 +212,17 @@ function mapAdminProduct(row: AdminProductRow): AdminProduct {
     brand: row.brand ?? null,
     category: row.category ?? null,
     images: row.images ?? [],
-    compatibility: (row.compatibility ?? []).map((c) => {
-      const versao = c.versao;
-      const modelo = versao?.modelo;
-      const marca = modelo?.marca;
-      const label = versao
-        ? `${marca?.nome ?? ""} ${modelo?.nome ?? ""} ${versao.nome} (${versao.ano_inicio}–${versao.ano_fim ?? "atual"})`
-        : "";
-      return { versao_id: c.versao_id, label: label.trim() };
-    }),
+    compatibility: (row.compatibility ?? [])
+      .map((c) => {
+        const versao = c.versao;
+        const modelo = versao?.modelo;
+        const marca = modelo?.marca;
+        const label = versao
+          ? `${marca?.nome ?? ""} ${modelo?.nome ?? ""} ${versao.nome} (${versao.ano_inicio}–${versao.ano_fim ?? "atual"})`
+          : "";
+        return { versao_id: c.versao_id, label: label.trim(), is_primary: c.is_primary };
+      })
+      .sort((a, b) => Number(b.is_primary) - Number(a.is_primary)),
   };
 }
 
@@ -329,9 +332,10 @@ async function syncProductRelations(
   await supabase.from("produto_compatibilidade").delete().eq("produto_id", productId);
   if (data.compatibilityVersionIds.length > 0) {
     await supabase.from("produto_compatibilidade").insert(
-      data.compatibilityVersionIds.map((versaoId) => ({
+      data.compatibilityVersionIds.map((versaoId, i) => ({
         produto_id: productId,
         versao_id: versaoId,
+        is_primary: i === 0,
       })),
     );
   }

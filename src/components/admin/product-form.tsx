@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, Upload, X, ImagePlus } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,7 @@ import {
 } from "@/components/vehicle-compatibility-picker";
 import {
   createProduct,
+  createVehicleVersion,
   updateProduct,
   type ProductInput,
   type VehicleVersion,
@@ -43,7 +44,6 @@ export function ProductForm({
   initial?: {
     name: string;
     sku: string;
-    marcaVeiculoId: string | null;
     brandId: string | null;
     categoryId: string | null;
     price: number;
@@ -63,7 +63,6 @@ export function ProductForm({
   const navigate = useNavigate();
   const [name, setName] = useState(initial?.name ?? "");
   const [sku, setSku] = useState(initial?.sku ?? "");
-  const [marcaVeiculoId, setMarcaVeiculoId] = useState(initial?.marcaVeiculoId ?? "");
   const [brandId, setBrandId] = useState(initial?.brandId ?? "");
   const [categoryId, setCategoryId] = useState(initial?.categoryId ?? "");
   const [price, setPrice] = useState(initial?.price?.toString() ?? "");
@@ -72,13 +71,27 @@ export function ProductForm({
   const [inStock, setInStock] = useState((initial?.stockQuantity ?? 0) > 0);
   const [stockQuantity, setStockQuantity] = useState(String(initial?.stockQuantity ?? 1));
   const [featured, setFeatured] = useState(initial?.featured ?? false);
-  const [compatibility, setCompatibility] = useState<SelectedVersion[]>(
-    initial?.compatibility ?? [],
-  );
-  const [hasCompatibility, setHasCompatibility] = useState(
-    initial ? initial.compatibility.length > 0 : true,
-  );
   const [versions, setVersions] = useState(allVersions);
+
+  // Veículo principal: obrigatório, é sempre o primeiro item de compatibilidade.
+  const initialPrimary = initial?.compatibility[0]
+    ? versions.find((v) => v.id === initial.compatibility[0].id)
+    : undefined;
+  const [primaryMarca, setPrimaryMarca] = useState(initialPrimary?.marca_nome ?? "");
+  const [primaryModelo, setPrimaryModelo] = useState(initialPrimary?.modelo_nome ?? "");
+  const [primaryVersaoId, setPrimaryVersaoId] = useState(initial?.compatibility[0]?.id ?? "");
+  const [showNewVersaoForm, setShowNewVersaoForm] = useState(false);
+  const [newVersao, setNewVersao] = useState({ nome: "", anoInicio: "", anoFim: "" });
+  const [creatingVersao, setCreatingVersao] = useState(false);
+
+  // Outros veículos (além do principal), opcional.
+  const [otherCompatibility, setOtherCompatibility] = useState<SelectedVersion[]>(
+    initial?.compatibility.slice(1) ?? [],
+  );
+  const [hasOtherVehicles, setHasOtherVehicles] = useState(
+    initial ? initial.compatibility.length > 1 : false,
+  );
+
   const [images, setImages] = useState<ImageState[]>(
     (initial?.images ?? []).map((img) => ({
       storagePath: img.storage_path,
@@ -88,17 +101,71 @@ export function ProductForm({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const marcaVeiculoId = marcasVeiculo.find((m) => m.nome === primaryMarca)?.id ?? "";
+
+  const primaryMarcaOptions = useMemo(
+    () => Array.from(new Set(versions.map((v) => v.marca_nome))).sort((a, b) => a.localeCompare(b)),
+    [versions],
+  );
+  const primaryModeloOptions = useMemo(
+    () =>
+      Array.from(
+        new Set(versions.filter((v) => v.marca_nome === primaryMarca).map((v) => v.modelo_nome)),
+      ).sort((a, b) => a.localeCompare(b)),
+    [versions, primaryMarca],
+  );
+  const primaryVersaoOptions = useMemo(
+    () =>
+      versions
+        .filter((v) => v.marca_nome === primaryMarca && v.modelo_nome === primaryModelo)
+        .sort((a, b) => a.ano_inicio - b.ano_inicio),
+    [versions, primaryMarca, primaryModelo],
+  );
+
   function addFiles(files: FileList | null) {
     if (!files) return;
     const next = Array.from(files).map((file) => ({ file, previewUrl: URL.createObjectURL(file) }));
     setImages((prev) => [...prev, ...next]);
   }
 
+  async function submitNewPrimaryVersao() {
+    if (!primaryMarca || !primaryModelo || !newVersao.nome.trim() || !newVersao.anoInicio) return;
+    setCreatingVersao(true);
+    try {
+      const result = await createVehicleVersion({
+        data: {
+          marcaNome: primaryMarca,
+          modeloNome: primaryModelo,
+          versaoNome: newVersao.nome,
+          anoInicio: Number(newVersao.anoInicio),
+          anoFim: newVersao.anoFim ? Number(newVersao.anoFim) : null,
+        },
+      });
+      setVersions((prev) => [
+        ...prev,
+        {
+          id: result.id,
+          nome: newVersao.nome,
+          ano_inicio: Number(newVersao.anoInicio),
+          ano_fim: newVersao.anoFim ? Number(newVersao.anoFim) : null,
+          familia: null,
+          modelo_nome: primaryModelo,
+          marca_nome: primaryMarca,
+        },
+      ]);
+      setPrimaryVersaoId(result.id);
+      setNewVersao({ nome: "", anoInicio: "", anoFim: "" });
+      setShowNewVersaoForm(false);
+    } finally {
+      setCreatingVersao(false);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!name.trim() || !sku.trim() || !price || !marcaVeiculoId) {
-      setError("Preencha nome, código, marca e preço.");
+    if (!name.trim() || !sku.trim() || !price || !primaryVersaoId) {
+      setError("Preencha nome, código, preço e o veículo principal (marca/modelo/versão).");
       return;
     }
     setSaving(true);
@@ -119,7 +186,7 @@ export function ProductForm({
         descriptionShort,
         status: "active",
         featured,
-        compatibilityVersionIds: compatibility.map((c) => c.id),
+        compatibilityVersionIds: [primaryVersaoId, ...otherCompatibility.map((c) => c.id)],
         images: uploadedPaths.map((storagePath, i) => ({ storagePath, isPrimary: i === 0 })),
       };
 
@@ -184,22 +251,121 @@ export function ProductForm({
               />
             </div>
             <div>
-              <Label htmlFor="marca-veiculo" className="text-sm font-semibold">
-                Marca
-              </Label>
-              <Select value={marcaVeiculoId} onValueChange={setMarcaVeiculoId}>
-                <SelectTrigger id="marca-veiculo" className="mt-1.5 h-11">
+              <Label className="text-sm font-semibold">Marca (do carro)</Label>
+              <Select
+                value={primaryMarca}
+                onValueChange={(marca) => {
+                  setPrimaryMarca(marca);
+                  setPrimaryModelo("");
+                  setPrimaryVersaoId("");
+                  setShowNewVersaoForm(false);
+                }}
+              >
+                <SelectTrigger className="mt-1.5 h-11">
                   <SelectValue placeholder="Selecione a marca" />
                 </SelectTrigger>
                 <SelectContent>
-                  {marcasVeiculo.map((m) => (
-                    <SelectItem key={m.id} value={m.id}>
-                      {m.nome}
+                  {primaryMarcaOptions.map((m) => (
+                    <SelectItem key={m} value={m}>
+                      {m}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
+            <div>
+              <Label className="text-sm font-semibold">Modelo (do carro)</Label>
+              <Select
+                value={primaryModelo}
+                onValueChange={(modelo) => {
+                  setPrimaryModelo(modelo);
+                  setPrimaryVersaoId("");
+                  setShowNewVersaoForm(false);
+                }}
+                disabled={!primaryMarca}
+              >
+                <SelectTrigger className="mt-1.5 h-11">
+                  <SelectValue placeholder="Selecione o modelo" />
+                </SelectTrigger>
+                <SelectContent>
+                  {primaryModeloOptions.map((m) => (
+                    <SelectItem key={m} value={m}>
+                      {m}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="text-sm font-semibold">Versão</Label>
+              <Select
+                value={primaryVersaoId || (showNewVersaoForm ? "__new__" : "")}
+                onValueChange={(v) => {
+                  if (v === "__new__") {
+                    setShowNewVersaoForm(true);
+                    setPrimaryVersaoId("");
+                  } else {
+                    setPrimaryVersaoId(v);
+                    setShowNewVersaoForm(false);
+                  }
+                }}
+                disabled={!primaryModelo}
+              >
+                <SelectTrigger className="mt-1.5 h-11">
+                  <SelectValue placeholder="Selecione a versão" />
+                </SelectTrigger>
+                <SelectContent>
+                  {primaryVersaoOptions.map((v) => (
+                    <SelectItem key={v.id} value={v.id}>
+                      {v.nome} ({v.ano_inicio}–{v.ano_fim ?? "atual"})
+                    </SelectItem>
+                  ))}
+                  <SelectItem value="__new__">+ Cadastrar nova versão...</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {showNewVersaoForm && (
+              <div className="md:col-span-2 grid gap-3 rounded-md border border-border bg-background p-4 sm:grid-cols-4">
+                <div className="sm:col-span-2">
+                  <Label className="text-xs">Nome da versão</Label>
+                  <Input
+                    value={newVersao.nome}
+                    onChange={(e) => setNewVersao((s) => ({ ...s, nome: e.target.value }))}
+                    placeholder="Ex: G5"
+                    className="mt-1 h-9"
+                  />
+                </div>
+                <div>
+                  <Label className="text-xs">Ano inicial</Label>
+                  <Input
+                    type="number"
+                    value={newVersao.anoInicio}
+                    onChange={(e) => setNewVersao((s) => ({ ...s, anoInicio: e.target.value }))}
+                    className="mt-1 h-9"
+                  />
+                </div>
+                <div>
+                  <Label className="text-xs">Ano final</Label>
+                  <Input
+                    type="number"
+                    value={newVersao.anoFim}
+                    onChange={(e) => setNewVersao((s) => ({ ...s, anoFim: e.target.value }))}
+                    placeholder="atual"
+                    className="mt-1 h-9"
+                  />
+                </div>
+                <div className="sm:col-span-4">
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={submitNewPrimaryVersao}
+                    disabled={creatingVersao}
+                  >
+                    {creatingVersao ? "Salvando..." : "Usar esta versão"}
+                  </Button>
+                </div>
+              </div>
+            )}
             <div>
               <Label htmlFor="cat" className="text-sm font-semibold">
                 Categoria
@@ -233,49 +399,45 @@ export function ProductForm({
             </div>
             <div className="md:col-span-2">
               <Label className="text-sm font-semibold">
-                Esta peça tem compatibilidade com um veículo específico?
+                Esta peça também serve para outros veículos?
               </Label>
               <div className="mt-1.5 flex gap-2">
                 <Button
                   type="button"
                   size="sm"
-                  variant={hasCompatibility ? "default" : "outline"}
-                  className={hasCompatibility ? "bg-gradient-red" : ""}
-                  onClick={() => setHasCompatibility(true)}
+                  variant={hasOtherVehicles ? "default" : "outline"}
+                  className={hasOtherVehicles ? "bg-gradient-red" : ""}
+                  onClick={() => setHasOtherVehicles(true)}
                 >
                   Sim
                 </Button>
                 <Button
                   type="button"
                   size="sm"
-                  variant={!hasCompatibility ? "default" : "outline"}
-                  className={!hasCompatibility ? "bg-gradient-red" : ""}
+                  variant={!hasOtherVehicles ? "default" : "outline"}
+                  className={!hasOtherVehicles ? "bg-gradient-red" : ""}
                   onClick={() => {
-                    setHasCompatibility(false);
-                    setCompatibility([]);
+                    setHasOtherVehicles(false);
+                    setOtherCompatibility([]);
                   }}
                 >
-                  Não, é universal
+                  Não, só este
                 </Button>
               </div>
-              {!hasCompatibility && (
-                <p className="mt-1.5 text-xs text-muted-foreground">
-                  Marcado como universal — a lista abaixo fica vazia, mas você ainda pode adicionar
-                  um veículo se quiser abrir uma exceção.
-                </p>
-              )}
             </div>
-            <div className="md:col-span-2">
-              <Label className="text-sm font-semibold">Veículos compatíveis</Label>
-              <div className="mt-1.5">
-                <VehicleCompatibilityPicker
-                  allVersions={versions}
-                  selected={compatibility}
-                  onChange={setCompatibility}
-                  onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
-                />
+            {hasOtherVehicles && (
+              <div className="md:col-span-2">
+                <Label className="text-sm font-semibold">Outros veículos compatíveis</Label>
+                <div className="mt-1.5">
+                  <VehicleCompatibilityPicker
+                    allVersions={versions.filter((v) => v.id !== primaryVersaoId)}
+                    selected={otherCompatibility}
+                    onChange={setOtherCompatibility}
+                    onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
+                  />
+                </div>
               </div>
-            </div>
+            )}
             <div className="md:col-span-2">
               <Label htmlFor="desc-short" className="text-sm font-semibold">
                 Descrição curta / informações adicionais

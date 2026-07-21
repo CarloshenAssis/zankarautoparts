@@ -31,7 +31,6 @@ function EditarProdutoPage() {
       initial={{
         name: product.name,
         sku: product.sku,
-        marcaVeiculoId: product.marca_veiculo?.id ?? null,
         brandId: product.brand?.id ?? null,
         categoryId: product.category?.id ?? null,
         price: product.price,
