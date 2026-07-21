@@ -55,6 +55,7 @@ export type Product = {
   category: Pick<Category, "id" | "name" | "slug"> | null;
   images: ProductImage[];
   compatibility: VehicleCompatibility[];
+  compatibilityModel: "1" | "2";
 };
 
 export type StoreSettings = {

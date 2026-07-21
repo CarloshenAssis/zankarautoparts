@@ -48,6 +48,24 @@ type ProductRow = {
 };
 
 function mapProductRow(row: ProductRow): Product {
+  const compatibility = (row.compatibility ?? [])
+    .map((c) => {
+      const versao = c.versao;
+      const modelo = versao?.modelo;
+      const marca = modelo?.marca;
+      return {
+        versao_id: c.versao_id,
+        versao_nome: versao?.nome ?? "",
+        ano_inicio: versao?.ano_inicio ?? 0,
+        ano_fim: versao?.ano_fim ?? null,
+        modelo_nome: modelo?.nome ?? "",
+        marca_nome: marca?.nome ?? "",
+        is_primary: c.is_primary,
+        ano_especifico: c.ano_especifico,
+      };
+    })
+    .sort((a, b) => Number(b.is_primary) - Number(a.is_primary));
+
   return {
     id: row.id,
     sku: row.sku,
@@ -64,23 +82,8 @@ function mapProductRow(row: ProductRow): Product {
     brand: row.brand ?? null,
     category: row.category ?? null,
     images: row.images ?? [],
-    compatibility: (row.compatibility ?? [])
-      .map((c) => {
-        const versao = c.versao;
-        const modelo = versao?.modelo;
-        const marca = modelo?.marca;
-        return {
-          versao_id: c.versao_id,
-          versao_nome: versao?.nome ?? "",
-          ano_inicio: versao?.ano_inicio ?? 0,
-          ano_fim: versao?.ano_fim ?? null,
-          modelo_nome: modelo?.nome ?? "",
-          marca_nome: marca?.nome ?? "",
-          is_primary: c.is_primary,
-          ano_especifico: c.ano_especifico,
-        };
-      })
-      .sort((a, b) => Number(b.is_primary) - Number(a.is_primary)),
+    compatibility,
+    compatibilityModel: compatibility.length <= 4 ? "1" : "2",
   };
 }
 
@@ -188,6 +191,40 @@ export const getProductBySlug = createServerFn({ method: "GET" })
     if (error) throw error;
     return data ? mapProductRow(data as unknown as ProductRow) : null;
   });
+
+export const getProductBySlugAndVehicle = createServerFn({ method: "GET" })
+  .validator((input: { slug: string; modeloSlug: string }) => input)
+  .handler(
+    async ({
+      data: { slug, modeloSlug },
+    }): Promise<Product | null> => {
+      const supabase = createSupabaseServerClient();
+      const { data, error } = await supabase
+        .from("products")
+        .select(PRODUCT_SELECT)
+        .eq("slug", slug)
+        .eq("status", "active")
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) return null;
+
+      const product = mapProductRow(data as unknown as ProductRow);
+
+      const modeloMatch = product.compatibility.find((c) => {
+        const marcaSlug = c.marca_nome.toLowerCase().replace(/\s+/g, "-");
+        const modeloSlugNorm = c.modelo_nome.toLowerCase().replace(/\s+/g, "-");
+        const vehicleSlug = `${marcaSlug}-${modeloSlugNorm}`;
+        return vehicleSlug === modeloSlug;
+      });
+
+      if (!modeloMatch) return null;
+
+      return {
+        ...product,
+        compatibility: [modeloMatch],
+      };
+    },
+  );
 
 export const getRelatedProducts = createServerFn({ method: "GET" })
   .validator((input: { categoryId: string; excludeId: string }) => input)

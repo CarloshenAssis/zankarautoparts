@@ -11,11 +11,28 @@ export function ProductCard({ product }: { product: Product }) {
   const primaryImage = product.images.find((i) => i.is_primary) ?? product.images[0];
   const compat = product.compatibility[0];
 
+  const getProductLink = () => {
+    if (product.compatibilityModel === "1" && compat) {
+      const marcaSlug = compat.marca_nome.toLowerCase().replace(/\s+/g, "-");
+      const modeloSlug = compat.modelo_nome.toLowerCase().replace(/\s+/g, "-");
+      return {
+        to: "/produto/$id[/$modeloSlug]" as const,
+        params: { id: product.slug, modeloSlug: `${marcaSlug}-${modeloSlug}` },
+      };
+    }
+    return {
+      to: "/produto/$id[/$modeloSlug]" as const,
+      params: { id: product.slug },
+    };
+  };
+
+  const linkProps = getProductLink();
+
   return (
     <div className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-card transition hover:border-primary/60">
       <Link
-        to="/produto/$id"
-        params={{ id: product.slug }}
+        to={linkProps.to}
+        params={linkProps.params}
         className="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-[#2a1f35] via-[#1f1f1f] to-[#0f0f12] diagonal-stripes"
       >
         {primaryImage ? (
@@ -37,8 +54,8 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <Link
-          to="/produto/$id"
-          params={{ id: product.slug }}
+          to={linkProps.to}
+          params={linkProps.params}
           className="line-clamp-2 min-h-[3rem] text-base font-semibold leading-snug hover:text-primary"
         >
           {product.name}

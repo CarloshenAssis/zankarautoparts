@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { getProductBySlug, getRelatedProducts, getStoreSettings } from "@/lib/queries";
+import { getProductBySlug, getProductBySlugAndVehicle, getRelatedProducts, getStoreSettings } from "@/lib/queries";
 import { formatBRL } from "@/lib/types";
 import { productImageUrl } from "@/lib/storage";
 import { useCart } from "@/lib/cart";
@@ -22,7 +22,14 @@ import { ProductCard } from "@/components/product-card";
 
 export const Route = createFileRoute("/produto/$id")({
   loader: async ({ params }) => {
-    const product = await getProductBySlug({ data: params.id });
+    let product: typeof import("@/lib/queries").getProductBySlug extends (args: any) => Promise<infer T> ? T : never;
+
+    if (params.modeloSlug) {
+      product = await getProductBySlugAndVehicle({ data: { slug: params.id, modeloSlug: params.modeloSlug } });
+    } else {
+      product = await getProductBySlug({ data: params.id });
+    }
+
     if (!product) throw notFound();
     const [related, storeSettings] = await Promise.all([
       product.category
@@ -32,15 +39,28 @@ export const Route = createFileRoute("/produto/$id")({
     ]);
     return { product, related, storeSettings };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, location }) => {
     if (!loaderData) return {};
     const { product } = loaderData;
-    const title = `${product.name} | ZANKAR Auto Parts`;
-    const description =
+    const params = location.pathname.split("/").filter(Boolean);
+    const modeloSlug = params[2];
+    const displayVehicle = modeloSlug
+      ? product.compatibility[0]
+        ? `${product.compatibility[0].marca_nome} ${product.compatibility[0].modelo_nome}`
+        : null
+      : null;
+    const title = displayVehicle
+      ? `${product.name} ${displayVehicle} | ZANKAR Auto Parts`
+      : `${product.name} | ZANKAR Auto Parts`;
+    const baseDescription =
       product.description_short ||
       product.description ||
       `${product.name} — Cód. ${product.sku}. Confira preço e disponibilidade na ZANKAR Auto Parts.`;
+    const description = displayVehicle
+      ? `${baseDescription} Compatível com ${displayVehicle}.`
+      : baseDescription;
     const image = product.images[0] ? productImageUrl(product.images[0].storage_path) : undefined;
+    const canonicalUrl = `/produto/${product.slug}`;
     return {
       meta: [
         { title },
@@ -52,6 +72,7 @@ export const Route = createFileRoute("/produto/$id")({
         { name: "twitter:card", content: image ? "summary_large_image" : "summary" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
+        ...(modeloSlug ? [{ rel: "canonical", href: canonicalUrl }] : []),
       ],
     };
   },
@@ -176,15 +197,25 @@ function ProductPage() {
                 Veículos compatíveis
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
-                {product.compatibility.map((c) => (
-                  <span
-                    key={c.versao_id}
-                    className="rounded-md border border-border bg-card px-3 py-1.5 text-sm"
-                  >
-                    {c.marca_nome} {c.modelo_nome} {c.versao_nome} (
-                    {c.ano_especifico ?? `${c.ano_inicio}–${c.ano_fim ?? "atual"}`})
-                  </span>
-                ))}
+                {product.compatibility.map((c) => {
+                  const marcaSlug = c.marca_nome.toLowerCase().replace(/\s+/g, "-");
+                  const modeloSlugNorm = c.modelo_nome.toLowerCase().replace(/\s+/g, "-");
+                  const vehicleSlug = `${marcaSlug}-${modeloSlugNorm}`;
+                  const href =
+                    product.compatibilityModel === "1"
+                      ? `/produto/${product.slug}/${vehicleSlug}`
+                      : `/produto/${product.slug}`;
+                  return (
+                    <Link
+                      key={c.versao_id}
+                      to={href}
+                      className="rounded-md border border-border bg-card px-3 py-1.5 text-sm transition hover:bg-accent hover:text-accent-foreground"
+                    >
+                      {c.marca_nome} {c.modelo_nome} {c.versao_nome} (
+                      {c.ano_especifico ?? `${c.ano_inicio}–${c.ano_fim ?? "atual"}`})
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}
