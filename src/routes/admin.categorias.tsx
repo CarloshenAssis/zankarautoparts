@@ -3,7 +3,7 @@ import { Plus, Edit2, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { getCategories } from "@/lib/queries";
 import { categoryIcon } from "@/lib/icon-map";
-import { createCategory, deleteCategory } from "@/lib/admin-queries";
+import { createCategory, updateCategory, deleteCategory } from "@/lib/admin-queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -37,6 +37,9 @@ function CategoriasPage() {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState(ICON_OPTIONS[0]);
   const [saving, setSaving] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editName, setEditName] = useState("");
+  const [editIcon, setEditIcon] = useState(ICON_OPTIONS[0]);
 
   async function handleCreate() {
     if (!name.trim()) return;
@@ -45,6 +48,24 @@ function CategoriasPage() {
       await createCategory({ data: { name, icon } });
       setName("");
       setOpen(false);
+      router.invalidate();
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function handleEditOpen(c: { id: string; name: string; icon: string | null }) {
+    setEditingId(c.id);
+    setEditName(c.name);
+    setEditIcon(c.icon || ICON_OPTIONS[0]);
+  }
+
+  async function handleUpdate() {
+    if (!editingId || !editName.trim()) return;
+    setSaving(true);
+    try {
+      await updateCategory({ data: { id: editingId, name: editName, icon: editIcon } });
+      setEditingId(null);
       router.invalidate();
     } finally {
       setSaving(false);
@@ -112,6 +133,45 @@ function CategoriasPage() {
         </Dialog>
       </div>
 
+      <Dialog open={editingId !== null} onOpenChange={(v) => !v && setEditingId(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Editar categoria</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-2">
+            <div>
+              <Label htmlFor="cat-edit-name">Nome</Label>
+              <Input
+                id="cat-edit-name"
+                value={editName}
+                onChange={(e) => setEditName(e.target.value)}
+                className="mt-1.5 h-11"
+              />
+            </div>
+            <div>
+              <Label>Ícone</Label>
+              <Select value={editIcon} onValueChange={setEditIcon}>
+                <SelectTrigger className="mt-1.5 h-11">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {ICON_OPTIONS.map((i) => (
+                    <SelectItem key={i} value={i}>
+                      {i}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleUpdate} disabled={saving} className="bg-gradient-red">
+              {saving ? "Salvando..." : "Salvar alterações"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {categories.length === 0 ? (
         <p className="rounded-lg border border-dashed border-border bg-card/40 p-8 text-center text-sm text-muted-foreground">
           Nenhuma categoria cadastrada ainda.
@@ -131,6 +191,7 @@ function CategoriasPage() {
                   </div>
                   <div className="flex gap-1 opacity-0 transition group-hover:opacity-100">
                     <button
+                      onClick={() => handleEditOpen(c)}
                       className="grid h-9 w-9 place-items-center rounded-md border border-border hover:border-primary hover:text-primary"
                       aria-label="Editar"
                     >

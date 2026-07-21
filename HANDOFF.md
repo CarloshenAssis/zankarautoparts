@@ -101,21 +101,30 @@ para o histórico completo dessa decisão).
 6. Nenhum produto real foi cadastrado ainda — o CRUD já permite fazer isso
    pelo painel assim que houver uma conta admin logada.
 7. **Base de veículos (marcas/modelos/versões) para compatibilidade** —
-   `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo` estão vazias hoje. O
-   schema já suporta tudo que é preciso (inclusive `versoes_veiculo.familia`
-   para a sugestão automática por plataforma da seção 2.1.1 do
-   `PLANEJAMENTO.md` — não precisou de migration nova). Encomendei uma
-   pesquisa (prompt já enviado em outra conversa) de veículos vendidos no
-   Brasil desde 1980, formato JSON `[{marca, modelos:[{modelo,
-   versoes:[{nome, ano_inicio, ano_fim, motorizacao, combustivel,
-   plataforma}]}]}]`. Quando o resultado voltar:
-   1. Salvar o(s) JSON(s) em `data/vehicles-seed/` (pasta ainda não existe,
-      criar).
-   2. Rodar `bun scripts/seed-vehicles/generate-sql.mjs data/vehicles-seed/<arquivo>.json > /tmp/seed.sql`
-      (script já testado e commitado — gera SQL idempotente com
-      `ON CONFLICT`/`NOT EXISTS`, seguro rodar em lotes/mais de uma vez).
-   3. Aplicar o SQL gerado via MCP do Supabase (`execute_sql` ou
-      `apply_migration`, dependendo se quer versionar como migration).
+   **lote 1 aplicado**: 14 marcas, 124 modelos, 202 versões já estão em
+   `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo` (VW, Fiat, Chevrolet,
+   Ford, Toyota, Honda, Hyundai, Renault, Peugeot, Citroën completos;
+   Nissan/Mitsubishi/Kia/Jeep parciais — a própria pesquisa marcou esse
+   quarteto como "completar em lote dedicado"). Fonte: `data/vehicles-seed/lote1.json`.
+   Schema não precisou de migration nova (`versoes_veiculo.familia` já
+   existia para a sugestão automática por plataforma da seção 2.1.1 do
+   `PLANEJAMENTO.md`).
+   **Falta**: lote 2 (detalhar Nissan/Mitsubishi/Kia/Jeep + marcas de
+   segundo escalão: Suzuki, Caoa Chery, JAC, BYD, GWM, Land Rover,
+   Mercedes/BMW/Audi de entrada — ver seção "Recommendations" da pesquisa
+   original). Fluxo pra aplicar um lote novo:
+   1. Salvar o JSON em `data/vehicles-seed/loteN.json` (mesmo formato de
+      `lote1.json`: `[{marca, modelos:[{modelo, versoes:[{nome, ano_inicio,
+      ano_fim, motorizacao, combustivel, plataforma}]}]}]`).
+   2. Rodar `bun scripts/seed-vehicles/generate-sql.mjs data/vehicles-seed/loteN.json > /tmp/seed.sql`.
+   3. Aplicar o SQL gerado via MCP do Supabase (`execute_sql`), em pedaços
+      (o arquivo gerado fica grande — aplicar por marca/bloco evita
+      estourar o limite de uma única chamada).
+   Lembrete de produto (confirmado pelo cliente): essa base é só o
+   catálogo de veículos existentes — `produto_compatibilidade` (peça↔veículo)
+   nunca é populada automaticamente por este seed. A vinculação é sempre
+   manual pelo lojista na tela de produto; o sistema no máximo sugere
+   candidatos não marcados por família/plataforma, nunca confirma sozinho.
 
 ## Nota importante sobre o ambiente
 

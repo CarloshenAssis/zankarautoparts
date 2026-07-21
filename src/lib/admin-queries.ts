@@ -369,6 +369,18 @@ export const createCategory = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
+export const updateCategory = createServerFn({ method: "POST" })
+  .validator((input: { id: string; name: string; icon: string }) => input)
+  .handler(async ({ data }) => {
+    const supabase = createSupabaseServerClient();
+    const { error } = await supabase
+      .from("categories")
+      .update({ name: data.name, slug: slugify(data.name), icon: data.icon || null })
+      .eq("id", data.id);
+    if (error) throw error;
+    return { ok: true };
+  });
+
 export const deleteCategory = createServerFn({ method: "POST" })
   .validator((id: string) => id)
   .handler(async ({ data: id }) => {
