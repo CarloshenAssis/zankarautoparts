@@ -1,0 +1,146 @@
+[
+  {
+    "marca": "Volkswagen",
+    "modelos": [
+      { "modelo": "Amarok", "versoes": [
+        { "nome": "Amarok (1ª geração)", "ano_inicio": 2010, "ano_fim": 2025, "motorizacao": "2.0 TDI biturbo / 3.0 V6 TDI", "combustivel": "diesel", "plataforma": "VW-Amarok-1" }
+      ] },
+      { "modelo": "Taos", "versoes": [
+        { "nome": "Taos", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "1.4 TSI (250 TSI)", "combustivel": "flex", "plataforma": "VW-MQB" }
+      ] },
+      { "modelo": "Tiguan", "versoes": [
+        { "nome": "Tiguan (1ª geração)", "ano_inicio": 2009, "ano_fim": 2018, "motorizacao": "2.0 TSI / 1.4 TSI", "combustivel": "gasolina", "plataforma": "VW-PQ46" },
+        { "nome": "Tiguan Allspace (2ª geração)", "ano_inicio": 2018, "ano_fim": 2021, "motorizacao": "1.4 TSI / 2.0 TSI", "combustivel": "flex", "plataforma": "VW-MQB" },
+        { "nome": "Tiguan (2ª geração, retorno atualizado)", "ano_inicio": 2023, "ano_fim": 2025, "motorizacao": "2.0 TSI", "combustivel": "gasolina", "plataforma": "VW-MQB" },
+        { "nome": "Tiguan (3ª geração)", "ano_inicio": 2026, "ano_fim": null, "motorizacao": "2.0 TSI", "combustivel": "gasolina", "plataforma": "VW-MQB-Evo" }
+      ] },
+      { "modelo": "Touareg", "versoes": [
+        { "nome": "Touareg (1ª geração)", "ano_inicio": 2003, "ano_fim": 2010, "motorizacao": "3.2 V6 / 4.2 V8 FSI / 5.0 V10 TDI", "combustivel": "gasolina/diesel", "plataforma": "VW-PL71" },
+        { "nome": "Touareg (2ª geração)", "ano_inicio": 2011, "ano_fim": 2017, "motorizacao": "3.6 V6 FSI / 3.0 V6 TDI", "combustivel": "gasolina/diesel", "plataforma": "VW-PL72" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Fiat",
+    "modelos": [
+      { "modelo": "Fiorino", "versoes": [
+        { "nome": "Fiorino 147 (1ª geração)", "ano_inicio": 1980, "ano_fim": 1988, "motorizacao": "1.0/1.3", "combustivel": "gasolina/etanol", "plataforma": "Fiat-147" },
+        { "nome": "Fiorino (2ª geração, base Uno)", "ano_inicio": 1988, "ano_fim": 2014, "motorizacao": "1.0/1.3/1.5/1.3 Fire", "combustivel": "gasolina/flex", "plataforma": "Fiat-Uno-Mille" },
+        { "nome": "Fiorino (3ª geração, base Novo Uno)", "ano_inicio": 2014, "ano_fim": null, "motorizacao": "1.4 EVO / 1.3 Firefly", "combustivel": "flex", "plataforma": "Fiat-Novo-Uno" }
+      ] },
+      { "modelo": "Doblò", "versoes": [
+        { "nome": "Doblò", "ano_inicio": 2001, "ano_fim": 2021, "motorizacao": "1.3 16V / 1.6 16V / 1.8 8V / 1.4 Fire / 1.8 E.torQ 16V", "combustivel": "gasolina/flex", "plataforma": "Fiat-Doblo-1" }
+      ] },
+      { "modelo": "Pulse", "versoes": [
+        { "nome": "Pulse", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "1.3 Firefly / 1.0 Firefly turbo / 1.3 GSE turbo", "combustivel": "flex", "plataforma": "Fiat-MLA" }
+      ] },
+      { "modelo": "Fastback", "versoes": [
+        { "nome": "Fastback", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.0 Firefly turbo / 1.3 GSE turbo", "combustivel": "flex", "plataforma": "Fiat-MLA" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Chevrolet",
+    "modelos": [
+      { "modelo": "Montana", "versoes": [
+        { "nome": "Montana (1ª geração)", "ano_inicio": 2003, "ano_fim": 2010, "motorizacao": "1.8 Flexpower / 1.4 Econo.Flex", "combustivel": "flex", "plataforma": "GM-Gamma" },
+        { "nome": "Montana (2ª geração)", "ano_inicio": 2010, "ano_fim": 2021, "motorizacao": "1.4 Econo.Flex", "combustivel": "flex", "plataforma": "GM4200" },
+        { "nome": "Montana (3ª geração)", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "1.2 turbo", "combustivel": "flex", "plataforma": "GM-GEM" }
+      ] },
+      { "modelo": "Trailblazer", "versoes": [
+        { "nome": "Trailblazer", "ano_inicio": 2012, "ano_fim": null, "motorizacao": "2.8 turbodiesel Duramax / 3.6 V6", "combustivel": "diesel/gasolina", "plataforma": "GM-GMT31XX" }
+      ] },
+      { "modelo": "Captiva", "versoes": [
+        { "nome": "Captiva", "ano_inicio": 2008, "ano_fim": 2017, "motorizacao": "3.6 V6 / 2.4 Ecotec / 3.0 V6", "combustivel": "gasolina", "plataforma": "GM-Theta" }
+      ] },
+      { "modelo": "Equinox", "versoes": [
+        { "nome": "Equinox (2ª geração)", "ano_inicio": 2018, "ano_fim": 2021, "motorizacao": "1.5 turbo / 2.0 turbo", "combustivel": "gasolina", "plataforma": "GM-D2XX" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Ford",
+    "modelos": [
+      { "modelo": "Territory", "versoes": [
+        { "nome": "Territory (1ª geração)", "ano_inicio": 2020, "ano_fim": 2025, "motorizacao": "1.5 turbo EcoBoost GTDI", "combustivel": "gasolina", "plataforma": "Ford-JMC" },
+        { "nome": "Territory (facelift, linha 2025)", "ano_inicio": 2025, "ano_fim": null, "motorizacao": "1.5 turbo", "combustivel": "gasolina/híbrido", "plataforma": "Ford-JMC" }
+      ] },
+      { "modelo": "Edge", "versoes": [
+        { "nome": "Edge (1ª geração)", "ano_inicio": 2008, "ano_fim": 2015, "motorizacao": "3.5 V6", "combustivel": "gasolina", "plataforma": "Ford-CD3-CD4" },
+        { "nome": "Edge (2ª geração/ST)", "ano_inicio": 2016, "ano_fim": 2021, "motorizacao": "2.7 V6 biturbo EcoBoost", "combustivel": "gasolina", "plataforma": "Ford-CD4" }
+      ] },
+      { "modelo": "Maverick", "versoes": [
+        { "nome": "Maverick", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "2.0 EcoBoost turbo / 2.5 Atkinson híbrido", "combustivel": "gasolina/híbrido", "plataforma": "Ford-C2" }
+      ] },
+      { "modelo": "Bronco Sport", "versoes": [
+        { "nome": "Bronco Sport", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "2.0 EcoBoost turbo", "combustivel": "gasolina", "plataforma": "Ford-C2" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Toyota",
+    "modelos": [
+      { "modelo": "RAV4", "versoes": [
+        { "nome": "RAV4 (1ª geração)", "ano_inicio": 1999, "ano_fim": 2000, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "Toyota-XA10" },
+        { "nome": "RAV4 (2ª geração)", "ano_inicio": 2000, "ano_fim": 2005, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "Toyota-XA20" },
+        { "nome": "RAV4 (3ª geração)", "ano_inicio": 2006, "ano_fim": 2012, "motorizacao": "2.4 / 3.5 V6", "combustivel": "gasolina", "plataforma": "Toyota-XA30" },
+        { "nome": "RAV4 (4ª geração)", "ano_inicio": 2013, "ano_fim": 2018, "motorizacao": "2.0 / 2.5", "combustivel": "gasolina", "plataforma": "Toyota-XA40" },
+        { "nome": "RAV4 (5ª geração)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "2.5 híbrido", "combustivel": "híbrido", "plataforma": "Toyota-TNGA-K" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Honda",
+    "modelos": [
+      { "modelo": "ZR-V", "versoes": [
+        { "nome": "ZR-V", "ano_inicio": 2024, "ano_fim": null, "motorizacao": "2.0 i-VTEC DOHC aspirado", "combustivel": "gasolina", "plataforma": "Honda-Civic-11" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Hyundai",
+    "modelos": [
+      { "modelo": "Santa Fe", "versoes": [
+        { "nome": "Santa Fe (1ª geração)", "ano_inicio": 2001, "ano_fim": 2006, "motorizacao": "2.4 / 2.7 V6 / 3.5 V6", "combustivel": "gasolina", "plataforma": "Hyundai-Sonata" },
+        { "nome": "Santa Fe (2ª geração)", "ano_inicio": 2006, "ano_fim": 2012, "motorizacao": "2.7 V6 / 3.3 V6 / 3.5 V6", "combustivel": "gasolina", "plataforma": "Hyundai-CM" },
+        { "nome": "Santa Fe (3ª geração)", "ano_inicio": 2013, "ano_fim": 2018, "motorizacao": "3.3 V6", "combustivel": "gasolina", "plataforma": "Hyundai-NC" },
+        { "nome": "Santa Fe (4ª geração)", "ano_inicio": 2019, "ano_fim": 2020, "motorizacao": "3.5 V6", "combustivel": "gasolina", "plataforma": "Hyundai-TM" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Renault",
+    "modelos": [
+      { "modelo": "Koleos", "versoes": [
+        { "nome": "Koleos (1ª geração)", "ano_inicio": 2009, "ano_fim": 2015, "motorizacao": "2.5 gasolina / 2.0 dCi diesel", "combustivel": "gasolina/diesel", "plataforma": "Renault-Nissan-C" },
+        { "nome": "Koleos (2ª geração)", "ano_inicio": 2017, "ano_fim": 2020, "motorizacao": "2.5", "combustivel": "gasolina", "plataforma": "Renault-CMF-CD" },
+        { "nome": "Koleos (3ª geração, híbrido)", "ano_inicio": 2026, "ano_fim": null, "motorizacao": "1.5 turbo full hybrid E-Tech", "combustivel": "híbrido", "plataforma": "Renault-CMF" }
+      ] },
+      { "modelo": "Kangoo", "versoes": [
+        { "nome": "Kangoo (1ª geração)", "ano_inicio": 1999, "ano_fim": 2020, "motorizacao": "1.6 16V", "combustivel": "flex/gasolina", "plataforma": "Renault-Kangoo-1" },
+        { "nome": "Kangoo (2ª geração, atual)", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "1.6 SCe", "combustivel": "flex", "plataforma": "Renault-Kangoo-2" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Peugeot",
+    "modelos": [
+      { "modelo": "3008", "versoes": [
+        { "nome": "3008 (2ª geração)", "ano_inicio": 2018, "ano_fim": 2022, "motorizacao": "1.6 THP", "combustivel": "gasolina", "plataforma": "PSA-EMP2" }
+      ] },
+      { "modelo": "5008", "versoes": [
+        { "nome": "5008", "ano_inicio": 2018, "ano_fim": 2021, "motorizacao": "1.6 THP", "combustivel": "gasolina", "plataforma": "PSA-EMP2" }
+      ] }
+    ]
+  },
+  {
+    "marca": "Citroën",
+    "modelos": [
+      { "modelo": "Berlingo", "versoes": [
+        { "nome": "Berlingo (1ª fase)", "ano_inicio": 1998, "ano_fim": 2003, "motorizacao": "1.6", "combustivel": "gasolina", "plataforma": "PSA-Berlingo-1" },
+        { "nome": "Berlingo (retorno)", "ano_inicio": 2005, "ano_fim": 2007, "motorizacao": "1.6", "combustivel": "gasolina/flex", "plataforma": "PSA-Berlingo-1" },
+        { "nome": "Berlingo (última fase)", "ano_inicio": 2018, "ano_fim": 2020, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "PSA-Berlingo" }
+      ] }
+    ]
+  }
+]

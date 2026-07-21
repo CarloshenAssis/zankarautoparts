@@ -101,18 +101,21 @@ para o histórico completo dessa decisão).
 6. Nenhum produto real foi cadastrado ainda — o CRUD já permite fazer isso
    pelo painel assim que houver uma conta admin logada.
 7. **Base de veículos (marcas/modelos/versões) para compatibilidade** —
-   **lote 1 aplicado**: 14 marcas, 124 modelos, 202 versões já estão em
-   `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo` (VW, Fiat, Chevrolet,
-   Ford, Toyota, Honda, Hyundai, Renault, Peugeot, Citroën completos;
-   Nissan/Mitsubishi/Kia/Jeep parciais — a própria pesquisa marcou esse
-   quarteto como "completar em lote dedicado"). Fonte: `data/vehicles-seed/lote1.json`.
+   **lotes 1 e 2 aplicados**: 14 marcas, 147 modelos, 248 versões em
+   `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo`. Lote 1
+   (`data/vehicles-seed/lote1.json`): linha de entrada (Gol, Uno, Onix,
+   HB20 etc.) das mesmas 14 marcas, Nissan/Mitsubishi/Kia/Jeep parciais.
+   Lote 2 (`data/vehicles-seed/lote2.json`): picapes compactas/médias,
+   SUVs/crossovers e furgões de passeio dessas mesmas marcas (Amarok,
+   Tiguan, Territory, Maverick, RAV4, Santa Fe, Koleos, Trailblazer etc.) —
+   nenhuma marca nova, só modelos novos. Corrigiu também uma entrada
+   genérica do Peugeot Partner do lote 1 (via `UPDATE`, não duplicou).
    Schema não precisou de migration nova (`versoes_veiculo.familia` já
    existia para a sugestão automática por plataforma da seção 2.1.1 do
    `PLANEJAMENTO.md`).
-   **Falta**: lote 2 (detalhar Nissan/Mitsubishi/Kia/Jeep + marcas de
+   **Falta**: lote 3 (Nissan/Mitsubishi/Kia/Jeep detalhados + marcas de
    segundo escalão: Suzuki, Caoa Chery, JAC, BYD, GWM, Land Rover,
-   Mercedes/BMW/Audi de entrada — ver seção "Recommendations" da pesquisa
-   original). Fluxo pra aplicar um lote novo:
+   Mercedes/BMW/Audi de entrada). Fluxo pra aplicar um lote novo:
    1. Salvar o JSON em `data/vehicles-seed/loteN.json` (mesmo formato de
       `lote1.json`: `[{marca, modelos:[{modelo, versoes:[{nome, ano_inicio,
       ano_fim, motorizacao, combustivel, plataforma}]}]}]`).
