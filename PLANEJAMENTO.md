@@ -72,12 +72,44 @@ products (
 
 product_images (id, product_id, storage_path, alt_text, sort_order, is_primary)
 
--- Compatibilidade de veículo normalizada
-vehicle_makes (id, tenant_id, name, slug)
-vehicle_models (id, make_id, name, slug)
-vehicle_generations (id, model_id, name, year_start, year_end, engine, fuel_type)
-product_compatibility (id, product_id, vehicle_generation_id)
+-- Compatibilidade de veículo normalizada (ver seção 2.1.1 para o desenho completo)
+-- "marcas/modelos/versoes" aqui são do VEÍCULO (Volkswagen, Gol, Gol G5 2008-2012),
+-- distinto de "brands" acima, que é o fabricante da PEÇA (Bosch, NGK, Fras-le).
+marcas_veiculo (id, tenant_id, nome, slug)
+modelos_veiculo (id, marca_id -> marcas_veiculo, nome, slug)
+versoes_veiculo (id, modelo_id -> modelos_veiculo, nome, ano_inicio, ano_fim, motorizacao, combustivel)
+produto_compatibilidade (id, produto_id -> products, versao_id -> versoes_veiculo)
 ```
+
+### 2.1.1 Compatibilidade de veículo — desenho detalhado (peça central do sistema)
+
+Esta é a parte mais valiosa e mais delicada do produto: o que faz o cliente achar "essa peça serve no meu carro" com confiança. Segue o desenho completo (baseado em definição direta do cliente).
+
+**Modelo relacional em cascata:** `marcas_veiculo` → `modelos_veiculo` → `versoes_veiculo` → `produto_compatibilidade`. Uma peça nunca se relaciona direto com marca/modelo — sempre com uma **versão** específica (que já carrega o intervalo de ano e, quando relevante, motorização/combustível). Isso evita o erro comum de "essa peça serve no Gol" sem dizer qual geração.
+
+Exemplo de dado real:
+```
+Farol dianteiro (produto_id=15) é compatível com:
+  ✓ Gol G5 (2008–2012)   → versao_id=8
+  ✓ Voyage G5 (2009–2012) → versao_id=9
+  ✓ Saveiro G5 (2010–2013) → versao_id=12
+
+produto_compatibilidade:
+  (produto_id=15, versao_id=8)
+  (produto_id=15, versao_id=9)
+  (produto_id=15, versao_id=12)
+```
+
+**Fluxo no painel admin (cadastro/edição de peça):**
+1. Campo "Compatibilidade" com busca/autocomplete: o lojista digita `"Gol"` e o sistema sugere as versões cadastradas (`Gol G4 2005-2008`, `Gol G5 2008-2012`, `Gol G6 2013-2016`, ...).
+2. Seleção via checkboxes — pode marcar várias versões de uma vez, de modelos diferentes.
+3. **Sugestão automática por proximidade**: ao marcar uma versão (ex: `Gol G5 2008–2012`), o sistema propõe candidatos prováveis da mesma plataforma/geração (ex: `Voyage G5`, `Saveiro G5`) como checkboxes não marcados ("Talvez esta peça também sirva em:") — reduz drasticamente o trabalho de cadastro repetitivo. Implementação: agrupar `versoes_veiculo` por uma tag de plataforma/geração compartilhada (campo `plataforma` ou tabela de agrupamento `familia_veiculo`, a definir na Fase de schema) e sugerir versões da mesma família com faixa de ano sobreposta.
+4. **Cadastro manual sempre disponível** (`+ Novo veículo`), independente de quão completa esteja a base pré-carregada — campos: Marca, Modelo, Versão, Ano inicial, Ano final, Motorização (opcional). Necessário porque sempre existem: carros novos, versões especiais, peças importadas, veículos antigos, ou erro na base pronta.
+5. **Busca no catálogo público (lado cliente)**: filtro "Meu veículo" com os mesmos três selects em cascata (marca → modelo → versão) reaproveitando as mesmas tabelas — o cliente encontra peças filtrando por veículo, não só por categoria/texto.
+
+**Origem dos dados:**
+- `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo` (a "árvore" de veículos) podem ser **pré-carregados via seed** a partir de fontes públicas: Tabela FIPE, bases do Denatran, APIs gratuitas de veículos, ou listas prontas (GitHub). Isso é trabalho de importação único (script de seed), não desenvolvimento de feature.
+- `produto_compatibilidade` (qual peça serve em qual veículo) **não existe em nenhuma base pública** — é conhecimento proprietário da autopeças e precisa ser cadastrado manualmente pelo lojista, tela por tela. É exatamente por isso que os itens 2 (checkboxes rápidos) e 3 (sugestão automática) acima são prioridade de UX, não luxo.
 
 ### 2.2 Pedidos e clientes
 
@@ -136,7 +168,7 @@ RLS **habilitado em todas as tabelas**, sempre — público por política explí
 - `authenticated` + `admin_users.auth_user_id = auth.uid()` — lojista/funcionário (via função `is_admin(auth.uid())`)
 
 ### Público (leitura anônima)
-`products`, `product_images`, `categories`, `brands`, `vehicle_*`, `product_compatibility`, `store_settings` (campos públicos). `SELECT` liberado onde `status='active'` e `deleted_at is null`. Escrita bloqueada para todos exceto admin.
+`products`, `product_images`, `categories`, `brands`, `marcas_veiculo/modelos_veiculo/versoes_veiculo`, `produto_compatibilidade`, `store_settings` (campos públicos). `SELECT` liberado onde `status='active'` e `deleted_at is null`. Escrita bloqueada para todos exceto admin.
 
 ### Autenticado (cliente logado)
 `orders`, `order_items`, `addresses`, `customers` (linha própria), `cart_items`. `SELECT/INSERT/UPDATE` restrito a `customer_id = (select id from customers where auth_user_id = auth.uid())`. Cliente nunca altera `status` de pedido nem `price_tier_id` diretamente.
@@ -145,7 +177,7 @@ RLS **habilitado em todas as tabelas**, sempre — público por política explí
 `INSERT` em `orders`/`order_items` com `customer_id null` **somente via RPC `create_guest_order(...)` `SECURITY DEFINER`**, com validação server-side de preço/estoque — nunca insert direto pela tabela, pra impedir forjar total/preço no client.
 
 ### Admin-only
-`admin_users`, `audit_log`, coluna `cost_price` (view pública sem essa coluna), `store_settings` (write), `price_tiers`, toda escrita em `products/categories/brands/vehicle_*`. `ALL` permitido só quando `is_admin(auth.uid())` e `tenant_id` correspondente.
+`admin_users`, `audit_log`, coluna `cost_price` (view pública sem essa coluna), `store_settings` (write), `price_tiers`, toda escrita em `products/categories/brands/marcas_veiculo/modelos_veiculo/versoes_veiculo`. `ALL` permitido só quando `is_admin(auth.uid())` e `tenant_id` correspondente.
 
 ### Resumo de permissões
 
@@ -258,7 +290,7 @@ Portar como está, sem redesenho: paleta exata (`#1F1F1F`, `#FFFFFF`, `#6C2BD9`,
 | Checkout = WhatsApp manual sem persistência | Pedido persistido via RPC antes do redirecionamento |
 | CRUD sem handler | CRUD real com RLS + Storage |
 | Telefone WhatsApp hardcoded em 4 lugares | `store_settings.phone_whatsapp`, fonte única |
-| Compatibilidade de veículo como string livre | `vehicle_makes/models/generations` normalizados |
+| Compatibilidade de veículo como string livre | `marcas_veiculo/modelos_veiculo/versoes_veiculo` + `produto_compatibilidade`, com autocomplete, sugestão automática por família de plataforma e cadastro manual sempre disponível (seção 2.1.1) |
 | Categoria duplicada no Product | `category_id` único (FK) |
 | Preço congelado silenciosamente no carrinho | Validação no checkout + snapshot auditável |
 | Pedidos/clientes do admin inventados | Dados reais de `orders`/`customers` |
