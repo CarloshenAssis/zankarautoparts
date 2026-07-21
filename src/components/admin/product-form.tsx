@@ -75,6 +75,9 @@ export function ProductForm({
   const [compatibility, setCompatibility] = useState<SelectedVersion[]>(
     initial?.compatibility ?? [],
   );
+  const [hasCompatibility, setHasCompatibility] = useState(
+    initial ? initial.compatibility.length > 0 : true,
+  );
   const [versions, setVersions] = useState(allVersions);
   const [images, setImages] = useState<ImageState[]>(
     (initial?.images ?? []).map((img) => ({
@@ -229,16 +232,46 @@ export function ProductForm({
               />
             </div>
             <div className="md:col-span-2">
-              <Label className="text-sm font-semibold">Compatibilidade</Label>
-              <div className="mt-1.5">
-                <VehicleCompatibilityPicker
-                  allVersions={versions}
-                  selected={compatibility}
-                  onChange={setCompatibility}
-                  onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
-                />
+              <Label className="text-sm font-semibold">
+                Esta peça tem compatibilidade com um veículo específico?
+              </Label>
+              <div className="mt-1.5 flex gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={hasCompatibility ? "default" : "outline"}
+                  className={hasCompatibility ? "bg-gradient-red" : ""}
+                  onClick={() => setHasCompatibility(true)}
+                >
+                  Sim
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={!hasCompatibility ? "default" : "outline"}
+                  className={!hasCompatibility ? "bg-gradient-red" : ""}
+                  onClick={() => {
+                    setHasCompatibility(false);
+                    setCompatibility([]);
+                  }}
+                >
+                  Não, é universal
+                </Button>
               </div>
             </div>
+            {hasCompatibility && (
+              <div className="md:col-span-2">
+                <Label className="text-sm font-semibold">Veículos compatíveis</Label>
+                <div className="mt-1.5">
+                  <VehicleCompatibilityPicker
+                    allVersions={versions}
+                    selected={compatibility}
+                    onChange={setCompatibility}
+                    onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
+                  />
+                </div>
+              </div>
+            )}
             <div className="md:col-span-2">
               <Label htmlFor="desc-short" className="text-sm font-semibold">
                 Descrição curta / informações adicionais

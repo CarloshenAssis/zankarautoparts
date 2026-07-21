@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Search, X, Plus, Sparkles } from "lucide-react";
+import { Search, X, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,6 @@ export function VehicleCompatibilityPicker({
   onVersionCreated: (v: VehicleVersion) => void;
 }) {
   const [query, setQuery] = useState("");
-  const [showNewForm, setShowNewForm] = useState(false);
   const [suggestions, setSuggestions] = useState<VehicleVersion[]>([]);
   const [creating, setCreating] = useState(false);
   const [newVehicle, setNewVehicle] = useState({
@@ -108,7 +107,6 @@ export function VehicleCompatibilityPicker({
       });
       onChange([...selected, { id: result.id, label: result.label }]);
       setNewVehicle({ marca: "", modelo: "", versao: "", anoInicio: "", anoFim: "" });
-      setShowNewForm(false);
     } finally {
       setCreating(false);
     }
@@ -181,15 +179,10 @@ export function VehicleCompatibilityPicker({
         </div>
       )}
 
-      {!showNewForm ? (
-        <button
-          type="button"
-          onClick={() => setShowNewForm(true)}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-        >
-          <Plus className="h-4 w-4" /> Novo veículo
-        </button>
-      ) : (
+      <div>
+        <p className="mb-2 text-xs font-semibold text-muted-foreground">
+          Não achou o veículo? Cadastre direto aqui:
+        </p>
         <div className="grid gap-3 rounded-md border border-border bg-card p-4 sm:grid-cols-5">
           <div className="sm:col-span-1">
             <Label className="text-xs">Marca</Label>
@@ -233,6 +226,7 @@ export function VehicleCompatibilityPicker({
             <Input
               value={newVehicle.versao}
               onChange={(e) => setNewVehicle((s) => ({ ...s, versao: e.target.value }))}
+              placeholder="Ex: G5"
               className="mt-1 h-9"
             />
           </div>
@@ -255,16 +249,13 @@ export function VehicleCompatibilityPicker({
               className="mt-1 h-9"
             />
           </div>
-          <div className="flex items-end gap-2 sm:col-span-5">
+          <div className="sm:col-span-5">
             <Button type="button" size="sm" onClick={submitNewVehicle} disabled={creating}>
               {creating ? "Salvando..." : "Adicionar veículo"}
             </Button>
-            <Button type="button" size="sm" variant="outline" onClick={() => setShowNewForm(false)}>
-              Cancelar
-            </Button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
