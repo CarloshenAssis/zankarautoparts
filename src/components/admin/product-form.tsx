@@ -258,20 +258,24 @@ export function ProductForm({
                   Não, é universal
                 </Button>
               </div>
+              {!hasCompatibility && (
+                <p className="mt-1.5 text-xs text-muted-foreground">
+                  Marcado como universal — a lista abaixo fica vazia, mas você ainda pode adicionar
+                  um veículo se quiser abrir uma exceção.
+                </p>
+              )}
             </div>
-            {hasCompatibility && (
-              <div className="md:col-span-2">
-                <Label className="text-sm font-semibold">Veículos compatíveis</Label>
-                <div className="mt-1.5">
-                  <VehicleCompatibilityPicker
-                    allVersions={versions}
-                    selected={compatibility}
-                    onChange={setCompatibility}
-                    onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
-                  />
-                </div>
+            <div className="md:col-span-2">
+              <Label className="text-sm font-semibold">Veículos compatíveis</Label>
+              <div className="mt-1.5">
+                <VehicleCompatibilityPicker
+                  allVersions={versions}
+                  selected={compatibility}
+                  onChange={setCompatibility}
+                  onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
+                />
               </div>
-            )}
+            </div>
             <div className="md:col-span-2">
               <Label htmlFor="desc-short" className="text-sm font-semibold">
                 Descrição curta / informações adicionais
