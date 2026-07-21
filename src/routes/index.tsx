@@ -3,24 +3,25 @@ import { ArrowRight, ShieldCheck, Truck, MessageCircle, Star } from "lucide-reac
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
-import { getCategories, getFeaturedProducts, getStoreSettings } from "@/lib/queries";
+import { getBrands, getCategories, getFeaturedProducts, getStoreSettings } from "@/lib/queries";
 import { categoryIcon } from "@/lib/icon-map";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
-    const [categories, featured, storeSettings] = await Promise.all([
+    const [categories, featured, storeSettings, brands] = await Promise.all([
       getCategories(),
       getFeaturedProducts(),
       getStoreSettings(),
+      getBrands(),
     ]);
-    return { categories, featured, storeSettings };
+    return { categories, featured, storeSettings, brands };
   },
   component: HomePage,
 });
 
 function HomePage() {
-  const { categories, featured, storeSettings } = Route.useLoaderData();
+  const { categories, featured, storeSettings, brands } = Route.useLoaderData();
   const whatsapp = storeSettings?.phone_whatsapp ?? "5511999999999";
 
   return (
@@ -160,15 +161,20 @@ function HomePage() {
       </section>
 
       {/* Brand strip */}
-      <section className="mt-8 border-y border-border bg-card/60 diagonal-stripes">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-6 px-6 py-8 text-muted-foreground md:gap-12">
-          {["Arteb", "Fitam", "Metagal", "TG Poli", "IMP", "JR8"].map((b) => (
-            <span key={b} className="font-display text-xl font-bold tracking-widest opacity-70">
-              {b.toUpperCase()}
-            </span>
-          ))}
-        </div>
-      </section>
+      {brands.length > 0 && (
+        <section className="mt-8 border-y border-border bg-card/60 diagonal-stripes">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-6 px-6 py-8 text-muted-foreground md:gap-12">
+            {brands.map((b) => (
+              <span
+                key={b.id}
+                className="font-display text-xl font-bold tracking-widest opacity-70"
+              >
+                {b.name.toUpperCase()}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
 
       <SiteFooter />
     </div>
