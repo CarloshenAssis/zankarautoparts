@@ -5,6 +5,13 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   createVehicleVersion,
   suggestRelatedVersions,
   type VehicleVersion,
@@ -40,6 +47,22 @@ export function VehicleCompatibilityPicker({
   });
 
   const selectedIds = new Set(selected.map((s) => s.id));
+
+  const marcaOptions = useMemo(
+    () =>
+      Array.from(new Set(allVersions.map((v) => v.marca_nome))).sort((a, b) => a.localeCompare(b)),
+    [allVersions],
+  );
+
+  const modeloOptions = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          allVersions.filter((v) => v.marca_nome === newVehicle.marca).map((v) => v.modelo_nome),
+        ),
+      ).sort((a, b) => a.localeCompare(b)),
+    [allVersions, newVehicle.marca],
+  );
 
   const matches = useMemo(() => {
     if (!query.trim()) return [];
@@ -170,19 +193,40 @@ export function VehicleCompatibilityPicker({
         <div className="grid gap-3 rounded-md border border-border bg-card p-4 sm:grid-cols-5">
           <div className="sm:col-span-1">
             <Label className="text-xs">Marca</Label>
-            <Input
+            <Select
               value={newVehicle.marca}
-              onChange={(e) => setNewVehicle((s) => ({ ...s, marca: e.target.value }))}
-              className="mt-1 h-9"
-            />
+              onValueChange={(marca) => setNewVehicle((s) => ({ ...s, marca, modelo: "" }))}
+            >
+              <SelectTrigger className="mt-1 h-9">
+                <SelectValue placeholder="Selecione a marca" />
+              </SelectTrigger>
+              <SelectContent>
+                {marcaOptions.map((m) => (
+                  <SelectItem key={m} value={m}>
+                    {m}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="sm:col-span-1">
             <Label className="text-xs">Modelo</Label>
-            <Input
+            <Select
               value={newVehicle.modelo}
-              onChange={(e) => setNewVehicle((s) => ({ ...s, modelo: e.target.value }))}
-              className="mt-1 h-9"
-            />
+              onValueChange={(modelo) => setNewVehicle((s) => ({ ...s, modelo }))}
+              disabled={!newVehicle.marca}
+            >
+              <SelectTrigger className="mt-1 h-9">
+                <SelectValue placeholder="Selecione o modelo" />
+              </SelectTrigger>
+              <SelectContent>
+                {modeloOptions.map((m) => (
+                  <SelectItem key={m} value={m}>
+                    {m}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="sm:col-span-1">
             <Label className="text-xs">Versão</Label>
