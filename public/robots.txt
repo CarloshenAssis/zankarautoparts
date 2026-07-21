@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /catalogo
+Allow: /produto/
+Disallow: /admin
+Disallow: /login
+Disallow: /carrinho
+
+Sitemap: https://zankar.com.br/sitemap.xml

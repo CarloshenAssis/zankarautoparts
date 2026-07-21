@@ -32,6 +32,29 @@ export const Route = createFileRoute("/produto/$id")({
     ]);
     return { product, related, storeSettings };
   },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+    const { product } = loaderData;
+    const title = `${product.name} | ZANKAR Auto Parts`;
+    const description =
+      product.description_short ||
+      product.description ||
+      `${product.name} — Cód. ${product.sku}. Confira preço e disponibilidade na ZANKAR Auto Parts.`;
+    const image = product.images[0] ? productImageUrl(product.images[0].storage_path) : undefined;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "product" },
+        ...(image ? [{ property: "og:image", content: image }] : []),
+        { name: "twitter:card", content: image ? "summary_large_image" : "summary" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+      ],
+    };
+  },
   component: ProductPage,
   notFoundComponent: () => (
     <div className="min-h-screen">
