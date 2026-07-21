@@ -1,16 +1,57 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Upload, Instagram, Facebook, Youtube } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CarSilhouette } from "@/components/brand-mark";
+import { getStoreSettings } from "@/lib/queries";
+import { updateStoreSettings } from "@/lib/admin-queries";
 
 export const Route = createFileRoute("/admin/configuracoes")({
+  loader: async () => ({ storeSettings: await getStoreSettings() }),
   component: ConfigPage,
 });
 
 function ConfigPage() {
+  const { storeSettings } = Route.useLoaderData();
+  const [form, setForm] = useState({
+    legalName: storeSettings?.legal_name ?? "",
+    cnpj: storeSettings?.cnpj ?? "",
+    phoneWhatsapp: storeSettings?.phone_whatsapp ?? "",
+    email: storeSettings?.email ?? "",
+    website: storeSettings?.website ?? "",
+    street: storeSettings?.address?.street ?? "",
+    district: storeSettings?.address?.district ?? "",
+    city: storeSettings?.address?.city ?? "",
+    state: storeSettings?.address?.state ?? "",
+    weekdays: storeSettings?.business_hours?.weekdays ?? "",
+    saturday: storeSettings?.business_hours?.saturday ?? "",
+    notes: storeSettings?.business_hours?.notes ?? "",
+    instagram: storeSettings?.social_links?.instagram ?? "",
+    facebook: storeSettings?.social_links?.facebook ?? "",
+    youtube: storeSettings?.social_links?.youtube ?? "",
+  });
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  function set<K extends keyof typeof form>(key: K, value: string) {
+    setForm((f) => ({ ...f, [key]: value }));
+    setSaved(false);
+  }
+
+  async function handleSave(e: React.FormEvent) {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      await updateStoreSettings({ data: form });
+      setSaved(true);
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <div className="mx-auto max-w-4xl">
       <div className="mb-8">
@@ -20,7 +61,7 @@ function ConfigPage() {
         </p>
       </div>
 
-      <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+      <form onSubmit={handleSave} className="space-y-6">
         {/* Logo & nome */}
         <section className="rounded-lg border border-border bg-card p-6">
           <h2 className="font-display text-lg font-bold">Identidade da loja</h2>
@@ -30,10 +71,14 @@ function ConfigPage() {
             </div>
             <div className="flex-1">
               <Label className="text-sm font-semibold">Logo da loja</Label>
-              <p className="text-xs text-muted-foreground">PNG ou JPG, mínimo 200x200px</p>
+              <p className="text-xs text-muted-foreground">
+                A logo atual é a marca ZANKAR padrão — upload de logo customizada entra numa fase
+                seguinte.
+              </p>
               <button
                 type="button"
-                className="mt-2 inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm hover:border-primary"
+                disabled
+                className="mt-2 inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-muted-foreground opacity-60"
               >
                 <Upload className="h-4 w-4" /> Enviar nova imagem
               </button>
@@ -45,7 +90,12 @@ function ConfigPage() {
               <Label htmlFor="company" className="text-sm font-semibold">
                 Nome da empresa
               </Label>
-              <Input id="company" defaultValue="ZANKAR Auto Parts" className="mt-1.5 h-11" />
+              <Input
+                id="company"
+                value={form.legalName}
+                onChange={(e) => set("legalName", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
             <div>
               <Label htmlFor="cnpj" className="text-sm font-semibold">
@@ -53,7 +103,8 @@ function ConfigPage() {
               </Label>
               <Input
                 id="cnpj"
-                defaultValue="12.345.678/0001-99"
+                value={form.cnpj}
+                onChange={(e) => set("cnpj", e.target.value)}
                 className="mt-1.5 h-11 font-mono"
               />
             </div>
@@ -61,7 +112,12 @@ function ConfigPage() {
               <Label htmlFor="wpp" className="text-sm font-semibold">
                 WhatsApp de atendimento
               </Label>
-              <Input id="wpp" defaultValue="(11) 99999-9999" className="mt-1.5 h-11 font-mono" />
+              <Input
+                id="wpp"
+                value={form.phoneWhatsapp}
+                onChange={(e) => set("phoneWhatsapp", e.target.value)}
+                className="mt-1.5 h-11 font-mono"
+              />
             </div>
             <div>
               <Label htmlFor="email" className="text-sm font-semibold">
@@ -70,7 +126,8 @@ function ConfigPage() {
               <Input
                 id="email"
                 type="email"
-                defaultValue="contato@zankar.com.br"
+                value={form.email}
+                onChange={(e) => set("email", e.target.value)}
                 className="mt-1.5 h-11"
               />
             </div>
@@ -78,7 +135,12 @@ function ConfigPage() {
               <Label htmlFor="site" className="text-sm font-semibold">
                 Site
               </Label>
-              <Input id="site" defaultValue="www.zankar.com.br" className="mt-1.5 h-11" />
+              <Input
+                id="site"
+                value={form.website}
+                onChange={(e) => set("website", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
           </div>
         </section>
@@ -91,19 +153,34 @@ function ConfigPage() {
               <Label htmlFor="street" className="text-sm font-semibold">
                 Rua e número
               </Label>
-              <Input id="street" defaultValue="Rua das Indústrias, 123" className="mt-1.5 h-11" />
+              <Input
+                id="street"
+                value={form.street}
+                onChange={(e) => set("street", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
             <div>
               <Label htmlFor="neigh" className="text-sm font-semibold">
                 Bairro
               </Label>
-              <Input id="neigh" defaultValue="Industrial" className="mt-1.5 h-11" />
+              <Input
+                id="neigh"
+                value={form.district}
+                onChange={(e) => set("district", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
             <div>
               <Label htmlFor="city" className="text-sm font-semibold">
                 Cidade / Estado
               </Label>
-              <Input id="city" defaultValue="São Paulo, SP" className="mt-1.5 h-11" />
+              <Input
+                id="city"
+                value={form.city}
+                onChange={(e) => set("city", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
           </div>
         </section>
@@ -116,13 +193,23 @@ function ConfigPage() {
               <Label htmlFor="weekdays" className="text-sm font-semibold">
                 Segunda a sexta
               </Label>
-              <Input id="weekdays" defaultValue="08:00 às 18:00" className="mt-1.5 h-11" />
+              <Input
+                id="weekdays"
+                value={form.weekdays}
+                onChange={(e) => set("weekdays", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
             <div>
               <Label htmlFor="sat" className="text-sm font-semibold">
                 Sábado
               </Label>
-              <Input id="sat" defaultValue="08:00 às 13:00" className="mt-1.5 h-11" />
+              <Input
+                id="sat"
+                value={form.saturday}
+                onChange={(e) => set("saturday", e.target.value)}
+                className="mt-1.5 h-11"
+              />
             </div>
             <div className="md:col-span-2">
               <Label htmlFor="notes" className="text-sm font-semibold">
@@ -130,7 +217,8 @@ function ConfigPage() {
               </Label>
               <Textarea
                 id="notes"
-                defaultValue="Fechado aos domingos e feriados nacionais."
+                value={form.notes}
+                onChange={(e) => set("notes", e.target.value)}
                 className="mt-1.5 min-h-20"
               />
             </div>
@@ -141,18 +229,36 @@ function ConfigPage() {
         <section className="rounded-lg border border-border bg-card p-6">
           <h2 className="font-display text-lg font-bold">Redes sociais</h2>
           <div className="mt-4 grid gap-4">
-            <SocialField icon={Instagram} label="Instagram" value="@zankar.autoparts" />
-            <SocialField icon={Facebook} label="Facebook" value="facebook.com/zankarautoparts" />
-            <SocialField icon={Youtube} label="YouTube" value="youtube.com/@zankarautoparts" />
+            <SocialField
+              icon={Instagram}
+              label="Instagram"
+              value={form.instagram}
+              onChange={(v) => set("instagram", v)}
+            />
+            <SocialField
+              icon={Facebook}
+              label="Facebook"
+              value={form.facebook}
+              onChange={(v) => set("facebook", v)}
+            />
+            <SocialField
+              icon={Youtube}
+              label="YouTube"
+              value={form.youtube}
+              onChange={(v) => set("youtube", v)}
+            />
           </div>
         </section>
 
-        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-          <Button variant="outline" size="lg" className="h-12">
-            Cancelar
-          </Button>
-          <Button size="lg" className="h-12 bg-gradient-red font-bold hover:brightness-110">
-            Salvar alterações
+        <div className="flex flex-col-reverse items-center gap-3 sm:flex-row sm:justify-end">
+          {saved && <span className="text-sm text-success">Configurações salvas.</span>}
+          <Button
+            type="submit"
+            size="lg"
+            className="h-12 bg-gradient-red font-bold hover:brightness-110"
+            disabled={saving}
+          >
+            {saving ? "Salvando..." : "Salvar alterações"}
           </Button>
         </div>
       </form>
@@ -164,10 +270,12 @@ function SocialField({
   icon: Icon,
   label,
   value,
+  onChange,
 }: {
   icon: typeof Instagram;
   label: string;
   value: string;
+  onChange: (v: string) => void;
 }) {
   return (
     <div className="flex items-center gap-3">
@@ -176,7 +284,7 @@ function SocialField({
       </div>
       <div className="flex-1">
         <Label className="text-xs font-semibold text-muted-foreground">{label}</Label>
-        <Input defaultValue={value} className="mt-1 h-10" />
+        <Input value={value} onChange={(e) => onChange(e.target.value)} className="mt-1 h-10" />
       </div>
     </div>
   );

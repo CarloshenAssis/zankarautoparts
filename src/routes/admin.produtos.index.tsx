@@ -1,31 +1,53 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { Plus, Search, Edit2, Trash2, Package } from "lucide-react";
-import { products, categories, formatBRL } from "@/lib/mock-data";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { formatBRL } from "@/lib/types";
+import { productImageUrl } from "@/lib/storage";
+import { getCategories } from "@/lib/queries";
+import { deleteProduct, getAdminProducts, type AdminProduct } from "@/lib/admin-queries";
 
 export const Route = createFileRoute("/admin/produtos/")({
+  loader: async () => {
+    const [products, categories] = await Promise.all([getAdminProducts(), getCategories()]);
+    return { products, categories };
+  },
   component: AdminProductsPage,
 });
 
 const stockFilters = ["Todos", "Em estoque", "Baixo", "Esgotado"] as const;
 
 function AdminProductsPage() {
+  const router = useRouter();
+  const { products, categories } = Route.useLoaderData();
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<string>("todas");
   const [stockFilter, setStockFilter] = useState<(typeof stockFilters)[number]>("Todos");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
   const filtered = products.filter((p) => {
     const matchQ =
       p.name.toLowerCase().includes(q.toLowerCase()) ||
-      p.code.toLowerCase().includes(q.toLowerCase());
-    const matchCat = cat === "todas" || p.categorySlug === cat;
+      p.sku.toLowerCase().includes(q.toLowerCase());
+    const matchCat = cat === "todas" || p.category?.slug === cat;
     const matchStock =
       stockFilter === "Todos" ||
-      (stockFilter === "Esgotado" && p.stock === 0) ||
-      (stockFilter === "Baixo" && p.stock > 0 && p.stock < 6) ||
-      (stockFilter === "Em estoque" && p.stock >= 6);
+      (stockFilter === "Esgotado" && p.stock_quantity === 0) ||
+      (stockFilter === "Baixo" && p.stock_quantity > 0 && p.stock_quantity < 6) ||
+      (stockFilter === "Em estoque" && p.stock_quantity >= 6);
     return matchQ && matchCat && matchStock;
   });
+
+  async function handleDelete(p: AdminProduct) {
+    if (!confirm(`Excluir "${p.name}"? Essa ação não pode ser desfeita.`)) return;
+    setDeletingId(p.id);
+    try {
+      await deleteProduct({ data: p.id });
+      router.invalidate();
+    } finally {
+      setDeletingId(null);
+    }
+  }
 
   return (
     <div>
@@ -106,93 +128,130 @@ function AdminProductsPage() {
           </div>
         </div>
 
-        {/* Desktop table */}
-        <div className="hidden overflow-x-auto md:block">
-          <table className="w-full text-sm">
-            <thead className="border-b border-border bg-sidebar/50">
-              <tr className="text-left text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                <th className="w-16 px-4 py-3">Foto</th>
-                <th className="px-4 py-3">Nome</th>
-                <th className="px-4 py-3">Código</th>
-                <th className="px-4 py-3">Categoria</th>
-                <th className="px-4 py-3">Preço</th>
-                <th className="px-4 py-3">Estoque</th>
-                <th className="w-32 px-4 py-3 text-right">Ações</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {filtered.map((p) => (
-                <tr key={p.id} className="hover:bg-accent/30">
-                  <td className="px-4 py-3">
-                    <div
-                      className={`grid h-12 w-12 place-items-center rounded-md bg-gradient-to-br ${p.images[0]}`}
-                    >
-                      <Package className="h-5 w-5 text-white/40" strokeWidth={1.5} />
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="font-semibold">{p.name}</div>
-                    <div className="text-xs text-muted-foreground">{p.brand}</div>
-                  </td>
-                  <td className="px-4 py-3 font-mono text-xs">{p.code}</td>
-                  <td className="px-4 py-3">
-                    <span className="rounded bg-secondary px-2 py-1 text-xs">{p.category}</span>
-                  </td>
-                  <td className="px-4 py-3 font-semibold">{formatBRL(p.price)}</td>
-                  <td className="px-4 py-3">
-                    <StockBadge stock={p.stock} />
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex justify-end gap-1">
-                      <button
-                        className="grid h-9 w-9 place-items-center rounded-md border border-border hover:border-primary hover:text-primary"
-                        aria-label="Editar"
-                      >
-                        <Edit2 className="h-4 w-4" />
-                      </button>
-                      <button
-                        className="grid h-9 w-9 place-items-center rounded-md border border-border hover:border-destructive hover:text-destructive"
-                        aria-label="Excluir"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Mobile cards */}
-        <div className="divide-y divide-border md:hidden">
-          {filtered.map((p) => (
-            <div key={p.id} className="grid grid-cols-[64px_1fr_auto] gap-3 p-4">
-              <div
-                className={`aspect-square h-16 w-16 rounded-md bg-gradient-to-br ${p.images[0]}`}
-              />
-              <div className="min-w-0">
-                <div className="line-clamp-1 font-semibold">{p.name}</div>
-                <div className="text-xs text-muted-foreground">
-                  {p.code} • {p.category}
-                </div>
-                <div className="mt-1 flex items-center gap-2">
-                  <span className="text-sm font-bold text-primary">{formatBRL(p.price)}</span>
-                  <StockBadge stock={p.stock} />
-                </div>
-              </div>
-              <div className="flex flex-col gap-1">
-                <button className="grid h-9 w-9 place-items-center rounded-md border border-border">
-                  <Edit2 className="h-4 w-4" />
-                </button>
-                <button className="grid h-9 w-9 place-items-center rounded-md border border-border text-destructive">
-                  <Trash2 className="h-4 w-4" />
-                </button>
-              </div>
+        {filtered.length === 0 ? (
+          <p className="p-8 text-center text-sm text-muted-foreground">
+            {products.length === 0
+              ? "Nenhum produto cadastrado ainda. Clique em “Novo produto” para começar."
+              : "Nenhum produto encontrado com esse filtro."}
+          </p>
+        ) : (
+          <>
+            {/* Desktop table */}
+            <div className="hidden overflow-x-auto md:block">
+              <table className="w-full text-sm">
+                <thead className="border-b border-border bg-sidebar/50">
+                  <tr className="text-left text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    <th className="w-16 px-4 py-3">Foto</th>
+                    <th className="px-4 py-3">Nome</th>
+                    <th className="px-4 py-3">Código</th>
+                    <th className="px-4 py-3">Categoria</th>
+                    <th className="px-4 py-3">Preço</th>
+                    <th className="px-4 py-3">Estoque</th>
+                    <th className="w-32 px-4 py-3 text-right">Ações</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {filtered.map((p) => (
+                    <tr key={p.id} className="hover:bg-accent/30">
+                      <td className="px-4 py-3">
+                        <ProductThumb product={p} />
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="font-semibold">{p.name}</div>
+                        <div className="text-xs text-muted-foreground">{p.brand?.name ?? "—"}</div>
+                      </td>
+                      <td className="px-4 py-3 font-mono text-xs">{p.sku}</td>
+                      <td className="px-4 py-3">
+                        <span className="rounded bg-secondary px-2 py-1 text-xs">
+                          {p.category?.name ?? "—"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 font-semibold">{formatBRL(p.price)}</td>
+                      <td className="px-4 py-3">
+                        <StockBadge stock={p.stock_quantity} />
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex justify-end gap-1">
+                          <Link
+                            to="/admin/produtos/$id"
+                            params={{ id: p.id }}
+                            className="grid h-9 w-9 place-items-center rounded-md border border-border hover:border-primary hover:text-primary"
+                            aria-label="Editar"
+                          >
+                            <Edit2 className="h-4 w-4" />
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(p)}
+                            disabled={deletingId === p.id}
+                            className="grid h-9 w-9 place-items-center rounded-md border border-border hover:border-destructive hover:text-destructive disabled:opacity-50"
+                            aria-label="Excluir"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ))}
-        </div>
+
+            {/* Mobile cards */}
+            <div className="divide-y divide-border md:hidden">
+              {filtered.map((p) => (
+                <div key={p.id} className="grid grid-cols-[64px_1fr_auto] gap-3 p-4">
+                  <ProductThumb product={p} size="lg" />
+                  <div className="min-w-0">
+                    <div className="line-clamp-1 font-semibold">{p.name}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {p.sku} • {p.category?.name ?? "—"}
+                    </div>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className="text-sm font-bold text-primary">{formatBRL(p.price)}</span>
+                      <StockBadge stock={p.stock_quantity} />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <Link
+                      to="/admin/produtos/$id"
+                      params={{ id: p.id }}
+                      className="grid h-9 w-9 place-items-center rounded-md border border-border"
+                    >
+                      <Edit2 className="h-4 w-4" />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(p)}
+                      disabled={deletingId === p.id}
+                      className="grid h-9 w-9 place-items-center rounded-md border border-border text-destructive disabled:opacity-50"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
+    </div>
+  );
+}
+
+function ProductThumb({ product, size = "sm" }: { product: AdminProduct; size?: "sm" | "lg" }) {
+  const primary = product.images.find((i) => i.is_primary) ?? product.images[0];
+  const dims = size === "sm" ? "h-12 w-12" : "h-16 w-16";
+  if (primary) {
+    return (
+      <img
+        src={productImageUrl(primary.storage_path)}
+        alt={product.name}
+        className={`${dims} rounded-md object-cover`}
+      />
+    );
+  }
+  return (
+    <div className={`grid ${dims} place-items-center rounded-md bg-gradient-metal`}>
+      <Package className="h-5 w-5 text-metal-foreground/60" strokeWidth={1.5} />
     </div>
   );
 }

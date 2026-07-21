@@ -1,57 +1,41 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Package,
-  Eye,
-  ShoppingBag,
-  Tags,
-  TrendingUp,
-  ArrowUpRight,
-  Plus,
-  Clock,
-} from "lucide-react";
-import { products, categories, formatBRL } from "@/lib/mock-data";
+import { Package, Eye, ShoppingBag, Tags, ArrowUpRight, Plus, Clock } from "lucide-react";
+import { formatBRL } from "@/lib/types";
+import { productImageUrl } from "@/lib/storage";
+import { getCategories } from "@/lib/queries";
+import { getAdminProducts, getOrders } from "@/lib/admin-queries";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/admin/")({
+  loader: async () => {
+    const [products, categories, orders] = await Promise.all([
+      getAdminProducts(),
+      getCategories(),
+      getOrders(),
+    ]);
+    return { products, categories, orders };
+  },
   component: DashboardPage,
 });
 
-const mockOrders = [
-  { id: "#1042", customer: "Ricardo M.", items: 3, total: 1189, status: "Novo", date: "há 5 min" },
-  {
-    id: "#1041",
-    customer: "Auto Center Silva",
-    items: 7,
-    total: 2380,
-    status: "Em atendimento",
-    date: "há 32 min",
-  },
-  { id: "#1040", customer: "Marcos F.", items: 1, total: 489.9, status: "Novo", date: "há 1h" },
-  {
-    id: "#1039",
-    customer: "Funilaria Santos",
-    items: 12,
-    total: 4290,
-    status: "Concluído",
-    date: "há 2h",
-  },
-];
-
-// Gráfico ilustrativo (mock)
-const chart = [
-  { day: "Seg", value: 42 },
-  { day: "Ter", value: 58 },
-  { day: "Qua", value: 51 },
-  { day: "Qui", value: 79 },
-  { day: "Sex", value: 96 },
-  { day: "Sáb", value: 84 },
-  { day: "Dom", value: 38 },
-];
+const STATUS_LABEL: Record<string, string> = {
+  pending_whatsapp: "Novo",
+  confirmed: "Em atendimento",
+  processing: "Em atendimento",
+  shipped: "Em atendimento",
+  delivered: "Concluído",
+  cancelled: "Cancelado",
+};
 
 function DashboardPage() {
-  const topViewed = [...products].sort((a, b) => b.views - a.views).slice(0, 5);
-  const recentProducts = products.slice(0, 4);
-  const maxChart = Math.max(...chart.map((c) => c.value));
+  const { products, categories, orders } = Route.useLoaderData();
+  const topViewed = [...products].sort((a, b) => b.view_count - a.view_count).slice(0, 5);
+  const recentProducts = [...products]
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 4);
+  const recentOrders = orders.slice(0, 4);
+  const today = new Date().toDateString();
+  const ordersToday = orders.filter((o) => new Date(o.created_at).toDateString() === today).length;
 
   return (
     <div>
@@ -69,53 +53,16 @@ function DashboardPage() {
 
       {/* Metrics */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <MetricCard
-          icon={Package}
-          label="Total de produtos"
-          value={products.length.toString()}
-          trend="+3 este mês"
-        />
-        <MetricCard icon={ShoppingBag} label="Pedidos hoje" value="8" trend="+2 vs ontem" />
+        <MetricCard icon={Package} label="Total de produtos" value={products.length.toString()} />
+        <MetricCard icon={ShoppingBag} label="Pedidos hoje" value={ordersToday.toString()} />
         <MetricCard icon={Tags} label="Categorias" value={categories.length.toString()} />
         <MetricCard
           icon={Eye}
           label="Mais visualizado"
-          value={topViewed[0].views.toLocaleString("pt-BR")}
-          trend={topViewed[0].name.split(" ").slice(0, 3).join(" ")}
+          value={topViewed[0]?.view_count.toLocaleString("pt-BR") ?? "—"}
+          trend={topViewed[0]?.name.split(" ").slice(0, 3).join(" ")}
         />
       </div>
-
-      {/* Chart */}
-      <section className="mt-8 rounded-lg border border-border bg-card p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="font-display text-xl font-bold">Acessos ao catálogo</h2>
-            <p className="text-xs text-muted-foreground">Últimos 7 dias</p>
-          </div>
-          <div className="flex items-center gap-2 text-sm">
-            <TrendingUp className="h-4 w-4 text-success" />
-            <span className="font-bold text-success">+22%</span>
-            <span className="text-muted-foreground">vs semana anterior</span>
-          </div>
-        </div>
-        <div className="mt-6 flex h-48 items-end gap-3">
-          {chart.map((c) => (
-            <div key={c.day} className="flex flex-1 flex-col items-center gap-2">
-              <div className="relative flex w-full flex-1 items-end">
-                <div
-                  className="w-full rounded-t-md bg-gradient-to-t from-primary to-primary/40 transition hover:from-primary hover:to-primary"
-                  style={{ height: `${(c.value / maxChart) * 100}%` }}
-                >
-                  <div className="pt-1 text-center text-[10px] font-bold text-primary-foreground/90">
-                    {c.value}
-                  </div>
-                </div>
-              </div>
-              <div className="text-xs font-semibold text-muted-foreground">{c.day}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         {/* Recent orders */}
@@ -134,29 +81,34 @@ function DashboardPage() {
               Ver todos
             </Link>
           </div>
-          <div className="divide-y divide-border">
-            {mockOrders.map((o) => (
-              <div
-                key={o.id}
-                className="grid grid-cols-[1fr_auto] items-center gap-4 p-4 hover:bg-accent/30"
-              >
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold">{o.id}</span>
-                    <StatusBadge status={o.status} />
+          {recentOrders.length === 0 ? (
+            <p className="p-5 text-sm text-muted-foreground">Nenhum pedido recebido ainda.</p>
+          ) : (
+            <div className="divide-y divide-border">
+              {recentOrders.map((o) => (
+                <div
+                  key={o.id}
+                  className="grid grid-cols-[1fr_auto] items-center gap-4 p-4 hover:bg-accent/30"
+                >
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold">{o.order_number}</span>
+                      <StatusBadge status={o.status} />
+                    </div>
+                    <div className="mt-0.5 text-sm text-muted-foreground">
+                      {o.customer?.name ?? o.guest_name ?? "Cliente"} • {o.items.length}{" "}
+                      {o.items.length === 1 ? "item" : "itens"}
+                    </div>
                   </div>
-                  <div className="mt-0.5 text-sm text-muted-foreground">
-                    {o.customer} • {o.items} {o.items === 1 ? "item" : "itens"} • {o.date}
+                  <div className="text-right">
+                    <div className="font-display text-lg font-bold text-primary">
+                      {formatBRL(o.total)}
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="font-display text-lg font-bold text-primary">
-                    {formatBRL(o.total)}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Top viewed */}
@@ -166,25 +118,40 @@ function DashboardPage() {
               <h2 className="font-display text-xl font-bold">Mais visualizados</h2>
               <p className="text-xs text-muted-foreground">Produtos com maior interesse</p>
             </div>
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <Eye className="h-5 w-5 text-primary" />
           </div>
-          <ol className="divide-y divide-border">
-            {topViewed.map((p, i) => (
-              <li key={p.id} className="flex items-center gap-3 p-4">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-primary/15 font-display text-sm font-bold text-primary">
-                  {i + 1}
-                </span>
-                <div className={`h-11 w-11 shrink-0 rounded-md bg-gradient-to-br ${p.images[0]}`} />
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-semibold">{p.name}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {p.views.toLocaleString("pt-BR")} visualizações
-                  </div>
-                </div>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
-              </li>
-            ))}
-          </ol>
+          {topViewed.length === 0 ? (
+            <p className="p-5 text-sm text-muted-foreground">Nenhum produto cadastrado ainda.</p>
+          ) : (
+            <ol className="divide-y divide-border">
+              {topViewed.map((p, i) => {
+                const img = p.images.find((im) => im.is_primary) ?? p.images[0];
+                return (
+                  <li key={p.id} className="flex items-center gap-3 p-4">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-primary/15 font-display text-sm font-bold text-primary">
+                      {i + 1}
+                    </span>
+                    {img ? (
+                      <img
+                        src={productImageUrl(img.storage_path)}
+                        alt={p.name}
+                        className="h-11 w-11 shrink-0 rounded-md object-cover"
+                      />
+                    ) : (
+                      <div className="h-11 w-11 shrink-0 rounded-md bg-gradient-metal" />
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-sm font-semibold">{p.name}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {p.view_count.toLocaleString("pt-BR")} visualizações
+                      </div>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                  </li>
+                );
+              })}
+            </ol>
+          )}
         </section>
       </div>
 
@@ -199,20 +166,35 @@ function DashboardPage() {
             Ver todos
           </Link>
         </div>
-        <div className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4">
-          {recentProducts.map((p) => (
-            <div key={p.id} className="rounded-md border border-border bg-background p-3">
-              <div className={`aspect-video rounded bg-gradient-to-br ${p.images[0]}`} />
-              <div className="mt-3 line-clamp-2 min-h-10 text-sm font-semibold">{p.name}</div>
-              <div className="mt-1 flex items-center justify-between">
-                <span className="font-bold text-primary">{formatBRL(p.price)}</span>
-                <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                  <Clock className="h-3 w-3" /> novo
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        {recentProducts.length === 0 ? (
+          <p className="p-5 text-sm text-muted-foreground">Nenhum produto cadastrado ainda.</p>
+        ) : (
+          <div className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4">
+            {recentProducts.map((p) => {
+              const img = p.images.find((im) => im.is_primary) ?? p.images[0];
+              return (
+                <div key={p.id} className="rounded-md border border-border bg-background p-3">
+                  {img ? (
+                    <img
+                      src={productImageUrl(img.storage_path)}
+                      alt={p.name}
+                      className="aspect-video w-full rounded object-cover"
+                    />
+                  ) : (
+                    <div className="aspect-video rounded bg-gradient-metal" />
+                  )}
+                  <div className="mt-3 line-clamp-2 min-h-10 text-sm font-semibold">{p.name}</div>
+                  <div className="mt-1 flex items-center justify-between">
+                    <span className="font-bold text-primary">{formatBRL(p.price)}</span>
+                    <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                      <Clock className="h-3 w-3" /> novo
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );
@@ -240,22 +222,27 @@ function MetricCard({
         </div>
       </div>
       <div className="mt-3 truncate font-display text-3xl font-bold md:text-4xl">{value}</div>
-      {trend && <div className="mt-1 truncate text-xs font-medium text-success">{trend}</div>}
+      {trend && (
+        <div className="mt-1 truncate text-xs font-medium text-muted-foreground">{trend}</div>
+      )}
     </div>
   );
 }
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    Novo: "bg-primary/20 text-primary",
-    "Em atendimento": "bg-yellow-500/20 text-yellow-400",
-    Concluído: "bg-green-500/20 text-green-400",
+    pending_whatsapp: "bg-primary/20 text-primary",
+    confirmed: "bg-yellow-500/20 text-yellow-400",
+    processing: "bg-yellow-500/20 text-yellow-400",
+    shipped: "bg-yellow-500/20 text-yellow-400",
+    delivered: "bg-green-500/20 text-green-400",
+    cancelled: "bg-muted text-muted-foreground",
   };
   return (
     <span
       className={`rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${map[status] ?? "bg-muted"}`}
     >
-      {status}
+      {STATUS_LABEL[status] ?? status}
     </span>
   );
 }
