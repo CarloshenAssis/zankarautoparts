@@ -10,7 +10,7 @@ const PRODUCT_SELECT = `
   category:categories ( id, name, slug ),
   images:product_images ( id, storage_path, alt_text, is_primary ),
   compatibility:produto_compatibilidade (
-    versao_id,
+    versao_id, is_primary, ano_especifico,
     versao:versoes_veiculo (
       nome, ano_inicio, ano_fim,
       modelo:modelos_veiculo ( nome, marca:marcas_veiculo ( nome ) )
@@ -36,6 +36,8 @@ type ProductRow = {
   images: Product["images"];
   compatibility: {
     versao_id: string;
+    is_primary: boolean;
+    ano_especifico: number | null;
     versao: {
       nome: string;
       ano_inicio: number;
@@ -62,19 +64,23 @@ function mapProductRow(row: ProductRow): Product {
     brand: row.brand ?? null,
     category: row.category ?? null,
     images: row.images ?? [],
-    compatibility: (row.compatibility ?? []).map((c) => {
-      const versao = c.versao;
-      const modelo = versao?.modelo;
-      const marca = modelo?.marca;
-      return {
-        versao_id: c.versao_id,
-        versao_nome: versao?.nome ?? "",
-        ano_inicio: versao?.ano_inicio ?? 0,
-        ano_fim: versao?.ano_fim ?? null,
-        modelo_nome: modelo?.nome ?? "",
-        marca_nome: marca?.nome ?? "",
-      };
-    }),
+    compatibility: (row.compatibility ?? [])
+      .map((c) => {
+        const versao = c.versao;
+        const modelo = versao?.modelo;
+        const marca = modelo?.marca;
+        return {
+          versao_id: c.versao_id,
+          versao_nome: versao?.nome ?? "",
+          ano_inicio: versao?.ano_inicio ?? 0,
+          ano_fim: versao?.ano_fim ?? null,
+          modelo_nome: modelo?.nome ?? "",
+          marca_nome: marca?.nome ?? "",
+          is_primary: c.is_primary,
+          ano_especifico: c.ano_especifico,
+        };
+      })
+      .sort((a, b) => Number(b.is_primary) - Number(a.is_primary)),
   };
 }
 

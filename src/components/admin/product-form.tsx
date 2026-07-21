@@ -80,6 +80,9 @@ export function ProductForm({
   const [primaryMarca, setPrimaryMarca] = useState(initialPrimary?.marca_nome ?? "");
   const [primaryModelo, setPrimaryModelo] = useState(initialPrimary?.modelo_nome ?? "");
   const [primaryVersaoId, setPrimaryVersaoId] = useState(initial?.compatibility[0]?.id ?? "");
+  const [primaryAno, setPrimaryAno] = useState<number | null>(
+    initial?.compatibility[0]?.ano ?? null,
+  );
   const [showNewVersaoForm, setShowNewVersaoForm] = useState(false);
   const [newVersao, setNewVersao] = useState({ nome: "", anoInicio: "", anoFim: "" });
   const [creatingVersao, setCreatingVersao] = useState(false);
@@ -121,6 +124,14 @@ export function ProductForm({
         .sort((a, b) => a.ano_inicio - b.ano_inicio),
     [versions, primaryMarca, primaryModelo],
   );
+  const primaryVersaoYears = useMemo(() => {
+    const v = versions.find((v) => v.id === primaryVersaoId);
+    if (!v) return [];
+    const end = v.ano_fim ?? new Date().getFullYear() + 1;
+    const years: number[] = [];
+    for (let y = end; y >= v.ano_inicio; y--) years.push(y);
+    return years;
+  }, [versions, primaryVersaoId]);
 
   function addFiles(files: FileList | null) {
     if (!files) return;
@@ -186,7 +197,10 @@ export function ProductForm({
         descriptionShort,
         status: "active",
         featured,
-        compatibilityVersionIds: [primaryVersaoId, ...otherCompatibility.map((c) => c.id)],
+        compatibility: [
+          { versaoId: primaryVersaoId, anoEspecifico: primaryAno },
+          ...otherCompatibility.map((c) => ({ versaoId: c.id, anoEspecifico: c.ano ?? null })),
+        ],
         images: uploadedPaths.map((storagePath, i) => ({ storagePath, isPrimary: i === 0 })),
       };
 
@@ -308,6 +322,7 @@ export function ProductForm({
                     setPrimaryVersaoId(v);
                     setShowNewVersaoForm(false);
                   }
+                  setPrimaryAno(null);
                 }}
                 disabled={!primaryModelo}
               >
@@ -324,6 +339,30 @@ export function ProductForm({
                 </SelectContent>
               </Select>
             </div>
+            {primaryVersaoYears.length > 0 && (
+              <div>
+                <Label className="text-sm font-semibold">Ano específico (opcional)</Label>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  Use quando a peça serve só para um ano dentro do período da versão (ajuda no SEO).
+                </p>
+                <Select
+                  value={primaryAno ? String(primaryAno) : "__all__"}
+                  onValueChange={(v) => setPrimaryAno(v === "__all__" ? null : Number(v))}
+                >
+                  <SelectTrigger className="mt-1.5 h-11">
+                    <SelectValue placeholder="Todos os anos da versão" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="__all__">Todos os anos da versão</SelectItem>
+                    {primaryVersaoYears.map((y) => (
+                      <SelectItem key={y} value={String(y)}>
+                        Somente {y}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
             {showNewVersaoForm && (
               <div className="md:col-span-2 grid gap-3 rounded-md border border-border bg-background p-4 sm:grid-cols-4">
                 <div className="sm:col-span-2">
@@ -434,6 +473,7 @@ export function ProductForm({
                     selected={otherCompatibility}
                     onChange={setOtherCompatibility}
                     onVersionCreated={(v) => setVersions((prev) => [...prev, v])}
+                    primaryVersionId={primaryVersaoId}
                   />
                 </div>
               </div>

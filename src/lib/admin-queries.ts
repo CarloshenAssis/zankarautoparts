@@ -148,7 +148,12 @@ export type AdminProduct = {
   brand: { id: string; name: string } | null;
   category: { id: string; name: string; slug: string } | null;
   images: { id: string; storage_path: string; is_primary: boolean }[];
-  compatibility: { versao_id: string; label: string; is_primary: boolean }[];
+  compatibility: {
+    versao_id: string;
+    label: string;
+    is_primary: boolean;
+    ano_especifico: number | null;
+  }[];
 };
 
 const ADMIN_PRODUCT_SELECT = `
@@ -158,7 +163,7 @@ const ADMIN_PRODUCT_SELECT = `
   category:categories ( id, name, slug ),
   images:product_images ( id, storage_path, is_primary ),
   compatibility:produto_compatibilidade (
-    versao_id, is_primary,
+    versao_id, is_primary, ano_especifico,
     versao:versoes_veiculo ( nome, ano_inicio, ano_fim, modelo:modelos_veiculo ( nome, marca:marcas_veiculo ( nome ) ) )
   )
 `;
@@ -184,6 +189,7 @@ type AdminProductRow = {
     | {
         versao_id: string;
         is_primary: boolean;
+        ano_especifico: number | null;
         versao: {
           nome: string;
           ano_inicio: number;
@@ -220,7 +226,12 @@ function mapAdminProduct(row: AdminProductRow): AdminProduct {
         const label = versao
           ? `${marca?.nome ?? ""} ${modelo?.nome ?? ""} ${versao.nome} (${versao.ano_inicio}–${versao.ano_fim ?? "atual"})`
           : "";
-        return { versao_id: c.versao_id, label: label.trim(), is_primary: c.is_primary };
+        return {
+          versao_id: c.versao_id,
+          label: label.trim(),
+          is_primary: c.is_primary,
+          ano_especifico: c.ano_especifico,
+        };
       })
       .sort((a, b) => Number(b.is_primary) - Number(a.is_primary)),
   };
@@ -264,7 +275,7 @@ export type ProductInput = {
   descriptionShort: string;
   status: "draft" | "active" | "archived";
   featured: boolean;
-  compatibilityVersionIds: string[];
+  compatibility: { versaoId: string; anoEspecifico: number | null }[];
   images: { storagePath: string; isPrimary: boolean }[];
 };
 
@@ -330,12 +341,13 @@ async function syncProductRelations(
   data: ProductInput,
 ) {
   await supabase.from("produto_compatibilidade").delete().eq("produto_id", productId);
-  if (data.compatibilityVersionIds.length > 0) {
+  if (data.compatibility.length > 0) {
     await supabase.from("produto_compatibilidade").insert(
-      data.compatibilityVersionIds.map((versaoId, i) => ({
+      data.compatibility.map((c, i) => ({
         produto_id: productId,
-        versao_id: versaoId,
+        versao_id: c.versaoId,
         is_primary: i === 0,
+        ano_especifico: c.anoEspecifico,
       })),
     );
   }

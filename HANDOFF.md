@@ -83,6 +83,18 @@ para o histórico completo dessa decisão).
   existia). Isso vale em tudo: card de produto, página do produto e filtro
   do catálogo público mostram/filtram por marca de veículo; marca da peça
   só aparece como informação secundária quando preenchida.
+- **Ano específico por veículo compatível** (`produto_compatibilidade.ano_especifico`,
+  migration `0013_produto_compatibilidade_ano_especifico`): além do
+  intervalo de anos da versão (ex: 2012–2018), o formulário deixa marcar
+  "Somente 2015" quando a peça (ex: um farol) serve só para um ano
+  específico dentro do período — ajuda o SEO/busca a bater exatamente com
+  o carro do comprador. Vale tanto pro veículo principal quanto pros
+  "outros veículos" adicionados depois. Mostrado no card, na página do
+  produto e no admin.
+- Na tela de cadastro de peça, "Possíveis compatíveis" (sugestão automática
+  por família/plataforma) agora reage ao veículo principal selecionado no
+  topo do formulário, não ao último veículo adicionado manualmente na lista
+  de "outros veículos".
 - **Categorias**: CRUD completo (criar/editar/excluir, todos reais).
 - **Configurações da loja**: formulário persiste em `store_settings` de
   verdade.
@@ -108,7 +120,7 @@ para o histórico completo dessa decisão).
 6. Nenhum produto real foi cadastrado ainda — o CRUD já permite fazer isso
    pelo painel assim que houver uma conta admin logada.
 7. **Base de veículos (marcas/modelos/versões) para compatibilidade** —
-   **lotes 1 e 2 aplicados**: 14 marcas, 147 modelos, 248 versões em
+   **lotes 1, 2 e 3 aplicados**: 25 marcas, 210 modelos, 348 versões em
    `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo`. Lote 1
    (`data/vehicles-seed/lote1.json`): linha de entrada (Gol, Uno, Onix,
    HB20 etc.) das mesmas 14 marcas, Nissan/Mitsubishi/Kia/Jeep parciais.
@@ -117,12 +129,21 @@ para o histórico completo dessa decisão).
    Tiguan, Territory, Maverick, RAV4, Santa Fe, Koleos, Trailblazer etc.) —
    nenhuma marca nova, só modelos novos. Corrigiu também uma entrada
    genérica do Peugeot Partner do lote 1 (via `UPDATE`, não duplicou).
+   Lote 3 (`data/vehicles-seed/lote3.json`): substituiu as entradas
+   genéricas de Nissan/Mitsubishi/Kia/Jeep do lote 1 por detalhamento
+   completo por geração (March, Versa, Kicks, Sentra, Frontier, L200/
+   Triton, Pajero, ASX, Sportage, Sorento, Renegade, Compass, Commander,
+   Wrangler etc.) e acrescentou 11 marcas novas de segundo/terceiro
+   escalão: Suzuki, Chery, JAC, BYD, GWM, Land Rover, Mercedes-Benz, BMW,
+   Audi, Subaru, Volvo. As `versoes_veiculo` genéricas dessas 4 marcas do
+   lote 1 foram apagadas antes (0 linhas remanescentes confirmado via SQL)
+   para dar lugar às entradas detalhadas do lote 3.
    Schema não precisou de migration nova (`versoes_veiculo.familia` já
    existia para a sugestão automática por plataforma da seção 2.1.1 do
    `PLANEJAMENTO.md`).
-   **Falta**: lote 3 (Nissan/Mitsubishi/Kia/Jeep detalhados + marcas de
-   segundo escalão: Suzuki, Caoa Chery, JAC, BYD, GWM, Land Rover,
-   Mercedes/BMW/Audi de entrada). Fluxo pra aplicar um lote novo:
+   **Falta**: lote 4 (clássicos nacionais pré-1990, depois RAM e Dodge/
+   Chrysler) — ainda sendo pesquisado pelo cliente. Fluxo pra aplicar um
+   lote novo:
    1. Salvar o JSON em `data/vehicles-seed/loteN.json` (mesmo formato de
       `lote1.json`: `[{marca, modelos:[{modelo, versoes:[{nome, ano_inicio,
       ano_fim, motorizacao, combustivel, plataforma}]}]}]`).

@@ -48,8 +48,8 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
         {compat && (
           <p className="line-clamp-1 text-xs text-muted-foreground">
-            {compat.modelo_nome} {compat.versao_nome} ({compat.ano_inicio}–
-            {compat.ano_fim ?? "atual"})
+            {compat.modelo_nome} {compat.versao_nome} (
+            {compat.ano_especifico ?? `${compat.ano_inicio}–${compat.ano_fim ?? "atual"}`})
           </p>
         )}
         <div className="mt-auto flex items-end justify-between pt-3">

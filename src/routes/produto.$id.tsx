@@ -181,8 +181,8 @@ function ProductPage() {
                     key={c.versao_id}
                     className="rounded-md border border-border bg-card px-3 py-1.5 text-sm"
                   >
-                    {c.marca_nome} {c.modelo_nome} {c.versao_nome} ({c.ano_inicio}–
-                    {c.ano_fim ?? "atual"})
+                    {c.marca_nome} {c.modelo_nome} {c.versao_nome} (
+                    {c.ano_especifico ?? `${c.ano_inicio}–${c.ano_fim ?? "atual"}`})
                   </span>
                 ))}
               </div>

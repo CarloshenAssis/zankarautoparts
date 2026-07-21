@@ -39,7 +39,11 @@ function EditarProdutoPage() {
         descriptionShort: product.description_short ?? "",
         status: product.status as "draft" | "active" | "archived",
         featured: product.featured,
-        compatibility: product.compatibility.map((c) => ({ id: c.versao_id, label: c.label })),
+        compatibility: product.compatibility.map((c) => ({
+          id: c.versao_id,
+          label: c.label,
+          ano: c.ano_especifico,
+        })),
         images: product.images.map((img) => ({
           storage_path: img.storage_path,
           is_primary: img.is_primary,

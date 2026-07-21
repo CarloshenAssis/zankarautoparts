@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, X, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,10 +17,17 @@ import {
   type VehicleVersion,
 } from "@/lib/admin-queries";
 
-export type SelectedVersion = { id: string; label: string };
+export type SelectedVersion = { id: string; label: string; ano?: number | null };
 
 function versionLabel(v: VehicleVersion) {
   return `${v.marca_nome} ${v.modelo_nome} ${v.nome} (${v.ano_inicio}–${v.ano_fim ?? "atual"})`;
+}
+
+function yearsInRange(anoInicio: number, anoFim: number | null) {
+  const end = anoFim ?? new Date().getFullYear() + 1;
+  const years: number[] = [];
+  for (let y = end; y >= anoInicio; y--) years.push(y);
+  return years;
 }
 
 export function VehicleCompatibilityPicker({
@@ -28,11 +35,13 @@ export function VehicleCompatibilityPicker({
   selected,
   onChange,
   onVersionCreated,
+  primaryVersionId,
 }: {
   allVersions: VehicleVersion[];
   selected: SelectedVersion[];
   onChange: (next: SelectedVersion[]) => void;
   onVersionCreated: (v: VehicleVersion) => void;
+  primaryVersionId?: string;
 }) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<VehicleVersion[]>([]);
@@ -46,6 +55,23 @@ export function VehicleCompatibilityPicker({
   });
 
   const selectedIds = new Set(selected.map((s) => s.id));
+
+  useEffect(() => {
+    if (!primaryVersionId) {
+      setSuggestions([]);
+      return;
+    }
+    let cancelled = false;
+    suggestRelatedVersions({ data: primaryVersionId }).then((related) => {
+      if (!cancelled) {
+        setSuggestions(related.filter((r) => !selectedIds.has(r.id) && r.id !== primaryVersionId));
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [primaryVersionId]);
 
   const marcaOptions = useMemo(
     () =>
@@ -71,15 +97,17 @@ export function VehicleCompatibilityPicker({
       .slice(0, 8);
   }, [query, allVersions, selectedIds]);
 
-  async function toggleVersion(v: VehicleVersion) {
-    onChange([...selected, { id: v.id, label: versionLabel(v) }]);
+  function toggleVersion(v: VehicleVersion) {
+    onChange([...selected, { id: v.id, label: versionLabel(v), ano: null }]);
     setQuery("");
-    const related = await suggestRelatedVersions({ data: v.id });
-    setSuggestions(related.filter((r) => !selectedIds.has(r.id) && r.id !== v.id));
   }
 
   function removeVersion(id: string) {
     onChange(selected.filter((s) => s.id !== id));
+  }
+
+  function setVersionAno(id: string, ano: number | null) {
+    onChange(selected.map((s) => (s.id === id ? { ...s, ano } : s)));
   }
 
   async function submitNewVehicle() {
@@ -105,7 +133,7 @@ export function VehicleCompatibilityPicker({
         modelo_nome: newVehicle.modelo,
         marca_nome: newVehicle.marca,
       });
-      onChange([...selected, { id: result.id, label: result.label }]);
+      onChange([...selected, { id: result.id, label: result.label, ano: null }]);
       setNewVehicle({ marca: "", modelo: "", versao: "", anoInicio: "", anoFim: "" });
     } finally {
       setCreating(false);
@@ -116,17 +144,39 @@ export function VehicleCompatibilityPicker({
     <div className="space-y-3">
       {selected.length > 0 && (
         <div className="flex flex-wrap gap-2">
-          {selected.map((s) => (
-            <span
-              key={s.id}
-              className="inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs font-medium"
-            >
-              {s.label}
-              <button type="button" onClick={() => removeVersion(s.id)} aria-label="Remover">
-                <X className="h-3.5 w-3.5 hover:text-destructive" />
-              </button>
-            </span>
-          ))}
+          {selected.map((s) => {
+            const version = allVersions.find((v) => v.id === s.id);
+            const years = version ? yearsInRange(version.ano_inicio, version.ano_fim) : [];
+            return (
+              <span
+                key={s.id}
+                className="inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs font-medium"
+              >
+                {s.label}
+                {years.length > 0 && (
+                  <Select
+                    value={s.ano ? String(s.ano) : "__all__"}
+                    onValueChange={(v) => setVersionAno(s.id, v === "__all__" ? null : Number(v))}
+                  >
+                    <SelectTrigger className="h-6 w-auto gap-1 border-none bg-transparent px-1.5 text-[11px]">
+                      <SelectValue placeholder="Todos os anos" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="__all__">Todos os anos</SelectItem>
+                      {years.map((y) => (
+                        <SelectItem key={y} value={String(y)}>
+                          Só {y}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+                <button type="button" onClick={() => removeVersion(s.id)} aria-label="Remover">
+                  <X className="h-3.5 w-3.5 hover:text-destructive" />
+                </button>
+              </span>
+            );
+          })}
         </div>
       )}
 
@@ -159,7 +209,8 @@ export function VehicleCompatibilityPicker({
       {suggestions.length > 0 && (
         <div className="rounded-md border border-dashed border-primary/40 bg-primary/5 p-3">
           <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-primary">
-            <Sparkles className="h-3.5 w-3.5" /> Talvez esta peça também sirva em:
+            <Sparkles className="h-3.5 w-3.5" /> Possíveis compatíveis com o veículo selecionado
+            acima:
           </div>
           <div className="space-y-1.5">
             {suggestions.map((v) => (
@@ -167,7 +218,7 @@ export function VehicleCompatibilityPicker({
                 <Checkbox
                   onCheckedChange={(checked) => {
                     if (checked) {
-                      onChange([...selected, { id: v.id, label: versionLabel(v) }]);
+                      onChange([...selected, { id: v.id, label: versionLabel(v), ano: null }]);
                       setSuggestions((prev) => prev.filter((s) => s.id !== v.id));
                     }
                   }}

@@ -34,6 +34,8 @@ export type VehicleCompatibility = {
   ano_fim: number | null;
   modelo_nome: string;
   marca_nome: string;
+  is_primary: boolean;
+  ano_especifico: number | null;
 };
 
 export type Product = {
