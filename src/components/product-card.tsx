@@ -29,9 +29,9 @@ export function ProductCard({ product }: { product: Product }) {
             <Package className="h-24 w-24 text-white/20" strokeWidth={1} />
           </div>
         )}
-        {product.brand && (
+        {product.marca_veiculo && (
           <span className="absolute left-3 top-3 rounded bg-black/60 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
-            {product.brand.name}
+            {product.marca_veiculo.nome}
           </span>
         )}
       </Link>

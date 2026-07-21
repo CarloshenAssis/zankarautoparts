@@ -42,7 +42,7 @@ export const getOrders = createServerFn({ method: "GET" }).handler(
 
     type OrderRow = Omit<AdminOrder, "total" | "customer"> & {
       total: number | string;
-      customer: { name: string; phone: string | null }[] | null;
+      customer: { name: string; phone: string | null } | null;
     };
 
     return ((data ?? []) as unknown as OrderRow[]).map((row) => ({
@@ -56,7 +56,7 @@ export const getOrders = createServerFn({ method: "GET" }).handler(
       notes: row.notes,
       created_at: row.created_at,
       items: row.items ?? [],
-      customer: row.customer?.[0] ?? null,
+      customer: row.customer ?? null,
     }));
   },
 );
@@ -144,6 +144,7 @@ export type AdminProduct = {
   created_at: string;
   description: string | null;
   description_short: string | null;
+  marca_veiculo: { id: string; nome: string } | null;
   brand: { id: string; name: string } | null;
   category: { id: string; name: string; slug: string } | null;
   images: { id: string; storage_path: string; is_primary: boolean }[];
@@ -152,6 +153,7 @@ export type AdminProduct = {
 
 const ADMIN_PRODUCT_SELECT = `
   id, sku, name, slug, status, price, stock_quantity, featured, view_count, created_at, description, description_short,
+  marca_veiculo:marcas_veiculo ( id, nome ),
   brand:brands ( id, name ),
   category:categories ( id, name, slug ),
   images:product_images ( id, storage_path, is_primary ),
@@ -174,8 +176,9 @@ type AdminProductRow = {
   created_at: string;
   description: string | null;
   description_short: string | null;
-  brand: { id: string; name: string }[] | null;
-  category: { id: string; name: string; slug: string }[] | null;
+  marca_veiculo: { id: string; nome: string } | null;
+  brand: { id: string; name: string } | null;
+  category: { id: string; name: string; slug: string } | null;
   images: { id: string; storage_path: string; is_primary: boolean }[] | null;
   compatibility:
     | {
@@ -184,8 +187,8 @@ type AdminProductRow = {
           nome: string;
           ano_inicio: number;
           ano_fim: number | null;
-          modelo: { nome: string; marca: { nome: string }[] }[];
-        }[];
+          modelo: { nome: string; marca: { nome: string } | null } | null;
+        } | null;
       }[]
     | null;
 };
@@ -204,13 +207,14 @@ function mapAdminProduct(row: AdminProductRow): AdminProduct {
     created_at: row.created_at,
     description: row.description,
     description_short: row.description_short,
-    brand: row.brand?.[0] ?? null,
-    category: row.category?.[0] ?? null,
+    marca_veiculo: row.marca_veiculo ?? null,
+    brand: row.brand ?? null,
+    category: row.category ?? null,
     images: row.images ?? [],
     compatibility: (row.compatibility ?? []).map((c) => {
-      const versao = c.versao?.[0];
-      const modelo = versao?.modelo?.[0];
-      const marca = modelo?.marca?.[0];
+      const versao = c.versao;
+      const modelo = versao?.modelo;
+      const marca = modelo?.marca;
       const label = versao
         ? `${marca?.nome ?? ""} ${modelo?.nome ?? ""} ${versao.nome} (${versao.ano_inicio}–${versao.ano_fim ?? "atual"})`
         : "";
@@ -248,6 +252,7 @@ export const getAdminProductById = createServerFn({ method: "GET" })
 export type ProductInput = {
   name: string;
   sku: string;
+  marcaVeiculoId: string | null;
   brandId: string | null;
   categoryId: string | null;
   price: number;
@@ -272,6 +277,7 @@ export const createProduct = createServerFn({ method: "POST" })
         name: data.name,
         sku: data.sku,
         slug,
+        marca_veiculo_id: data.marcaVeiculoId,
         brand_id: data.brandId,
         category_id: data.categoryId,
         price: data.price,
@@ -298,6 +304,7 @@ export const updateProduct = createServerFn({ method: "POST" })
       .update({
         name: data.name,
         sku: data.sku,
+        marca_veiculo_id: data.marcaVeiculoId,
         brand_id: data.brandId,
         category_id: data.categoryId,
         price: data.price,
@@ -425,12 +432,12 @@ export const getVehicleVersions = createServerFn({ method: "GET" }).handler(
       ano_inicio: number;
       ano_fim: number | null;
       familia: string | null;
-      modelo: { nome: string; marca: { nome: string }[] }[];
+      modelo: { nome: string; marca: { nome: string } | null } | null;
     };
 
     return ((data ?? []) as unknown as Row[]).map((row) => {
-      const modelo = row.modelo?.[0];
-      const marca = modelo?.marca?.[0];
+      const modelo = row.modelo;
+      const marca = modelo?.marca;
       return {
         id: row.id,
         nome: row.nome,
@@ -535,12 +542,12 @@ export const suggestRelatedVersions = createServerFn({ method: "GET" })
       ano_inicio: number;
       ano_fim: number | null;
       familia: string | null;
-      modelo: { nome: string; marca: { nome: string }[] }[];
+      modelo: { nome: string; marca: { nome: string } | null } | null;
     };
 
     return ((data ?? []) as unknown as Row[]).map((row) => {
-      const modelo = row.modelo?.[0];
-      const marca = modelo?.marca?.[0];
+      const modelo = row.modelo;
+      const marca = modelo?.marca;
       return {
         id: row.id,
         nome: row.nome,

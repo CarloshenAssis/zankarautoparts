@@ -33,6 +33,7 @@ export function ProductForm({
   mode,
   productId,
   initial,
+  marcasVeiculo,
   brands,
   categories,
   allVersions,
@@ -42,6 +43,7 @@ export function ProductForm({
   initial?: {
     name: string;
     sku: string;
+    marcaVeiculoId: string | null;
     brandId: string | null;
     categoryId: string | null;
     price: number;
@@ -53,6 +55,7 @@ export function ProductForm({
     compatibility: SelectedVersion[];
     images: { storage_path: string; is_primary: boolean }[];
   };
+  marcasVeiculo: { id: string; nome: string }[];
   brands: { id: string; name: string }[];
   categories: { id: string; name: string; slug: string }[];
   allVersions: VehicleVersion[];
@@ -60,6 +63,7 @@ export function ProductForm({
   const navigate = useNavigate();
   const [name, setName] = useState(initial?.name ?? "");
   const [sku, setSku] = useState(initial?.sku ?? "");
+  const [marcaVeiculoId, setMarcaVeiculoId] = useState(initial?.marcaVeiculoId ?? "");
   const [brandId, setBrandId] = useState(initial?.brandId ?? "");
   const [categoryId, setCategoryId] = useState(initial?.categoryId ?? "");
   const [price, setPrice] = useState(initial?.price?.toString() ?? "");
@@ -90,8 +94,8 @@ export function ProductForm({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!name.trim() || !sku.trim() || !price) {
-      setError("Preencha nome, código e preço.");
+    if (!name.trim() || !sku.trim() || !price || !marcaVeiculoId) {
+      setError("Preencha nome, código, marca e preço.");
       return;
     }
     setSaving(true);
@@ -103,6 +107,7 @@ export function ProductForm({
       const payload: ProductInput = {
         name,
         sku,
+        marcaVeiculoId: marcaVeiculoId || null,
         brandId: brandId || null,
         categoryId: categoryId || null,
         price: Number(price),
@@ -176,17 +181,17 @@ export function ProductForm({
               />
             </div>
             <div>
-              <Label htmlFor="brand" className="text-sm font-semibold">
+              <Label htmlFor="marca-veiculo" className="text-sm font-semibold">
                 Marca
               </Label>
-              <Select value={brandId} onValueChange={setBrandId}>
-                <SelectTrigger id="brand" className="mt-1.5 h-11">
+              <Select value={marcaVeiculoId} onValueChange={setMarcaVeiculoId}>
+                <SelectTrigger id="marca-veiculo" className="mt-1.5 h-11">
                   <SelectValue placeholder="Selecione a marca" />
                 </SelectTrigger>
                 <SelectContent>
-                  {brands.map((b) => (
-                    <SelectItem key={b.id} value={b.id}>
-                      {b.name}
+                  {marcasVeiculo.map((m) => (
+                    <SelectItem key={m.id} value={m.id}>
+                      {m.nome}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -245,6 +250,23 @@ export function ProductForm({
                 placeholder="Ex: Garantia 12 meses. Não acompanha lâmpadas."
                 className="mt-1.5 h-11"
               />
+            </div>
+            <div>
+              <Label htmlFor="brand" className="text-xs text-muted-foreground">
+                Marca da peça (opcional)
+              </Label>
+              <Select value={brandId} onValueChange={setBrandId}>
+                <SelectTrigger id="brand" className="mt-1.5 h-9 text-sm">
+                  <SelectValue placeholder="Fabricante da peça" />
+                </SelectTrigger>
+                <SelectContent>
+                  {brands.map((b) => (
+                    <SelectItem key={b.id} value={b.id}>
+                      {b.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="md:col-span-2">
               <Label htmlFor="desc" className="text-sm font-semibold">

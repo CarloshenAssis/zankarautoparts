@@ -1,34 +1,37 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { getBrands, getCategories } from "@/lib/queries";
+import { getBrands, getCategories, getVehicleMarcas } from "@/lib/queries";
 import { getAdminProductById, getVehicleVersions } from "@/lib/admin-queries";
 import { ProductForm } from "@/components/admin/product-form";
 
 export const Route = createFileRoute("/admin/produtos/$id")({
   loader: async ({ params }) => {
-    const [product, brands, categories, allVersions] = await Promise.all([
+    const [product, marcasVeiculo, brands, categories, allVersions] = await Promise.all([
       getAdminProductById({ data: params.id }),
+      getVehicleMarcas(),
       getBrands(),
       getCategories(),
       getVehicleVersions(),
     ]);
     if (!product) throw notFound();
-    return { product, brands, categories, allVersions };
+    return { product, marcasVeiculo, brands, categories, allVersions };
   },
   component: EditarProdutoPage,
 });
 
 function EditarProdutoPage() {
-  const { product, brands, categories, allVersions } = Route.useLoaderData();
+  const { product, marcasVeiculo, brands, categories, allVersions } = Route.useLoaderData();
   return (
     <ProductForm
       mode="edit"
       productId={product.id}
+      marcasVeiculo={marcasVeiculo}
       brands={brands}
       categories={categories}
       allVersions={allVersions}
       initial={{
         name: product.name,
         sku: product.sku,
+        marcaVeiculoId: product.marca_veiculo?.id ?? null,
         brandId: product.brand?.id ?? null,
         categoryId: product.category?.id ?? null,
         price: product.price,

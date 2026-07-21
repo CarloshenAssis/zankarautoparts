@@ -5,6 +5,7 @@ import type { Category, Product, StoreSettings } from "@/lib/types";
 const PRODUCT_SELECT = `
   id, sku, name, slug, description, description_short,
   price, compare_at_price, stock_quantity, featured, view_count,
+  marca_veiculo:marcas_veiculo ( id, nome, slug ),
   brand:brands ( id, name, slug ),
   category:categories ( id, name, slug ),
   images:product_images ( id, storage_path, alt_text, is_primary ),
@@ -29,10 +30,9 @@ type ProductRow = {
   stock_quantity: number;
   featured: boolean;
   view_count: number;
-  // Untyped PostgREST client infers to-one embeds as arrays; see database.types.ts
-  // for the generated shape once wired via createClient<Database>() in a later phase.
-  brand: NonNullable<Product["brand"]>[];
-  category: NonNullable<Product["category"]>[];
+  marca_veiculo: Product["marca_veiculo"];
+  brand: NonNullable<Product["brand"]> | null;
+  category: NonNullable<Product["category"]> | null;
   images: Product["images"];
   compatibility: {
     versao_id: string;
@@ -40,8 +40,8 @@ type ProductRow = {
       nome: string;
       ano_inicio: number;
       ano_fim: number | null;
-      modelo: { nome: string; marca: { nome: string }[] }[];
-    }[];
+      modelo: { nome: string; marca: { nome: string } | null } | null;
+    } | null;
   }[];
 };
 
@@ -58,13 +58,14 @@ function mapProductRow(row: ProductRow): Product {
     stock_quantity: row.stock_quantity,
     featured: row.featured,
     view_count: row.view_count,
-    brand: row.brand?.[0] ?? null,
-    category: row.category?.[0] ?? null,
+    marca_veiculo: row.marca_veiculo ?? null,
+    brand: row.brand ?? null,
+    category: row.category ?? null,
     images: row.images ?? [],
     compatibility: (row.compatibility ?? []).map((c) => {
-      const versao = c.versao?.[0];
-      const modelo = versao?.modelo?.[0];
-      const marca = modelo?.marca?.[0];
+      const versao = c.versao;
+      const modelo = versao?.modelo;
+      const marca = modelo?.marca;
       return {
         versao_id: c.versao_id,
         versao_nome: versao?.nome ?? "",
@@ -117,6 +118,17 @@ export const getBrands = createServerFn({ method: "GET" }).handler(async () => {
   return data ?? [];
 });
 
+export const getVehicleMarcas = createServerFn({ method: "GET" }).handler(async () => {
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("marcas_veiculo")
+    .select("id, nome, slug")
+    .is("deleted_at", null)
+    .order("nome");
+  if (error) throw error;
+  return data ?? [];
+});
+
 export const getFeaturedProducts = createServerFn({ method: "GET" }).handler(
   async (): Promise<Product[]> => {
     const supabase = createSupabaseServerClient();
@@ -127,7 +139,7 @@ export const getFeaturedProducts = createServerFn({ method: "GET" }).handler(
       .eq("featured", true)
       .limit(8);
     if (error) throw error;
-    return (data ?? []).map(mapProductRow);
+    return ((data ?? []) as unknown as ProductRow[]).map(mapProductRow);
   },
 );
 
@@ -154,7 +166,7 @@ export const getProducts = createServerFn({ method: "GET" })
 
     const { data: rows, error } = await query.order("created_at", { ascending: false });
     if (error) throw error;
-    return (rows ?? []).map(mapProductRow);
+    return ((rows ?? []) as unknown as ProductRow[]).map(mapProductRow);
   });
 
 export const getProductBySlug = createServerFn({ method: "GET" })
@@ -168,7 +180,7 @@ export const getProductBySlug = createServerFn({ method: "GET" })
       .eq("status", "active")
       .maybeSingle();
     if (error) throw error;
-    return data ? mapProductRow(data) : null;
+    return data ? mapProductRow(data as unknown as ProductRow) : null;
   });
 
 export const getRelatedProducts = createServerFn({ method: "GET" })
@@ -183,5 +195,5 @@ export const getRelatedProducts = createServerFn({ method: "GET" })
       .neq("id", data.excludeId)
       .limit(4);
     if (error) throw error;
-    return (rows ?? []).map(mapProductRow);
+    return ((rows ?? []) as unknown as ProductRow[]).map(mapProductRow);
   });

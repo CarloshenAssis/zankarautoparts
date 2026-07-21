@@ -158,7 +158,9 @@ function AdminProductsPage() {
                       </td>
                       <td className="px-4 py-3">
                         <div className="font-semibold">{p.name}</div>
-                        <div className="text-xs text-muted-foreground">{p.brand?.name ?? "—"}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {p.marca_veiculo?.nome ?? "—"}
+                        </div>
                       </td>
                       <td className="px-4 py-3 font-mono text-xs">{p.sku}</td>
                       <td className="px-4 py-3">

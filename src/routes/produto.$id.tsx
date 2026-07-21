@@ -105,9 +105,9 @@ function ProductPage() {
                 <Package className="h-40 w-40 text-white/15" strokeWidth={1} />
               </div>
             )}
-            {product.brand && (
+            {product.marca_veiculo && (
               <span className="absolute left-4 top-4 rounded bg-black/70 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
-                {product.brand.name}
+                {product.marca_veiculo.nome}
               </span>
             )}
           </div>
@@ -148,10 +148,13 @@ function ProductPage() {
               <Barcode className="h-4 w-4" /> Código:{" "}
               <strong className="text-foreground">{product.sku}</strong>
             </span>
-            {product.brand && (
+            {product.marca_veiculo && (
               <span>
-                Marca: <strong className="text-foreground">{product.brand.name}</strong>
+                Marca: <strong className="text-foreground">{product.marca_veiculo.nome}</strong>
               </span>
+            )}
+            {product.brand && (
+              <span className="text-xs">Fabricante da peça: {product.brand.name}</span>
             )}
           </div>
 
@@ -259,9 +262,15 @@ function ProductPage() {
                 <dt className="text-muted-foreground">Código interno</dt>
                 <dd className="font-semibold">{product.sku}</dd>
               </div>
-              {product.brand && (
+              {product.marca_veiculo && (
                 <div className="flex justify-between py-2">
                   <dt className="text-muted-foreground">Marca</dt>
+                  <dd className="font-semibold">{product.marca_veiculo.nome}</dd>
+                </div>
+              )}
+              {product.brand && (
+                <div className="flex justify-between py-2">
+                  <dt className="text-muted-foreground">Fabricante da peça</dt>
                   <dd className="font-semibold">{product.brand.name}</dd>
                 </div>
               )}

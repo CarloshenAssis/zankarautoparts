@@ -4,7 +4,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
-import { getBrands, getCategories, getProducts } from "@/lib/queries";
+import { getCategories, getProducts, getVehicleMarcas } from "@/lib/queries";
 import { formatBRL } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,19 +28,19 @@ export const Route = createFileRoute("/catalogo")({
   }),
   loaderDeps: ({ search }) => ({ q: search.q, cat: search.cat }),
   loader: async ({ deps }) => {
-    const [products, categories, brands] = await Promise.all([
+    const [products, categories, marcas] = await Promise.all([
       getProducts({ data: { q: deps.q, categorySlug: deps.cat } }),
       getCategories(),
-      getBrands(),
+      getVehicleMarcas(),
     ]);
-    return { products, categories, brands };
+    return { products, categories, marcas };
   },
   component: CatalogoPage,
 });
 
 function CatalogoPage() {
   const { q: initialQ, cat: initialCat } = Route.useSearch();
-  const { products, categories, brands } = Route.useLoaderData();
+  const { products, categories, marcas } = Route.useLoaderData();
   const [q, setQ] = useState(initialQ ?? "");
   const [selectedCats, setSelectedCats] = useState<string[]>(initialCat ? [initialCat] : []);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -53,7 +53,10 @@ function CatalogoPage() {
       if (q && !`${p.name} ${p.sku}`.toLowerCase().includes(q.toLowerCase())) return false;
       if (selectedCats.length && (!p.category || !selectedCats.includes(p.category.slug)))
         return false;
-      if (selectedBrands.length && (!p.brand || !selectedBrands.includes(p.brand.slug)))
+      if (
+        selectedBrands.length &&
+        (!p.marca_veiculo || !selectedBrands.includes(p.marca_veiculo.slug))
+      )
         return false;
       if (p.price < priceRange[0] || p.price > priceRange[1]) return false;
       return true;
@@ -90,14 +93,14 @@ function CatalogoPage() {
           <AccordionTrigger className="text-base font-bold">Marca</AccordionTrigger>
           <AccordionContent>
             <div className="space-y-3">
-              {brands.map((b) => (
-                <label key={b.slug} className="flex cursor-pointer items-center gap-3 text-sm">
+              {marcas.map((m) => (
+                <label key={m.slug} className="flex cursor-pointer items-center gap-3 text-sm">
                   <Checkbox
-                    checked={selectedBrands.includes(b.slug)}
-                    onCheckedChange={() => toggle(selectedBrands, setSelectedBrands, b.slug)}
+                    checked={selectedBrands.includes(m.slug)}
+                    onCheckedChange={() => toggle(selectedBrands, setSelectedBrands, m.slug)}
                     className="h-5 w-5"
                   />
-                  <span>{b.name}</span>
+                  <span>{m.nome}</span>
                 </label>
               ))}
             </div>

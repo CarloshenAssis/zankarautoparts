@@ -14,6 +14,12 @@ export type Brand = {
   logo_url: string | null;
 };
 
+export type VehicleMarca = {
+  id: string;
+  nome: string;
+  slug: string;
+};
+
 export type ProductImage = {
   id: string;
   storage_path: string;
@@ -42,6 +48,7 @@ export type Product = {
   stock_quantity: number;
   featured: boolean;
   view_count: number;
+  marca_veiculo: VehicleMarca | null;
   brand: Pick<Brand, "id" | "name" | "slug"> | null;
   category: Pick<Category, "id" | "name" | "slug"> | null;
   images: ProductImage[];

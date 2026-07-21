@@ -75,8 +75,15 @@ para o histórico completo dessa decisão).
   pro Storage, **compatibilidade de veículo integrada** (busca/autocomplete,
   checkbox, sugestão automática por família de plataforma, cadastro manual de
   veículo novo) — exatamente o fluxo detalhado por você no chat anterior, ver
-  seção 2.1.1 do `PLANEJAMENTO.md`.
-- **Categorias**: criar/excluir reais (editar ainda é só visual).
+  seção 2.1.1 do `PLANEJAMENTO.md`. **Marca do produto = marca do veículo**
+  (Volkswagen, Fiat...), campo obrigatório, select puxando de
+  `marcas_veiculo` (coluna `products.marca_veiculo_id`, migration
+  `0011_products_marca_veiculo`). A marca da peça (fabricante, ex: Arteb) é
+  um campo secundário opcional (`products.brand_id` → `brands`, já
+  existia). Isso vale em tudo: card de produto, página do produto e filtro
+  do catálogo público mostram/filtram por marca de veículo; marca da peça
+  só aparece como informação secundária quando preenchida.
+- **Categorias**: CRUD completo (criar/editar/excluir, todos reais).
 - **Configurações da loja**: formulário persiste em `store_settings` de
   verdade.
 - **Dashboard**: métricas reais (produtos, categorias, pedidos de hoje, mais
@@ -93,7 +100,7 @@ para o histórico completo dessa decisão).
    lojista (não é autocadastro), fluxo de convite por e-mail. Depende de
    configurar o **Resend** (ou SMTP do Supabase) — ainda não escolhido/feito.
    A tela `/admin/clientes` ainda está 100% em `src/lib/mock-data.ts`.
-3. **Editar categoria** (só criar/excluir estão reais).
+3. ~~**Editar categoria**~~ — feito, CRUD completo.
 4. **Sitemap.xml dinâmico + resto do polish de SEO/performance** (Fase 6).
 5. **Ajuste da logo** — o cliente já avisou que a logo atual está errada e
    será trocada antes de produção (não bloqueia nada, é cosmético, fica pro
@@ -128,6 +135,28 @@ para o histórico completo dessa decisão).
    nunca é populada automaticamente por este seed. A vinculação é sempre
    manual pelo lojista na tela de produto; o sistema no máximo sugere
    candidatos não marcados por família/plataforma, nunca confirma sozinho.
+
+## Bug crítico corrigido: embeds do PostgREST tratados como array
+
+Todo o código que lê relações aninhadas via `.select("... campo:tabela ( ... )")`
+(em `src/lib/queries.ts` e `src/lib/admin-queries.ts`) tinha sido escrito
+assumindo que o Supabase sempre devolve embeds como array (`row.campo?.[0]`).
+**Isso está errado**: para relação para-um (FK na própria tabela consultada —
+`brand_id`, `category_id`, `modelo_id`, `marca_id`, `customer_id` etc.), o
+PostgREST devolve um **objeto** (ou `null`), nunca um array. Só relação
+para-muitos vira array de verdade. O comentário antigo no código ("Untyped
+PostgREST client infers to-one embeds as arrays") estava incorreto — isso é
+inferência de *tipo* do TypeScript sem o client tipado (`createClient<Database>`
+ainda não usado), não o formato real do JSON.
+
+Esse bug ficou invisível a sessão inteira porque `versoes_veiculo` estava
+vazia até os lotes 1/2 — só apareceu quando a base de compatibilidade
+passou a ter dado de verdade (o select de Marca/Modelo do veículo no
+formulário de produto renderizava vazio). Foi corrigido em todos os pontos
+(brand, category, customer, versao→modelo→marca em pedidos/produtos/
+compatibilidade). Se adicionar um novo `.select()` com embed, lembrar:
+**objeto para relação para-um, array só para para-muitos** — não assumir
+array por padrão.
 
 ## Nota importante sobre o ambiente
 
