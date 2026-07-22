@@ -6,7 +6,7 @@ import { getCurrentCustomer } from "@/lib/auth";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/conta")({
+export const Route = createFileRoute("/conta/")({
   beforeLoad: async () => {
     const customer = await getCurrentCustomer();
     if (!customer) throw redirect({ to: "/conta/entrar" });
