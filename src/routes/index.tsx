@@ -1,5 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Truck, MessageCircle, Star, Package } from "lucide-react";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Truck,
+  MessageCircle,
+  Star,
+  Package,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { useRef } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
@@ -25,6 +35,14 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const { categories, featured, storeSettings, brands } = Route.useLoaderData();
   const whatsapp = storeSettings?.phone_whatsapp ?? "5511999999999";
+  const categoriesScrollRef = useRef<HTMLDivElement>(null);
+
+  function scrollCategories(direction: "left" | "right") {
+    const el = categoriesScrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.8 * (direction === "left" ? -1 : 1);
+    el.scrollBy({ left: amount, behavior: "smooth" });
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -140,8 +158,31 @@ function HomePage() {
 
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-6 py-14">
-        <SectionTitle title="Categorias" subtitle="Escolha o que você procura" />
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-6">
+        <div className="flex items-end justify-between">
+          <SectionTitle title="Categorias" subtitle="Escolha o que você procura" />
+          <div className="hidden shrink-0 gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={() => scrollCategories("left")}
+              aria-label="Categorias anteriores"
+              className="grid h-10 w-10 place-items-center rounded-full border-2 border-border transition hover:border-primary hover:text-primary"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollCategories("right")}
+              aria-label="Próximas categorias"
+              className="grid h-10 w-10 place-items-center rounded-full border-2 border-border transition hover:border-primary hover:text-primary"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+        <div
+          ref={categoriesScrollRef}
+          className="mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-4"
+        >
           {categories.map((c) => {
             const Icon = categoryIcon(c.icon);
             return (
@@ -149,13 +190,13 @@ function HomePage() {
                 key={c.slug}
                 to="/catalogo"
                 search={{ cat: c.slug } as never}
-                className="group flex flex-col items-center gap-3 rounded-xl border-2 border-border bg-card p-5 text-center transition hover:-translate-y-1 hover:border-primary hover:shadow-red"
+                className="group flex w-28 shrink-0 snap-start flex-col items-center gap-3 rounded-xl border-2 border-border bg-card p-5 text-center transition hover:-translate-y-1 hover:border-primary hover:shadow-red sm:w-36"
               >
-                <div className="grid h-16 w-16 place-items-center rounded-full bg-gradient-metal shadow-inner">
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-metal shadow-inner">
                   <Icon className="h-8 w-8 text-metal-foreground" strokeWidth={2.2} />
                 </div>
                 <div>
-                  <div className="text-base font-bold">{c.name}</div>
+                  <div className="line-clamp-2 text-sm font-bold leading-tight">{c.name}</div>
                   <div className="text-xs text-muted-foreground">{c.product_count} itens</div>
                 </div>
               </Link>
