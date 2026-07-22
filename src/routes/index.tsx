@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Truck, MessageCircle, Star } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, MessageCircle, Star, Package } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
 import { getBrands, getCategories, getFeaturedProducts, getStoreSettings } from "@/lib/queries";
 import { categoryIcon } from "@/lib/icon-map";
 import { Button } from "@/components/ui/button";
+import { productImageUrl } from "@/lib/storage";
+import { vehicleSlugFor } from "@/components/product-detail-page";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -75,33 +77,64 @@ function HomePage() {
           </div>
 
           {/* Hero visual card */}
-          {featured[0] && (
-            <div className="relative hidden md:block">
-              <div className="absolute -right-8 top-8 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
-              <div className="relative aspect-square rounded-2xl border border-border bg-gradient-to-br from-[#4b1e78] via-[#341463] to-[#1f1f1f] p-8 shadow-red">
-                <div className="flex h-full flex-col justify-between">
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-widest text-primary">
-                      Destaque da semana
+          {featured[0] &&
+            (() => {
+              const product = featured[0];
+              const compat = product.compatibility[0];
+              const primaryImage = product.images.find((i) => i.is_primary) ?? product.images[0];
+              const linkProps =
+                product.compatibilityModel === "1" && compat
+                  ? {
+                      to: "/produto/$id/$modeloSlug" as const,
+                      params: { id: product.slug, modeloSlug: vehicleSlugFor(compat) },
+                    }
+                  : { to: "/produto/$id" as const, params: { id: product.slug } };
+
+              return (
+                <div className="relative hidden md:block">
+                  <div className="absolute -right-8 top-8 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
+                  <Link
+                    to={linkProps.to}
+                    params={linkProps.params}
+                    className="group relative block aspect-square overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-[#4b1e78] via-[#341463] to-[#1f1f1f] shadow-red transition hover:border-primary"
+                  >
+                    <div className="absolute inset-0 flex flex-col justify-between p-8">
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-widest text-primary">
+                          Destaque da semana
+                        </div>
+                        <div className="mt-2 font-display text-3xl font-bold">{product.name}</div>
+                        <div className="mt-1 text-sm text-muted-foreground">
+                          {product.category?.name}
+                        </div>
+                      </div>
+                      {primaryImage ? (
+                        <img
+                          src={productImageUrl(primaryImage.storage_path)}
+                          alt={primaryImage.alt_text ?? product.name}
+                          loading="eager"
+                          decoding="async"
+                          className="absolute inset-0 -z-10 h-full w-full object-contain p-16 opacity-90 transition group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 -z-10 grid place-items-center">
+                          <Package className="h-32 w-32 text-white/15" strokeWidth={1} />
+                        </div>
+                      )}
+                      <div className="rounded-lg bg-black/40 p-4 backdrop-blur">
+                        <div className="text-xs uppercase text-muted-foreground">A partir de</div>
+                        <div className="font-display text-4xl font-bold text-primary">
+                          {product.price.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-2 font-display text-3xl font-bold">{featured[0].name}</div>
-                    <div className="mt-1 text-sm text-muted-foreground">
-                      {featured[0].category?.name}
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-black/40 p-4 backdrop-blur">
-                    <div className="text-xs uppercase text-muted-foreground">A partir de</div>
-                    <div className="font-display text-4xl font-bold text-primary">
-                      {featured[0].price.toLocaleString("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
-                    </div>
-                  </div>
+                  </Link>
                 </div>
-              </div>
-            </div>
-          )}
+              );
+            })()}
         </div>
       </section>
 

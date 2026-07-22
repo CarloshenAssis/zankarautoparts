@@ -3,7 +3,12 @@ import { Plus, Edit2, Trash2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { getCategories } from "@/lib/queries";
 import { categoryIcon } from "@/lib/icon-map";
-import { createCategory, updateCategory, deleteCategory, seedMainCategories } from "@/lib/admin-queries";
+import {
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  seedMainCategories,
+} from "@/lib/admin-queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -130,7 +135,8 @@ function CategoriasPage() {
             size="lg"
             className="h-12 font-bold"
           >
-            <Sparkles className="mr-2 h-5 w-5" /> {seeding ? "Adicionando..." : "Adicionar principais"}
+            <Sparkles className="mr-2 h-5 w-5" />{" "}
+            {seeding ? "Adicionando..." : "Adicionar principais"}
           </Button>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
@@ -138,43 +144,43 @@ function CategoriasPage() {
                 <Plus className="mr-2 h-5 w-5" /> Nova categoria
               </Button>
             </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Nova categoria</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4 py-2">
-              <div>
-                <Label htmlFor="cat-name">Nome</Label>
-                <Input
-                  id="cat-name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Ex: Suspensão"
-                  className="mt-1.5 h-11"
-                />
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Nova categoria</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-2">
+                <div>
+                  <Label htmlFor="cat-name">Nome</Label>
+                  <Input
+                    id="cat-name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Ex: Suspensão"
+                    className="mt-1.5 h-11"
+                  />
+                </div>
+                <div>
+                  <Label>Ícone</Label>
+                  <Select value={icon} onValueChange={setIcon}>
+                    <SelectTrigger className="mt-1.5 h-11">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {ICON_OPTIONS.map((i) => (
+                        <SelectItem key={i} value={i}>
+                          {i}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              <div>
-                <Label>Ícone</Label>
-                <Select value={icon} onValueChange={setIcon}>
-                  <SelectTrigger className="mt-1.5 h-11">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {ICON_OPTIONS.map((i) => (
-                      <SelectItem key={i} value={i}>
-                        {i}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-            <DialogFooter>
-              <Button onClick={handleCreate} disabled={saving} className="bg-gradient-red">
-                {saving ? "Salvando..." : "Criar categoria"}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
+              <DialogFooter>
+                <Button onClick={handleCreate} disabled={saving} className="bg-gradient-red">
+                  {saving ? "Salvando..." : "Criar categoria"}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
           </Dialog>
         </div>
       </div>

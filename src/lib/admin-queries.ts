@@ -658,35 +658,36 @@ export const seedMainCategories = createServerFn({ method: "POST" }).handler(asy
 
   const supabase = createSupabaseServerClient();
   const categories = [
-    { name: "Freios", description: "Pastilhas, discos, cilindros de freio" },
-    { name: "Filtros", description: "Filtro de ar, óleo, combustível e cabine" },
-    { name: "Amortecedores", description: "Amortecedores e molas de suspensão" },
-    { name: "Pneus", description: "Pneus para diversos modelos" },
-    { name: "Velas de Ignição", description: "Velas de ignição e eletrodos" },
-    { name: "Fluidos", description: "Óleo motor, arrefecimento, direção" },
-    { name: "Correias", description: "Correias de distribuição e correntes" },
-    { name: "Iluminação", description: "Faróis, lanternas, lâmpadas e LEDs" },
-    { name: "Suspensão", description: "Componentes de suspensão e estabilizadores" },
-    { name: "Motor", description: "Cilindros, pistões, válvulas e juntas" },
-    { name: "Transmissão", description: "Óleo de câmbio, filtro e componentes" },
-    { name: "Direção", description: "Óleo, mangueiras e componentes de direção" },
-    { name: "Sistema Elétrico", description: "Alternador, motor de arranque e fiação" },
-    { name: "Acabamento", description: "Tapetes, protetores e almofadas" },
-    { name: "Bateria", description: "Baterias para partida" },
-    { name: "Radiador", description: "Radiador, termostato e mangueiras" },
-    { name: "Ar Condicionado", description: "Compressor, filtro e refrigerante" },
-    { name: "Embreagem", description: "Disco e rolamento de embreagem" },
+    { name: "Freios", icon: "shield" },
+    { name: "Filtros", icon: "wrench" },
+    { name: "Amortecedores", icon: "car-front" },
+    { name: "Pneus", icon: "car-front" },
+    { name: "Velas de Ignição", icon: "wrench" },
+    { name: "Fluidos", icon: "wrench" },
+    { name: "Correias", icon: "wrench" },
+    { name: "Iluminação", icon: "lightbulb" },
+    { name: "Suspensão", icon: "car-front" },
+    { name: "Motor", icon: "wrench" },
+    { name: "Transmissão", icon: "wrench" },
+    { name: "Direção", icon: "car-front" },
+    { name: "Sistema Elétrico", icon: "radio" },
+    { name: "Acabamento", icon: "car-front" },
+    { name: "Bateria", icon: "shield" },
+    { name: "Radiador", icon: "wrench" },
+    { name: "Ar Condicionado", icon: "wrench" },
+    { name: "Embreagem", icon: "wrench" },
   ];
 
   const existing = await supabase.from("categories").select("name");
+  if (existing.error) throw existing.error;
   const existingNames = new Set((existing.data ?? []).map((c: { name: string }) => c.name));
 
   const toInsert = categories
     .filter((c) => !existingNames.has(c.name))
     .map((c) => ({
       name: c.name,
-      description: c.description,
       slug: slugify(c.name),
+      icon: c.icon,
     }));
 
   if (toInsert.length === 0) return { ok: true, created: 0 };

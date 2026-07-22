@@ -15,8 +15,8 @@ you are being paid for a point of view.
 Right now AI-generated frontends cluster around a small set of tells. Actively steer away
 from these unless the brief explicitly asks for one of them:
 
-1. Warm cream background (~#F4F1EA) + high-contrast serif display + terracotta/clay accent
-   (~#D97757). This is the single most common "AI-made" signature.
+1. Warm cream background (~~#F4F1EA) + high-contrast serif display + terracotta/clay accent
+   (~~#D97757). This is the single most common "AI-made" signature.
 2. Near-black background with one bright acid-green or vermilion accent, generic glow effects.
 3. Broadsheet/newspaper layout: hairline rules, zero border-radius, dense columns, used
    regardless of subject.
@@ -32,6 +32,7 @@ throw it out and go again — not to ship it because it "looks clean."
 ## Ground every decision in the actual subject
 
 Before designing anything, name explicitly:
+
 - What is this, concretely? (not "a SaaS product" — the actual thing)
 - Who is it for?
 - What is the one job this screen/page has to do?
@@ -47,27 +48,28 @@ codes, exact font names, exact tone of voice) before inventing anything. Never s
 ## Process — do this in order, mostly in your own thinking, not narrated to the user
 
 **1. Brainstorm a compact token system** before writing any code:
-   - Color: 4–6 named hex values with a role for each (background, primary, accent, text,
-     muted, border) — not just "purple and dark."
-   - Type: 2 roles minimum — a characterful display face used with restraint, and a
-     complementary body face. Justify the pairing against the subject, don't default to
-     Inter + a random Google Font.
-   - Layout: one-sentence description of the structural idea, plus a rough ASCII wireframe
-     for the hero and one other key section.
-   - Signature: the ONE element this design will be remembered by. Not three equally-loud
-     ideas — one, with everything else quiet around it.
+
+- Color: 4–6 named hex values with a role for each (background, primary, accent, text,
+  muted, border) — not just "purple and dark."
+- Type: 2 roles minimum — a characterful display face used with restraint, and a
+  complementary body face. Justify the pairing against the subject, don't default to
+  Inter + a random Google Font.
+- Layout: one-sentence description of the structural idea, plus a rough ASCII wireframe
+  for the hero and one other key section.
+- Signature: the ONE element this design will be remembered by. Not three equally-loud
+  ideas — one, with everything else quiet around it.
 
 **2. Critique the plan against the brief** before building. Ask: if I ran a similar prompt
-   for a different, unrelated client, would I land somewhere similar? If yes, that part is
-   a default, not a choice — revise it and note what changed and why.
+for a different, unrelated client, would I land somewhere similar? If yes, that part is
+a default, not a choice — revise it and note what changed and why.
 
 **3. Build.** Follow the revised plan exactly. Derive every color, spacing, and type decision
-   from the token system rather than improvising inline as you go.
+from the token system rather than improvising inline as you go.
 
 **4. Self-critique before showing the user.** Take Chanel's advice: look in the mirror,
-   remove one accessory. Cut any decoration that doesn't serve the brief. Check: responsive
-   down to mobile, visible keyboard focus, reduced-motion respected, real contrast ratios
-   against your own background (not just "looks fine to me").
+remove one accessory. Cut any decoration that doesn't serve the brief. Check: responsive
+down to mobile, visible keyboard focus, reduced-motion respected, real contrast ratios
+against your own background (not just "looks fine to me").
 
 ## Design principles while building
 
@@ -91,6 +93,7 @@ codes, exact font names, exact tone of voice) before inventing anything. Never s
 ## Writing copy as design material
 
 Copy is as capable of feeling templated as layout is. When you write copy:
+
 - Speak from the end user's side of the screen — name things by what people recognize and
   control, not by internal system concepts.
 - Prefer plain, specific claims over generic sell language ("ships in 2 days" beats
@@ -119,6 +122,7 @@ Copy is as capable of feeling templated as layout is. When you write copy:
 ## Before you say you're done
 
 Confirm in your own head, not out loud to the user unless asked:
+
 - Would this be mistaken for a template if you removed the brand's name from it?
 - Does every color/font/spacing value trace back to the token system from step 1?
 - Is there exactly one loud, memorable element — not zero, not three?

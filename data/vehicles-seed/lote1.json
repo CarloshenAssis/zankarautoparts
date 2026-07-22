@@ -5,93 +5,282 @@
       {
         "modelo": "Gol",
         "versoes": [
-          { "nome": "Gol G1 (Quadrado)", "ano_inicio": 1980, "ano_fim": 1996, "motorizacao": "1.0/1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "VW-BX-G1" },
-          { "nome": "Gol G2 (Bolinha)", "ano_inicio": 1994, "ano_fim": 1999, "motorizacao": "1.0/1.6/1.8/2.0", "combustivel": "gasolina/etanol", "plataforma": "VW-BX-G2G3G4" },
-          { "nome": "Gol G3", "ano_inicio": 1999, "ano_fim": 2005, "motorizacao": "1.0/1.6", "combustivel": "gasolina/flex", "plataforma": "VW-BX-G2G3G4" },
-          { "nome": "Gol G4", "ano_inicio": 2005, "ano_fim": 2014, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-BX-G2G3G4" },
-          { "nome": "Gol G5", "ano_inicio": 2008, "ano_fim": 2012, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" },
-          { "nome": "Gol G6", "ano_inicio": 2012, "ano_fim": 2016, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" },
-          { "nome": "Gol G7", "ano_inicio": 2016, "ano_fim": 2018, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" },
-          { "nome": "Gol G8", "ano_inicio": 2018, "ano_fim": 2023, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" }
+          {
+            "nome": "Gol G1 (Quadrado)",
+            "ano_inicio": 1980,
+            "ano_fim": 1996,
+            "motorizacao": "1.0/1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "VW-BX-G1"
+          },
+          {
+            "nome": "Gol G2 (Bolinha)",
+            "ano_inicio": 1994,
+            "ano_fim": 1999,
+            "motorizacao": "1.0/1.6/1.8/2.0",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "VW-BX-G2G3G4"
+          },
+          {
+            "nome": "Gol G3",
+            "ano_inicio": 1999,
+            "ano_fim": 2005,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "gasolina/flex",
+            "plataforma": "VW-BX-G2G3G4"
+          },
+          {
+            "nome": "Gol G4",
+            "ano_inicio": 2005,
+            "ano_fim": 2014,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-BX-G2G3G4"
+          },
+          {
+            "nome": "Gol G5",
+            "ano_inicio": 2008,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          },
+          {
+            "nome": "Gol G6",
+            "ano_inicio": 2012,
+            "ano_fim": 2016,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          },
+          {
+            "nome": "Gol G7",
+            "ano_inicio": 2016,
+            "ano_fim": 2018,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          },
+          {
+            "nome": "Gol G8",
+            "ano_inicio": 2018,
+            "ano_fim": 2023,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          }
         ]
       },
       {
         "modelo": "Voyage",
         "versoes": [
-          { "nome": "Voyage (BX)", "ano_inicio": 1981, "ano_fim": 1995, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "VW-BX-G1" },
-          { "nome": "Novo Voyage G5", "ano_inicio": 2008, "ano_fim": 2012, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" },
-          { "nome": "Voyage G6", "ano_inicio": 2012, "ano_fim": 2016, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" },
-          { "nome": "Voyage G7/G8", "ano_inicio": 2016, "ano_fim": 2022, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" }
+          {
+            "nome": "Voyage (BX)",
+            "ano_inicio": 1981,
+            "ano_fim": 1995,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "VW-BX-G1"
+          },
+          {
+            "nome": "Novo Voyage G5",
+            "ano_inicio": 2008,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          },
+          {
+            "nome": "Voyage G6",
+            "ano_inicio": 2012,
+            "ano_fim": 2016,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          },
+          {
+            "nome": "Voyage G7/G8",
+            "ano_inicio": 2016,
+            "ano_fim": 2022,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          }
         ]
       },
       {
         "modelo": "Parati",
         "versoes": [
-          { "nome": "Parati (BX)", "ano_inicio": 1982, "ano_fim": 1996, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "VW-BX-G1" },
-          { "nome": "Parati G2/G3/G4", "ano_inicio": 1996, "ano_fim": 2012, "motorizacao": "1.0/1.6/1.8", "combustivel": "gasolina/flex", "plataforma": "VW-BX-G2G3G4" }
+          {
+            "nome": "Parati (BX)",
+            "ano_inicio": 1982,
+            "ano_fim": 1996,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "VW-BX-G1"
+          },
+          {
+            "nome": "Parati G2/G3/G4",
+            "ano_inicio": 1996,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.6/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "VW-BX-G2G3G4"
+          }
         ]
       },
       {
         "modelo": "Saveiro",
         "versoes": [
-          { "nome": "Saveiro G1/G2 (BX)", "ano_inicio": 1982, "ano_fim": 2009, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol/flex", "plataforma": "VW-BX" },
-          { "nome": "Saveiro G3 (nova, base PQ24)", "ano_inicio": 2009, "ano_fim": 2013, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" },
-          { "nome": "Saveiro G4/G5/G6", "ano_inicio": 2013, "ano_fim": null, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "VW-PQ24-G5" }
+          {
+            "nome": "Saveiro G1/G2 (BX)",
+            "ano_inicio": 1982,
+            "ano_fim": 2009,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol/flex",
+            "plataforma": "VW-BX"
+          },
+          {
+            "nome": "Saveiro G3 (nova, base PQ24)",
+            "ano_inicio": 2009,
+            "ano_fim": 2013,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          },
+          {
+            "nome": "Saveiro G4/G5/G6",
+            "ano_inicio": 2013,
+            "ano_fim": null,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-G5"
+          }
         ]
       },
       {
         "modelo": "Santana",
         "versoes": [
-          { "nome": "Santana", "ano_inicio": 1984, "ano_fim": 2006, "motorizacao": "1.8/2.0", "combustivel": "gasolina/etanol/flex", "plataforma": "VW-B2-Santana" }
+          {
+            "nome": "Santana",
+            "ano_inicio": 1984,
+            "ano_fim": 2006,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "gasolina/etanol/flex",
+            "plataforma": "VW-B2-Santana"
+          }
         ]
       },
       {
         "modelo": "Quantum",
         "versoes": [
-          { "nome": "Quantum (perua)", "ano_inicio": 1985, "ano_fim": 2002, "motorizacao": "1.8/2.0", "combustivel": "gasolina/etanol", "plataforma": "VW-B2-Santana" }
+          {
+            "nome": "Quantum (perua)",
+            "ano_inicio": 1985,
+            "ano_fim": 2002,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "VW-B2-Santana"
+          }
         ]
       },
       {
         "modelo": "Fox",
         "versoes": [
-          { "nome": "Fox", "ano_inicio": 2003, "ano_fim": 2021, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "VW-PQ24-Fox" }
+          {
+            "nome": "Fox",
+            "ano_inicio": 2003,
+            "ano_fim": 2021,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-Fox"
+          }
         ]
       },
       {
         "modelo": "CrossFox",
         "versoes": [
-          { "nome": "CrossFox", "ano_inicio": 2005, "ano_fim": 2021, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "VW-PQ24-Fox" }
+          {
+            "nome": "CrossFox",
+            "ano_inicio": 2005,
+            "ano_fim": 2021,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-Fox"
+          }
         ]
       },
       {
         "modelo": "SpaceFox",
         "versoes": [
-          { "nome": "SpaceFox", "ano_inicio": 2006, "ano_fim": 2019, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "VW-PQ24-Fox" }
+          {
+            "nome": "SpaceFox",
+            "ano_inicio": 2006,
+            "ano_fim": 2019,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-PQ24-Fox"
+          }
         ]
       },
       {
         "modelo": "Polo",
         "versoes": [
-          { "nome": "Polo (hatch/sedan, nacional)", "ano_inicio": 2002, "ano_fim": 2014, "motorizacao": "1.6/2.0", "combustivel": "gasolina/flex", "plataforma": "VW-PQ24-Polo" },
-          { "nome": "Polo (MQB, novo; inclui Polo Track)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "1.0/1.6 (1.0 TSI turbo)", "combustivel": "flex", "plataforma": "VW-MQB-A0" }
+          {
+            "nome": "Polo (hatch/sedan, nacional)",
+            "ano_inicio": 2002,
+            "ano_fim": 2014,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "VW-PQ24-Polo"
+          },
+          {
+            "nome": "Polo (MQB, novo; inclui Polo Track)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.6 (1.0 TSI turbo)",
+            "combustivel": "flex",
+            "plataforma": "VW-MQB-A0"
+          }
         ]
       },
       {
         "modelo": "Virtus",
         "versoes": [
-          { "nome": "Virtus", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.0 TSI/1.6", "combustivel": "flex", "plataforma": "VW-MQB-A0" }
+          {
+            "nome": "Virtus",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.0 TSI/1.6",
+            "combustivel": "flex",
+            "plataforma": "VW-MQB-A0"
+          }
         ]
       },
       {
         "modelo": "Nivus",
         "versoes": [
-          { "nome": "Nivus", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.0 TSI", "combustivel": "flex", "plataforma": "VW-MQB-A0" }
+          {
+            "nome": "Nivus",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.0 TSI",
+            "combustivel": "flex",
+            "plataforma": "VW-MQB-A0"
+          }
         ]
       },
       {
         "modelo": "T-Cross",
         "versoes": [
-          { "nome": "T-Cross", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.0 TSI/1.4 TSI", "combustivel": "flex", "plataforma": "VW-MQB-A0" }
+          {
+            "nome": "T-Cross",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.0 TSI/1.4 TSI",
+            "combustivel": "flex",
+            "plataforma": "VW-MQB-A0"
+          }
         ]
       }
     ]
@@ -102,89 +291,215 @@
       {
         "modelo": "Uno",
         "versoes": [
-          { "nome": "Uno (Mille)", "ano_inicio": 1984, "ano_fim": 2013, "motorizacao": "1.0/1.3/1.4/1.5", "combustivel": "gasolina/etanol/flex", "plataforma": "Fiat-146-Uno" },
-          { "nome": "Novo Uno (Way/Attractive/Sporting)", "ano_inicio": 2010, "ano_fim": 2021, "motorizacao": "1.0/1.4", "combustivel": "flex", "plataforma": "Fiat-Novo-Uno" }
+          {
+            "nome": "Uno (Mille)",
+            "ano_inicio": 1984,
+            "ano_fim": 2013,
+            "motorizacao": "1.0/1.3/1.4/1.5",
+            "combustivel": "gasolina/etanol/flex",
+            "plataforma": "Fiat-146-Uno"
+          },
+          {
+            "nome": "Novo Uno (Way/Attractive/Sporting)",
+            "ano_inicio": 2010,
+            "ano_fim": 2021,
+            "motorizacao": "1.0/1.4",
+            "combustivel": "flex",
+            "plataforma": "Fiat-Novo-Uno"
+          }
         ]
       },
       {
         "modelo": "Palio",
         "versoes": [
-          { "nome": "Palio (fases 1996/2000/2003 Pitbull/2007)", "ano_inicio": 1996, "ano_fim": 2017, "motorizacao": "1.0/1.3/1.4/1.5/1.6/1.8", "combustivel": "gasolina/flex", "plataforma": "Fiat-178" },
-          { "nome": "Novo Palio (base Novo Uno)", "ano_inicio": 2011, "ano_fim": 2017, "motorizacao": "1.0/1.4/1.6", "combustivel": "flex", "plataforma": "Fiat-178-evo" }
+          {
+            "nome": "Palio (fases 1996/2000/2003 Pitbull/2007)",
+            "ano_inicio": 1996,
+            "ano_fim": 2017,
+            "motorizacao": "1.0/1.3/1.4/1.5/1.6/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Fiat-178"
+          },
+          {
+            "nome": "Novo Palio (base Novo Uno)",
+            "ano_inicio": 2011,
+            "ano_fim": 2017,
+            "motorizacao": "1.0/1.4/1.6",
+            "combustivel": "flex",
+            "plataforma": "Fiat-178-evo"
+          }
         ]
       },
       {
         "modelo": "Palio Weekend",
         "versoes": [
-          { "nome": "Palio Weekend", "ano_inicio": 1997, "ano_fim": 2020, "motorizacao": "1.3/1.4/1.6/1.8", "combustivel": "gasolina/flex", "plataforma": "Fiat-178" }
+          {
+            "nome": "Palio Weekend",
+            "ano_inicio": 1997,
+            "ano_fim": 2020,
+            "motorizacao": "1.3/1.4/1.6/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Fiat-178"
+          }
         ]
       },
       {
         "modelo": "Siena",
         "versoes": [
-          { "nome": "Siena (facelifts 2000/2005/2008)", "ano_inicio": 1997, "ano_fim": 2012, "motorizacao": "1.0/1.3/1.4/1.6/1.8", "combustivel": "gasolina/flex", "plataforma": "Fiat-178" },
-          { "nome": "Grand Siena", "ano_inicio": 2012, "ano_fim": 2021, "motorizacao": "1.0/1.4/1.6", "combustivel": "flex", "plataforma": "Fiat-178-evo" }
+          {
+            "nome": "Siena (facelifts 2000/2005/2008)",
+            "ano_inicio": 1997,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.3/1.4/1.6/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Fiat-178"
+          },
+          {
+            "nome": "Grand Siena",
+            "ano_inicio": 2012,
+            "ano_fim": 2021,
+            "motorizacao": "1.0/1.4/1.6",
+            "combustivel": "flex",
+            "plataforma": "Fiat-178-evo"
+          }
         ]
       },
       {
         "modelo": "Strada",
         "versoes": [
-          { "nome": "Strada (cabine estendida 1999, dupla 2009)", "ano_inicio": 1998, "ano_fim": 2020, "motorizacao": "1.4/1.5/1.8", "combustivel": "gasolina/flex", "plataforma": "Fiat-178" },
-          { "nome": "Nova Strada (projeto 281, base Argo)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.3/1.4", "combustivel": "flex", "plataforma": "Fiat-MP1" }
+          {
+            "nome": "Strada (cabine estendida 1999, dupla 2009)",
+            "ano_inicio": 1998,
+            "ano_fim": 2020,
+            "motorizacao": "1.4/1.5/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Fiat-178"
+          },
+          {
+            "nome": "Nova Strada (projeto 281, base Argo)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.3/1.4",
+            "combustivel": "flex",
+            "plataforma": "Fiat-MP1"
+          }
         ]
       },
       {
         "modelo": "Idea",
         "versoes": [
-          { "nome": "Idea", "ano_inicio": 2005, "ano_fim": 2016, "motorizacao": "1.4/1.6/1.8", "combustivel": "flex", "plataforma": "Fiat-178" }
+          {
+            "nome": "Idea",
+            "ano_inicio": 2005,
+            "ano_fim": 2016,
+            "motorizacao": "1.4/1.6/1.8",
+            "combustivel": "flex",
+            "plataforma": "Fiat-178"
+          }
         ]
       },
       {
         "modelo": "Punto",
         "versoes": [
-          { "nome": "Punto", "ano_inicio": 2007, "ano_fim": 2017, "motorizacao": "1.4/1.6/1.8", "combustivel": "flex", "plataforma": "Fiat-Grande-Punto" }
+          {
+            "nome": "Punto",
+            "ano_inicio": 2007,
+            "ano_fim": 2017,
+            "motorizacao": "1.4/1.6/1.8",
+            "combustivel": "flex",
+            "plataforma": "Fiat-Grande-Punto"
+          }
         ]
       },
       {
         "modelo": "Mobi",
         "versoes": [
-          { "nome": "Mobi", "ano_inicio": 2016, "ano_fim": null, "motorizacao": "1.0 Firefly", "combustivel": "flex", "plataforma": "Fiat-Mobi" }
+          {
+            "nome": "Mobi",
+            "ano_inicio": 2016,
+            "ano_fim": null,
+            "motorizacao": "1.0 Firefly",
+            "combustivel": "flex",
+            "plataforma": "Fiat-Mobi"
+          }
         ]
       },
       {
         "modelo": "Argo",
         "versoes": [
-          { "nome": "Argo", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "1.0/1.3 Firefly (1.8 E.torQ até 2022)", "combustivel": "flex", "plataforma": "Fiat-MP1" }
+          {
+            "nome": "Argo",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.3 Firefly (1.8 E.torQ até 2022)",
+            "combustivel": "flex",
+            "plataforma": "Fiat-MP1"
+          }
         ]
       },
       {
         "modelo": "Cronos",
         "versoes": [
-          { "nome": "Cronos", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.0/1.3 Firefly (1.8 até 2022)", "combustivel": "flex", "plataforma": "Fiat-MP1" }
+          {
+            "nome": "Cronos",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.3 Firefly (1.8 até 2022)",
+            "combustivel": "flex",
+            "plataforma": "Fiat-MP1"
+          }
         ]
       },
       {
         "modelo": "Toro",
         "versoes": [
-          { "nome": "Toro", "ano_inicio": 2016, "ano_fim": null, "motorizacao": "1.3 turbo/1.8/2.4 gasolina/2.0 diesel", "combustivel": "flex/diesel", "plataforma": "Fiat-Small-Wide" }
+          {
+            "nome": "Toro",
+            "ano_inicio": 2016,
+            "ano_fim": null,
+            "motorizacao": "1.3 turbo/1.8/2.4 gasolina/2.0 diesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "Fiat-Small-Wide"
+          }
         ]
       },
       {
         "modelo": "Tipo",
         "versoes": [
-          { "nome": "Tipo", "ano_inicio": 1993, "ano_fim": 1997, "motorizacao": "1.6/2.0", "combustivel": "gasolina", "plataforma": "Fiat-Tipo" }
+          {
+            "nome": "Tipo",
+            "ano_inicio": 1993,
+            "ano_fim": 1997,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "gasolina",
+            "plataforma": "Fiat-Tipo"
+          }
         ]
       },
       {
         "modelo": "Tempra",
         "versoes": [
-          { "nome": "Tempra", "ano_inicio": 1991, "ano_fim": 1998, "motorizacao": "2.0 8V/16V", "combustivel": "gasolina/etanol", "plataforma": "Fiat-Tipo" }
+          {
+            "nome": "Tempra",
+            "ano_inicio": 1991,
+            "ano_fim": 1998,
+            "motorizacao": "2.0 8V/16V",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Fiat-Tipo"
+          }
         ]
       },
       {
         "modelo": "Marea",
         "versoes": [
-          { "nome": "Marea", "ano_inicio": 1998, "ano_fim": 2007, "motorizacao": "1.6/1.8/2.0/2.4", "combustivel": "gasolina/flex", "plataforma": "Fiat-Marea" }
+          {
+            "nome": "Marea",
+            "ano_inicio": 1998,
+            "ano_fim": 2007,
+            "motorizacao": "1.6/1.8/2.0/2.4",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Fiat-Marea"
+          }
         ]
       }
     ]
@@ -195,114 +510,310 @@
       {
         "modelo": "Chevette",
         "versoes": [
-          { "nome": "Chevette (facelifts 1979/1983/1987; Júnior 1992)", "ano_inicio": 1973, "ano_fim": 1993, "motorizacao": "1.0/1.4/1.6", "combustivel": "gasolina/etanol", "plataforma": "GM-TC-Chevette" }
+          {
+            "nome": "Chevette (facelifts 1979/1983/1987; Júnior 1992)",
+            "ano_inicio": 1973,
+            "ano_fim": 1993,
+            "motorizacao": "1.0/1.4/1.6",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "GM-TC-Chevette"
+          }
         ]
       },
       {
         "modelo": "Monza",
         "versoes": [
-          { "nome": "Monza", "ano_inicio": 1982, "ano_fim": 1996, "motorizacao": "1.6/1.8/2.0", "combustivel": "gasolina/etanol", "plataforma": "GM-Ascona" }
+          {
+            "nome": "Monza",
+            "ano_inicio": 1982,
+            "ano_fim": 1996,
+            "motorizacao": "1.6/1.8/2.0",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "GM-Ascona"
+          }
         ]
       },
       {
         "modelo": "Kadett",
         "versoes": [
-          { "nome": "Kadett", "ano_inicio": 1989, "ano_fim": 1998, "motorizacao": "1.8/2.0", "combustivel": "gasolina/etanol", "plataforma": "GM-Kadett" }
+          {
+            "nome": "Kadett",
+            "ano_inicio": 1989,
+            "ano_fim": 1998,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "GM-Kadett"
+          }
         ]
       },
       {
         "modelo": "Ipanema",
         "versoes": [
-          { "nome": "Ipanema", "ano_inicio": 1989, "ano_fim": 1998, "motorizacao": "1.8/2.0", "combustivel": "gasolina/etanol", "plataforma": "GM-Kadett" }
+          {
+            "nome": "Ipanema",
+            "ano_inicio": 1989,
+            "ano_fim": 1998,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "GM-Kadett"
+          }
         ]
       },
       {
         "modelo": "Omega",
         "versoes": [
-          { "nome": "Omega/Suprema", "ano_inicio": 1992, "ano_fim": 1998, "motorizacao": "2.0/2.2/3.0/4.1", "combustivel": "gasolina", "plataforma": "GM-Omega-A" }
+          {
+            "nome": "Omega/Suprema",
+            "ano_inicio": 1992,
+            "ano_fim": 1998,
+            "motorizacao": "2.0/2.2/3.0/4.1",
+            "combustivel": "gasolina",
+            "plataforma": "GM-Omega-A"
+          }
         ]
       },
       {
         "modelo": "Corsa",
         "versoes": [
-          { "nome": "Corsa B (Wind/GL/GSi)", "ano_inicio": 1994, "ano_fim": 2002, "motorizacao": "1.0/1.4/1.6", "combustivel": "gasolina", "plataforma": "GM-Gamma-CorsaB" },
-          { "nome": "Corsa Classic", "ano_inicio": 2002, "ano_fim": 2016, "motorizacao": "1.0", "combustivel": "gasolina/flex", "plataforma": "GM-Gamma-CorsaB" },
-          { "nome": "Corsa C (Novo Corsa)", "ano_inicio": 2002, "ano_fim": 2012, "motorizacao": "1.0/1.4/1.8", "combustivel": "gasolina/flex", "plataforma": "GM-Gamma-CorsaC" }
+          {
+            "nome": "Corsa B (Wind/GL/GSi)",
+            "ano_inicio": 1994,
+            "ano_fim": 2002,
+            "motorizacao": "1.0/1.4/1.6",
+            "combustivel": "gasolina",
+            "plataforma": "GM-Gamma-CorsaB"
+          },
+          {
+            "nome": "Corsa Classic",
+            "ano_inicio": 2002,
+            "ano_fim": 2016,
+            "motorizacao": "1.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "GM-Gamma-CorsaB"
+          },
+          {
+            "nome": "Corsa C (Novo Corsa)",
+            "ano_inicio": 2002,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.4/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "GM-Gamma-CorsaC"
+          }
         ]
       },
       {
         "modelo": "Celta",
         "versoes": [
-          { "nome": "Celta (facelift 2006)", "ano_inicio": 2000, "ano_fim": 2015, "motorizacao": "1.0/1.4", "combustivel": "gasolina/flex", "plataforma": "GM-Gamma-CorsaB" }
+          {
+            "nome": "Celta (facelift 2006)",
+            "ano_inicio": 2000,
+            "ano_fim": 2015,
+            "motorizacao": "1.0/1.4",
+            "combustivel": "gasolina/flex",
+            "plataforma": "GM-Gamma-CorsaB"
+          }
         ]
       },
       {
         "modelo": "Prisma",
         "versoes": [
-          { "nome": "Prisma (1ª geração, base Celta)", "ano_inicio": 2006, "ano_fim": 2012, "motorizacao": "1.0/1.4", "combustivel": "flex", "plataforma": "GM-Gamma-CorsaB" },
-          { "nome": "Prisma (2ª geração)", "ano_inicio": 2013, "ano_fim": 2019, "motorizacao": "1.0/1.4", "combustivel": "flex", "plataforma": "GM-GSV" }
+          {
+            "nome": "Prisma (1ª geração, base Celta)",
+            "ano_inicio": 2006,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.4",
+            "combustivel": "flex",
+            "plataforma": "GM-Gamma-CorsaB"
+          },
+          {
+            "nome": "Prisma (2ª geração)",
+            "ano_inicio": 2013,
+            "ano_fim": 2019,
+            "motorizacao": "1.0/1.4",
+            "combustivel": "flex",
+            "plataforma": "GM-GSV"
+          }
         ]
       },
       {
         "modelo": "Onix",
         "versoes": [
-          { "nome": "Onix (1ª geração, facelift 2016; Joy até 2021)", "ano_inicio": 2012, "ano_fim": 2019, "motorizacao": "1.0/1.4 (1.0 turbo)", "combustivel": "flex", "plataforma": "GM-GSV" },
-          { "nome": "Onix/Onix Plus (2ª geração)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.0/1.0 turbo", "combustivel": "flex", "plataforma": "GM-GEM" }
+          {
+            "nome": "Onix (1ª geração, facelift 2016; Joy até 2021)",
+            "ano_inicio": 2012,
+            "ano_fim": 2019,
+            "motorizacao": "1.0/1.4 (1.0 turbo)",
+            "combustivel": "flex",
+            "plataforma": "GM-GSV"
+          },
+          {
+            "nome": "Onix/Onix Plus (2ª geração)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.0 turbo",
+            "combustivel": "flex",
+            "plataforma": "GM-GEM"
+          }
         ]
       },
       {
         "modelo": "Astra",
         "versoes": [
-          { "nome": "Astra (importado, 1ª)", "ano_inicio": 1994, "ano_fim": 1996, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "GM-Astra-F" },
-          { "nome": "Astra nacional (2ª/G)", "ano_inicio": 1998, "ano_fim": 2011, "motorizacao": "1.8/2.0", "combustivel": "gasolina/flex", "plataforma": "GM-Astra-G" }
+          {
+            "nome": "Astra (importado, 1ª)",
+            "ano_inicio": 1994,
+            "ano_fim": 1996,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina",
+            "plataforma": "GM-Astra-F"
+          },
+          {
+            "nome": "Astra nacional (2ª/G)",
+            "ano_inicio": 1998,
+            "ano_fim": 2011,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "GM-Astra-G"
+          }
         ]
       },
       {
         "modelo": "Vectra",
         "versoes": [
-          { "nome": "Vectra (1ª geração)", "ano_inicio": 1993, "ano_fim": 1996, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "GM-Vectra-A" },
-          { "nome": "Vectra (2ª geração)", "ano_inicio": 1996, "ano_fim": 2005, "motorizacao": "2.0/2.2", "combustivel": "gasolina/flex", "plataforma": "GM-Vectra-B" },
-          { "nome": "Vectra (3ª geração, base Astra H/Zafira)", "ano_inicio": 2005, "ano_fim": 2011, "motorizacao": "2.0/2.4", "combustivel": "flex", "plataforma": "GM-Astra-H" },
-          { "nome": "Vectra GT/GT-X (hatch, Astra H)", "ano_inicio": 2007, "ano_fim": 2011, "motorizacao": "2.0", "combustivel": "flex", "plataforma": "GM-Astra-H" }
+          {
+            "nome": "Vectra (1ª geração)",
+            "ano_inicio": 1993,
+            "ano_fim": 1996,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina",
+            "plataforma": "GM-Vectra-A"
+          },
+          {
+            "nome": "Vectra (2ª geração)",
+            "ano_inicio": 1996,
+            "ano_fim": 2005,
+            "motorizacao": "2.0/2.2",
+            "combustivel": "gasolina/flex",
+            "plataforma": "GM-Vectra-B"
+          },
+          {
+            "nome": "Vectra (3ª geração, base Astra H/Zafira)",
+            "ano_inicio": 2005,
+            "ano_fim": 2011,
+            "motorizacao": "2.0/2.4",
+            "combustivel": "flex",
+            "plataforma": "GM-Astra-H"
+          },
+          {
+            "nome": "Vectra GT/GT-X (hatch, Astra H)",
+            "ano_inicio": 2007,
+            "ano_fim": 2011,
+            "motorizacao": "2.0",
+            "combustivel": "flex",
+            "plataforma": "GM-Astra-H"
+          }
         ]
       },
       {
         "modelo": "Agile",
         "versoes": [
-          { "nome": "Agile", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": "1.4", "combustivel": "flex", "plataforma": "GM-Gamma-CorsaB" }
+          {
+            "nome": "Agile",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": "1.4",
+            "combustivel": "flex",
+            "plataforma": "GM-Gamma-CorsaB"
+          }
         ]
       },
       {
         "modelo": "Cobalt",
         "versoes": [
-          { "nome": "Cobalt", "ano_inicio": 2011, "ano_fim": 2019, "motorizacao": "1.4/1.8", "combustivel": "flex", "plataforma": "GM-GSV" }
+          {
+            "nome": "Cobalt",
+            "ano_inicio": 2011,
+            "ano_fim": 2019,
+            "motorizacao": "1.4/1.8",
+            "combustivel": "flex",
+            "plataforma": "GM-GSV"
+          }
         ]
       },
       {
         "modelo": "Cruze",
         "versoes": [
-          { "nome": "Cruze (1ª geração)", "ano_inicio": 2011, "ano_fim": 2016, "motorizacao": "1.8", "combustivel": "flex", "plataforma": "GM-Delta-II" },
-          { "nome": "Cruze (2ª geração)", "ano_inicio": 2016, "ano_fim": null, "motorizacao": "1.4 turbo", "combustivel": "flex", "plataforma": "GM-D2XX" }
+          {
+            "nome": "Cruze (1ª geração)",
+            "ano_inicio": 2011,
+            "ano_fim": 2016,
+            "motorizacao": "1.8",
+            "combustivel": "flex",
+            "plataforma": "GM-Delta-II"
+          },
+          {
+            "nome": "Cruze (2ª geração)",
+            "ano_inicio": 2016,
+            "ano_fim": null,
+            "motorizacao": "1.4 turbo",
+            "combustivel": "flex",
+            "plataforma": "GM-D2XX"
+          }
         ]
       },
       {
         "modelo": "Spin",
         "versoes": [
-          { "nome": "Spin", "ano_inicio": 2012, "ano_fim": null, "motorizacao": "1.8", "combustivel": "flex", "plataforma": "GM-GSV" }
+          {
+            "nome": "Spin",
+            "ano_inicio": 2012,
+            "ano_fim": null,
+            "motorizacao": "1.8",
+            "combustivel": "flex",
+            "plataforma": "GM-GSV"
+          }
         ]
       },
       {
         "modelo": "Tracker",
         "versoes": [
-          { "nome": "Tracker (1ª geração, importado México)", "ano_inicio": 2013, "ano_fim": 2016, "motorizacao": "1.8", "combustivel": "flex", "plataforma": "GM-Gamma-II" },
-          { "nome": "Tracker (2ª geração, nacional)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.0 turbo/1.2 turbo", "combustivel": "flex", "plataforma": "GM-GEM" }
+          {
+            "nome": "Tracker (1ª geração, importado México)",
+            "ano_inicio": 2013,
+            "ano_fim": 2016,
+            "motorizacao": "1.8",
+            "combustivel": "flex",
+            "plataforma": "GM-Gamma-II"
+          },
+          {
+            "nome": "Tracker (2ª geração, nacional)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.0 turbo/1.2 turbo",
+            "combustivel": "flex",
+            "plataforma": "GM-GEM"
+          }
         ]
       },
       {
         "modelo": "S10",
         "versoes": [
-          { "nome": "S10 (1ª geração)", "ano_inicio": 1995, "ano_fim": 2011, "motorizacao": "2.2/2.4/2.8 diesel/4.3 V6", "combustivel": "gasolina/diesel", "plataforma": "GM-S10-I" },
-          { "nome": "S10 (2ª geração, facelifts 2017/2021)", "ano_inicio": 2012, "ano_fim": null, "motorizacao": "2.5 gasolina/2.8 diesel", "combustivel": "flex/diesel", "plataforma": "GM-GMI" }
+          {
+            "nome": "S10 (1ª geração)",
+            "ano_inicio": 1995,
+            "ano_fim": 2011,
+            "motorizacao": "2.2/2.4/2.8 diesel/4.3 V6",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "GM-S10-I"
+          },
+          {
+            "nome": "S10 (2ª geração, facelifts 2017/2021)",
+            "ano_inicio": 2012,
+            "ano_fim": null,
+            "motorizacao": "2.5 gasolina/2.8 diesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "GM-GMI"
+          }
         ]
       }
     ]
@@ -313,83 +824,237 @@
       {
         "modelo": "Corcel",
         "versoes": [
-          { "nome": "Corcel II", "ano_inicio": 1977, "ano_fim": 1986, "motorizacao": "1.4/1.6", "combustivel": "gasolina/etanol", "plataforma": "Ford-Corcel" }
+          {
+            "nome": "Corcel II",
+            "ano_inicio": 1977,
+            "ano_fim": 1986,
+            "motorizacao": "1.4/1.6",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Ford-Corcel"
+          }
         ]
       },
       {
         "modelo": "Belina",
         "versoes": [
-          { "nome": "Belina II", "ano_inicio": 1977, "ano_fim": 1986, "motorizacao": "1.6", "combustivel": "gasolina/etanol", "plataforma": "Ford-Corcel" }
+          {
+            "nome": "Belina II",
+            "ano_inicio": 1977,
+            "ano_fim": 1986,
+            "motorizacao": "1.6",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Ford-Corcel"
+          }
         ]
       },
       {
         "modelo": "Del Rey",
         "versoes": [
-          { "nome": "Del Rey", "ano_inicio": 1981, "ano_fim": 1991, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "Ford-Corcel" }
+          {
+            "nome": "Del Rey",
+            "ano_inicio": 1981,
+            "ano_fim": 1991,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Ford-Corcel"
+          }
         ]
       },
       {
         "modelo": "Del Rey Belina",
         "versoes": [
-          { "nome": "Del Rey Belina (perua)", "ano_inicio": 1985, "ano_fim": 1991, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "Ford-Corcel" }
+          {
+            "nome": "Del Rey Belina (perua)",
+            "ano_inicio": 1985,
+            "ano_fim": 1991,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Ford-Corcel"
+          }
         ]
       },
       {
         "modelo": "Pampa",
         "versoes": [
-          { "nome": "Pampa (picape)", "ano_inicio": 1982, "ano_fim": 1997, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "Ford-Corcel" }
+          {
+            "nome": "Pampa (picape)",
+            "ano_inicio": 1982,
+            "ano_fim": 1997,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Ford-Corcel"
+          }
         ]
       },
       {
         "modelo": "Escort",
         "versoes": [
-          { "nome": "Escort (1ª geração, XR3)", "ano_inicio": 1983, "ano_fim": 1992, "motorizacao": "1.6/1.8", "combustivel": "gasolina/etanol", "plataforma": "Ford-Escort-Mk3" },
-          { "nome": "Escort (2ª geração, Zetec)", "ano_inicio": 1993, "ano_fim": 2003, "motorizacao": "1.6/1.8/2.0", "combustivel": "gasolina/flex", "plataforma": "Ford-Escort-Mk5" }
+          {
+            "nome": "Escort (1ª geração, XR3)",
+            "ano_inicio": 1983,
+            "ano_fim": 1992,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/etanol",
+            "plataforma": "Ford-Escort-Mk3"
+          },
+          {
+            "nome": "Escort (2ª geração, Zetec)",
+            "ano_inicio": 1993,
+            "ano_fim": 2003,
+            "motorizacao": "1.6/1.8/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Ford-Escort-Mk5"
+          }
         ]
       },
       {
         "modelo": "Ka",
         "versoes": [
-          { "nome": "Ka (1ª geração)", "ano_inicio": 1997, "ano_fim": 2007, "motorizacao": "1.0/1.3/1.6", "combustivel": "gasolina/flex", "plataforma": "Ford-B" },
-          { "nome": "Ka (2ª geração, base Fiesta)", "ano_inicio": 2008, "ano_fim": 2014, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Ford-B" },
-          { "nome": "Novo Ka (3ª geração, facelift 2018 Dragon)", "ano_inicio": 2014, "ano_fim": 2021, "motorizacao": "1.0/1.5", "combustivel": "flex", "plataforma": "Ford-B562" }
+          {
+            "nome": "Ka (1ª geração)",
+            "ano_inicio": 1997,
+            "ano_fim": 2007,
+            "motorizacao": "1.0/1.3/1.6",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Ford-B"
+          },
+          {
+            "nome": "Ka (2ª geração, base Fiesta)",
+            "ano_inicio": 2008,
+            "ano_fim": 2014,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Ford-B"
+          },
+          {
+            "nome": "Novo Ka (3ª geração, facelift 2018 Dragon)",
+            "ano_inicio": 2014,
+            "ano_fim": 2021,
+            "motorizacao": "1.0/1.5",
+            "combustivel": "flex",
+            "plataforma": "Ford-B562"
+          }
         ]
       },
       {
         "modelo": "Fiesta",
         "versoes": [
-          { "nome": "Fiesta (1ª nacional, Mk4)", "ano_inicio": 1996, "ano_fim": 2002, "motorizacao": "1.0/1.3/1.6", "combustivel": "gasolina", "plataforma": "Ford-B" },
-          { "nome": "Fiesta (Mk5, 2002, Camaçari)", "ano_inicio": 2002, "ano_fim": 2014, "motorizacao": "1.0/1.6", "combustivel": "gasolina/flex", "plataforma": "Ford-B" },
-          { "nome": "New Fiesta (Mk6)", "ano_inicio": 2010, "ano_fim": 2019, "motorizacao": "1.5/1.6", "combustivel": "flex", "plataforma": "Ford-B2E" }
+          {
+            "nome": "Fiesta (1ª nacional, Mk4)",
+            "ano_inicio": 1996,
+            "ano_fim": 2002,
+            "motorizacao": "1.0/1.3/1.6",
+            "combustivel": "gasolina",
+            "plataforma": "Ford-B"
+          },
+          {
+            "nome": "Fiesta (Mk5, 2002, Camaçari)",
+            "ano_inicio": 2002,
+            "ano_fim": 2014,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Ford-B"
+          },
+          {
+            "nome": "New Fiesta (Mk6)",
+            "ano_inicio": 2010,
+            "ano_fim": 2019,
+            "motorizacao": "1.5/1.6",
+            "combustivel": "flex",
+            "plataforma": "Ford-B2E"
+          }
         ]
       },
       {
         "modelo": "Focus",
         "versoes": [
-          { "nome": "Focus (1ª geração)", "ano_inicio": 2000, "ano_fim": 2008, "motorizacao": "1.6/2.0", "combustivel": "gasolina/flex", "plataforma": "Ford-C170" },
-          { "nome": "Focus (2ª geração)", "ano_inicio": 2009, "ano_fim": 2013, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "Ford-C1" },
-          { "nome": "Focus (3ª geração)", "ano_inicio": 2013, "ano_fim": 2019, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "Ford-C1-global" }
+          {
+            "nome": "Focus (1ª geração)",
+            "ano_inicio": 2000,
+            "ano_fim": 2008,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Ford-C170"
+          },
+          {
+            "nome": "Focus (2ª geração)",
+            "ano_inicio": 2009,
+            "ano_fim": 2013,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "Ford-C1"
+          },
+          {
+            "nome": "Focus (3ª geração)",
+            "ano_inicio": 2013,
+            "ano_fim": 2019,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "Ford-C1-global"
+          }
         ]
       },
       {
         "modelo": "EcoSport",
         "versoes": [
-          { "nome": "EcoSport (1ª geração)", "ano_inicio": 2003, "ano_fim": 2012, "motorizacao": "1.0/1.6/2.0", "combustivel": "flex", "plataforma": "Ford-B" },
-          { "nome": "EcoSport (2ª geração, facelift 2017)", "ano_inicio": 2012, "ano_fim": 2021, "motorizacao": "1.5/1.6/2.0", "combustivel": "flex", "plataforma": "Ford-B2E" }
+          {
+            "nome": "EcoSport (1ª geração)",
+            "ano_inicio": 2003,
+            "ano_fim": 2012,
+            "motorizacao": "1.0/1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "Ford-B"
+          },
+          {
+            "nome": "EcoSport (2ª geração, facelift 2017)",
+            "ano_inicio": 2012,
+            "ano_fim": 2021,
+            "motorizacao": "1.5/1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "Ford-B2E"
+          }
         ]
       },
       {
         "modelo": "Fusion",
         "versoes": [
-          { "nome": "Fusion (híbrido a partir de 2010)", "ano_inicio": 2006, "ano_fim": 2019, "motorizacao": "2.3/2.5/3.0/2.0 turbo", "combustivel": "gasolina/flex", "plataforma": "Ford-CD3-CD4" }
+          {
+            "nome": "Fusion (híbrido a partir de 2010)",
+            "ano_inicio": 2006,
+            "ano_fim": 2019,
+            "motorizacao": "2.3/2.5/3.0/2.0 turbo",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Ford-CD3-CD4"
+          }
         ]
       },
       {
         "modelo": "Ranger",
         "versoes": [
-          { "nome": "Ranger (1ª geração)", "ano_inicio": 1998, "ano_fim": 2012, "motorizacao": "2.2/2.3/2.5/3.0 diesel/gasolina", "combustivel": "diesel/flex", "plataforma": "Ford-Ranger" },
-          { "nome": "Ranger (2ª geração, T6)", "ano_inicio": 2012, "ano_fim": 2022, "motorizacao": "2.2/3.2 diesel", "combustivel": "diesel/flex", "plataforma": "Ford-Ranger" },
-          { "nome": "Ranger (3ª geração, P703)", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "2.0/3.0 diesel", "combustivel": "diesel/flex", "plataforma": "Ford-Ranger" }
+          {
+            "nome": "Ranger (1ª geração)",
+            "ano_inicio": 1998,
+            "ano_fim": 2012,
+            "motorizacao": "2.2/2.3/2.5/3.0 diesel/gasolina",
+            "combustivel": "diesel/flex",
+            "plataforma": "Ford-Ranger"
+          },
+          {
+            "nome": "Ranger (2ª geração, T6)",
+            "ano_inicio": 2012,
+            "ano_fim": 2022,
+            "motorizacao": "2.2/3.2 diesel",
+            "combustivel": "diesel/flex",
+            "plataforma": "Ford-Ranger"
+          },
+          {
+            "nome": "Ranger (3ª geração, P703)",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "2.0/3.0 diesel",
+            "combustivel": "diesel/flex",
+            "plataforma": "Ford-Ranger"
+          }
         ]
       }
     ]
@@ -400,45 +1065,143 @@
       {
         "modelo": "Corolla",
         "versoes": [
-          { "nome": "Corolla (7ª geração, importado)", "ano_inicio": 1992, "ano_fim": 1998, "motorizacao": "1.6/1.8", "combustivel": "gasolina", "plataforma": "Toyota-E100" },
-          { "nome": "Corolla (8ª geração, nacional Indaiatuba)", "ano_inicio": 1998, "ano_fim": 2002, "motorizacao": "1.8", "combustivel": "gasolina", "plataforma": "Toyota-E110" },
-          { "nome": "Corolla (9ª geração, Fielder 2004; flex 2007)", "ano_inicio": 2002, "ano_fim": 2008, "motorizacao": "1.6/1.8", "combustivel": "gasolina/flex", "plataforma": "Toyota-E120" },
-          { "nome": "Corolla (10ª geração, facelift 2012; Altis 2.0 em 2010)", "ano_inicio": 2008, "ano_fim": 2014, "motorizacao": "1.8/2.0", "combustivel": "flex", "plataforma": "Toyota-E140" },
-          { "nome": "Corolla (11ª geração, facelift 2018)", "ano_inicio": 2014, "ano_fim": 2019, "motorizacao": "1.8/2.0", "combustivel": "flex", "plataforma": "Toyota-E170" },
-          { "nome": "Corolla (12ª geração)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "2.0/1.8 híbrido", "combustivel": "flex", "plataforma": "Toyota-TNGA-C" }
+          {
+            "nome": "Corolla (7ª geração, importado)",
+            "ano_inicio": 1992,
+            "ano_fim": 1998,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina",
+            "plataforma": "Toyota-E100"
+          },
+          {
+            "nome": "Corolla (8ª geração, nacional Indaiatuba)",
+            "ano_inicio": 1998,
+            "ano_fim": 2002,
+            "motorizacao": "1.8",
+            "combustivel": "gasolina",
+            "plataforma": "Toyota-E110"
+          },
+          {
+            "nome": "Corolla (9ª geração, Fielder 2004; flex 2007)",
+            "ano_inicio": 2002,
+            "ano_fim": 2008,
+            "motorizacao": "1.6/1.8",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Toyota-E120"
+          },
+          {
+            "nome": "Corolla (10ª geração, facelift 2012; Altis 2.0 em 2010)",
+            "ano_inicio": 2008,
+            "ano_fim": 2014,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "flex",
+            "plataforma": "Toyota-E140"
+          },
+          {
+            "nome": "Corolla (11ª geração, facelift 2018)",
+            "ano_inicio": 2014,
+            "ano_fim": 2019,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "flex",
+            "plataforma": "Toyota-E170"
+          },
+          {
+            "nome": "Corolla (12ª geração)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "2.0/1.8 híbrido",
+            "combustivel": "flex",
+            "plataforma": "Toyota-TNGA-C"
+          }
         ]
       },
       {
         "modelo": "Corolla Cross",
         "versoes": [
-          { "nome": "Corolla Cross", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "2.0/1.8 híbrido", "combustivel": "flex", "plataforma": "Toyota-TNGA-C" }
+          {
+            "nome": "Corolla Cross",
+            "ano_inicio": 2021,
+            "ano_fim": null,
+            "motorizacao": "2.0/1.8 híbrido",
+            "combustivel": "flex",
+            "plataforma": "Toyota-TNGA-C"
+          }
         ]
       },
       {
         "modelo": "Etios",
         "versoes": [
-          { "nome": "Etios (hatch e sedan)", "ano_inicio": 2012, "ano_fim": 2021, "motorizacao": "1.3/1.5", "combustivel": "flex", "plataforma": "Toyota-EFC" }
+          {
+            "nome": "Etios (hatch e sedan)",
+            "ano_inicio": 2012,
+            "ano_fim": 2021,
+            "motorizacao": "1.3/1.5",
+            "combustivel": "flex",
+            "plataforma": "Toyota-EFC"
+          }
         ]
       },
       {
         "modelo": "Yaris",
         "versoes": [
-          { "nome": "Yaris (hatch e sedan)", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.3/1.5", "combustivel": "flex", "plataforma": "Toyota-EFC-Yaris" }
+          {
+            "nome": "Yaris (hatch e sedan)",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.3/1.5",
+            "combustivel": "flex",
+            "plataforma": "Toyota-EFC-Yaris"
+          }
         ]
       },
       {
         "modelo": "Hilux",
         "versoes": [
-          { "nome": "Hilux (5ª/6ª geração, importado)", "ano_inicio": 1992, "ano_fim": 2004, "motorizacao": "2.4/2.8 diesel/2.7 gasolina", "combustivel": "diesel/gasolina", "plataforma": "Toyota-Hilux-N" },
-          { "nome": "Hilux (7ª geração)", "ano_inicio": 2005, "ano_fim": 2015, "motorizacao": "2.5/3.0 diesel/2.7 gasolina", "combustivel": "diesel/flex", "plataforma": "Toyota-Hilux-N70" },
-          { "nome": "Hilux (8ª geração, facelift 2020)", "ano_inicio": 2015, "ano_fim": null, "motorizacao": "2.7 gasolina/2.8 diesel", "combustivel": "flex/diesel", "plataforma": "Toyota-IMV" }
+          {
+            "nome": "Hilux (5ª/6ª geração, importado)",
+            "ano_inicio": 1992,
+            "ano_fim": 2004,
+            "motorizacao": "2.4/2.8 diesel/2.7 gasolina",
+            "combustivel": "diesel/gasolina",
+            "plataforma": "Toyota-Hilux-N"
+          },
+          {
+            "nome": "Hilux (7ª geração)",
+            "ano_inicio": 2005,
+            "ano_fim": 2015,
+            "motorizacao": "2.5/3.0 diesel/2.7 gasolina",
+            "combustivel": "diesel/flex",
+            "plataforma": "Toyota-Hilux-N70"
+          },
+          {
+            "nome": "Hilux (8ª geração, facelift 2020)",
+            "ano_inicio": 2015,
+            "ano_fim": null,
+            "motorizacao": "2.7 gasolina/2.8 diesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "Toyota-IMV"
+          }
         ]
       },
       {
         "modelo": "SW4",
         "versoes": [
-          { "nome": "SW4 (2ª/3ª/4ª geração)", "ano_inicio": 1992, "ano_fim": 2015, "motorizacao": "2.7/3.0/3.4", "combustivel": "gasolina/diesel", "plataforma": "Toyota-Hilux-N" },
-          { "nome": "SW4 (base Hilux 8ª, facelift 2021)", "ano_inicio": 2015, "ano_fim": null, "motorizacao": "2.7 gasolina/2.8 diesel", "combustivel": "flex/diesel", "plataforma": "Toyota-IMV" }
+          {
+            "nome": "SW4 (2ª/3ª/4ª geração)",
+            "ano_inicio": 1992,
+            "ano_fim": 2015,
+            "motorizacao": "2.7/3.0/3.4",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Toyota-Hilux-N"
+          },
+          {
+            "nome": "SW4 (base Hilux 8ª, facelift 2021)",
+            "ano_inicio": 2015,
+            "ano_fim": null,
+            "motorizacao": "2.7 gasolina/2.8 diesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "Toyota-IMV"
+          }
         ]
       }
     ]
@@ -449,56 +1212,196 @@
       {
         "modelo": "Civic",
         "versoes": [
-          { "nome": "Civic (5ª geração, importado)", "ano_inicio": 1992, "ano_fim": 1996, "motorizacao": "1.5/1.6", "combustivel": "gasolina", "plataforma": "Honda-Civic-5" },
-          { "nome": "Civic (6ª geração, nacional Sumaré)", "ano_inicio": 1997, "ano_fim": 2000, "motorizacao": "1.6", "combustivel": "gasolina", "plataforma": "Honda-Civic-6" },
-          { "nome": "Civic (7ª geração, facelift 2004)", "ano_inicio": 2001, "ano_fim": 2006, "motorizacao": "1.7", "combustivel": "gasolina", "plataforma": "Honda-Civic-7" },
-          { "nome": "New Civic (8ª geração)", "ano_inicio": 2006, "ano_fim": 2011, "motorizacao": "1.8", "combustivel": "flex", "plataforma": "Honda-Civic-8" },
-          { "nome": "Civic (9ª geração)", "ano_inicio": 2012, "ano_fim": 2016, "motorizacao": "1.8/2.0", "combustivel": "flex", "plataforma": "Honda-Civic-9" },
-          { "nome": "Civic (10ª geração)", "ano_inicio": 2016, "ano_fim": 2021, "motorizacao": "1.5 turbo/2.0", "combustivel": "flex", "plataforma": "Honda-Civic-10" }
+          {
+            "nome": "Civic (5ª geração, importado)",
+            "ano_inicio": 1992,
+            "ano_fim": 1996,
+            "motorizacao": "1.5/1.6",
+            "combustivel": "gasolina",
+            "plataforma": "Honda-Civic-5"
+          },
+          {
+            "nome": "Civic (6ª geração, nacional Sumaré)",
+            "ano_inicio": 1997,
+            "ano_fim": 2000,
+            "motorizacao": "1.6",
+            "combustivel": "gasolina",
+            "plataforma": "Honda-Civic-6"
+          },
+          {
+            "nome": "Civic (7ª geração, facelift 2004)",
+            "ano_inicio": 2001,
+            "ano_fim": 2006,
+            "motorizacao": "1.7",
+            "combustivel": "gasolina",
+            "plataforma": "Honda-Civic-7"
+          },
+          {
+            "nome": "New Civic (8ª geração)",
+            "ano_inicio": 2006,
+            "ano_fim": 2011,
+            "motorizacao": "1.8",
+            "combustivel": "flex",
+            "plataforma": "Honda-Civic-8"
+          },
+          {
+            "nome": "Civic (9ª geração)",
+            "ano_inicio": 2012,
+            "ano_fim": 2016,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "flex",
+            "plataforma": "Honda-Civic-9"
+          },
+          {
+            "nome": "Civic (10ª geração)",
+            "ano_inicio": 2016,
+            "ano_fim": 2021,
+            "motorizacao": "1.5 turbo/2.0",
+            "combustivel": "flex",
+            "plataforma": "Honda-Civic-10"
+          }
         ]
       },
       {
         "modelo": "Fit",
         "versoes": [
-          { "nome": "Fit (1ª geração)", "ano_inicio": 2003, "ano_fim": 2008, "motorizacao": "1.4/1.5", "combustivel": "flex", "plataforma": "Honda-GD" },
-          { "nome": "Fit (2ª geração)", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": "1.4/1.5", "combustivel": "flex", "plataforma": "Honda-GE" },
-          { "nome": "Fit (3ª geração)", "ano_inicio": 2014, "ano_fim": 2021, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Honda-GK" }
+          {
+            "nome": "Fit (1ª geração)",
+            "ano_inicio": 2003,
+            "ano_fim": 2008,
+            "motorizacao": "1.4/1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-GD"
+          },
+          {
+            "nome": "Fit (2ª geração)",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": "1.4/1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-GE"
+          },
+          {
+            "nome": "Fit (3ª geração)",
+            "ano_inicio": 2014,
+            "ano_fim": 2021,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-GK"
+          }
         ]
       },
       {
         "modelo": "City",
         "versoes": [
-          { "nome": "City (1ª geração)", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Honda-GM" },
-          { "nome": "City (2ª geração)", "ano_inicio": 2015, "ano_fim": 2021, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Honda-GM6" },
-          { "nome": "City (3ª geração, hatch e sedan)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Honda-City-GN" }
+          {
+            "nome": "City (1ª geração)",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-GM"
+          },
+          {
+            "nome": "City (2ª geração)",
+            "ano_inicio": 2015,
+            "ano_fim": 2021,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-GM6"
+          },
+          {
+            "nome": "City (3ª geração, hatch e sedan)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-City-GN"
+          }
         ]
       },
       {
         "modelo": "HR-V",
         "versoes": [
-          { "nome": "HR-V (2ª geração)", "ano_inicio": 2015, "ano_fim": 2022, "motorizacao": "1.8/1.5 turbo", "combustivel": "flex", "plataforma": "Honda-HRV-2" },
-          { "nome": "HR-V (3ª geração)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.5/1.5 turbo", "combustivel": "flex", "plataforma": "Honda-HRV-3" }
+          {
+            "nome": "HR-V (2ª geração)",
+            "ano_inicio": 2015,
+            "ano_fim": 2022,
+            "motorizacao": "1.8/1.5 turbo",
+            "combustivel": "flex",
+            "plataforma": "Honda-HRV-2"
+          },
+          {
+            "nome": "HR-V (3ª geração)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "1.5/1.5 turbo",
+            "combustivel": "flex",
+            "plataforma": "Honda-HRV-3"
+          }
         ]
       },
       {
         "modelo": "WR-V",
         "versoes": [
-          { "nome": "WR-V", "ano_inicio": 2017, "ano_fim": 2021, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Honda-GK" }
+          {
+            "nome": "WR-V",
+            "ano_inicio": 2017,
+            "ano_fim": 2021,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Honda-GK"
+          }
         ]
       },
       {
         "modelo": "CR-V",
         "versoes": [
-          { "nome": "CR-V (1ª geração)", "ano_inicio": 1997, "ano_fim": 2001, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "Honda-CRV" },
-          { "nome": "CR-V (2ª geração)", "ano_inicio": 2002, "ano_fim": 2006, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "Honda-CRV" },
-          { "nome": "CR-V (3ª geração)", "ano_inicio": 2007, "ano_fim": 2011, "motorizacao": "2.0", "combustivel": "gasolina/flex", "plataforma": "Honda-CRV" },
-          { "nome": "CR-V (4ª geração, importado)", "ano_inicio": 2012, "ano_fim": 2016, "motorizacao": "2.0/2.4", "combustivel": "gasolina/flex", "plataforma": "Honda-CRV" }
+          {
+            "nome": "CR-V (1ª geração)",
+            "ano_inicio": 1997,
+            "ano_fim": 2001,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina",
+            "plataforma": "Honda-CRV"
+          },
+          {
+            "nome": "CR-V (2ª geração)",
+            "ano_inicio": 2002,
+            "ano_fim": 2006,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina",
+            "plataforma": "Honda-CRV"
+          },
+          {
+            "nome": "CR-V (3ª geração)",
+            "ano_inicio": 2007,
+            "ano_fim": 2011,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Honda-CRV"
+          },
+          {
+            "nome": "CR-V (4ª geração, importado)",
+            "ano_inicio": 2012,
+            "ano_fim": 2016,
+            "motorizacao": "2.0/2.4",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Honda-CRV"
+          }
         ]
       },
       {
         "modelo": "Accord",
         "versoes": [
-          { "nome": "Accord (importado, várias gerações)", "ano_inicio": 1992, "ano_fim": null, "motorizacao": "2.0/2.2/2.3/3.0/3.5", "combustivel": "gasolina", "plataforma": null }
+          {
+            "nome": "Accord (importado, várias gerações)",
+            "ano_inicio": 1992,
+            "ano_fim": null,
+            "motorizacao": "2.0/2.2/2.3/3.0/3.5",
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
         ]
       }
     ]
@@ -509,59 +1412,150 @@
       {
         "modelo": "HB20",
         "versoes": [
-          { "nome": "HB20 (1ª geração, facelift 2015)", "ano_inicio": 2012, "ano_fim": 2019, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Hyundai-PB" },
-          { "nome": "HB20 (2ª geração, facelift 2022, inclui 1.0 turbo)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.0/1.0 turbo", "combustivel": "flex", "plataforma": "Hyundai-K1" }
+          {
+            "nome": "HB20 (1ª geração, facelift 2015)",
+            "ano_inicio": 2012,
+            "ano_fim": 2019,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-PB"
+          },
+          {
+            "nome": "HB20 (2ª geração, facelift 2022, inclui 1.0 turbo)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.0 turbo",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-K1"
+          }
         ]
       },
       {
         "modelo": "HB20S",
         "versoes": [
-          { "nome": "HB20S (1ª geração)", "ano_inicio": 2013, "ano_fim": 2019, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Hyundai-PB" },
-          { "nome": "HB20S (2ª geração)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.0/1.0 turbo", "combustivel": "flex", "plataforma": "Hyundai-K1" }
+          {
+            "nome": "HB20S (1ª geração)",
+            "ano_inicio": 2013,
+            "ano_fim": 2019,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-PB"
+          },
+          {
+            "nome": "HB20S (2ª geração)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.0 turbo",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-K1"
+          }
         ]
       },
       {
         "modelo": "Creta",
         "versoes": [
-          { "nome": "Creta (1ª geração)", "ano_inicio": 2017, "ano_fim": 2021, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "Hyundai-GSb" },
-          { "nome": "Creta (2ª geração, N Line 1.0 turbo)", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "1.0 turbo/2.0", "combustivel": "flex", "plataforma": "Hyundai-GSb2" }
+          {
+            "nome": "Creta (1ª geração)",
+            "ano_inicio": 2017,
+            "ano_fim": 2021,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-GSb"
+          },
+          {
+            "nome": "Creta (2ª geração, N Line 1.0 turbo)",
+            "ano_inicio": 2021,
+            "ano_fim": null,
+            "motorizacao": "1.0 turbo/2.0",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-GSb2"
+          }
         ]
       },
       {
         "modelo": "Tucson",
         "versoes": [
-          { "nome": "Tucson (1ª geração, importado)", "ano_inicio": 2004, "ano_fim": 2015, "motorizacao": "2.0/2.7", "combustivel": "gasolina/flex", "plataforma": "Hyundai-Tucson-JM" },
-          { "nome": "Tucson (importado, nova geração)", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.6 turbo/2.0", "combustivel": "gasolina", "plataforma": "Hyundai-Tucson" }
+          {
+            "nome": "Tucson (1ª geração, importado)",
+            "ano_inicio": 2004,
+            "ano_fim": 2015,
+            "motorizacao": "2.0/2.7",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Hyundai-Tucson-JM"
+          },
+          {
+            "nome": "Tucson (importado, nova geração)",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.6 turbo/2.0",
+            "combustivel": "gasolina",
+            "plataforma": "Hyundai-Tucson"
+          }
         ]
       },
       {
         "modelo": "ix35",
         "versoes": [
-          { "nome": "ix35 (nacional a partir de 2013)", "ano_inicio": 2010, "ano_fim": 2021, "motorizacao": "2.0", "combustivel": "flex", "plataforma": "Hyundai-ix35" }
+          {
+            "nome": "ix35 (nacional a partir de 2013)",
+            "ano_inicio": 2010,
+            "ano_fim": 2021,
+            "motorizacao": "2.0",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-ix35"
+          }
         ]
       },
       {
         "modelo": "Elantra",
         "versoes": [
-          { "nome": "Elantra (importado, 5ª/6ª geração)", "ano_inicio": 2011, "ano_fim": 2019, "motorizacao": "1.8/2.0", "combustivel": "gasolina/flex", "plataforma": null }
+          {
+            "nome": "Elantra (importado, 5ª/6ª geração)",
+            "ano_inicio": 2011,
+            "ano_fim": 2019,
+            "motorizacao": "1.8/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": null
+          }
         ]
       },
       {
         "modelo": "Azera",
         "versoes": [
-          { "nome": "Azera (importado)", "ano_inicio": 2007, "ano_fim": 2018, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }
+          {
+            "nome": "Azera (importado)",
+            "ano_inicio": 2007,
+            "ano_fim": 2018,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
         ]
       },
       {
         "modelo": "i30",
         "versoes": [
-          { "nome": "i30 (importado)", "ano_inicio": 2009, "ano_fim": 2013, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }
+          {
+            "nome": "i30 (importado)",
+            "ano_inicio": 2009,
+            "ano_fim": 2013,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
         ]
       },
       {
         "modelo": "Veloster",
         "versoes": [
-          { "nome": "Veloster (importado)", "ano_inicio": 2011, "ano_fim": 2018, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }
+          {
+            "nome": "Veloster (importado)",
+            "ano_inicio": 2011,
+            "ano_fim": 2018,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
         ]
       }
     ]
@@ -572,72 +1566,184 @@
       {
         "modelo": "Clio",
         "versoes": [
-          { "nome": "Clio (1ª geração, importado Argentina)", "ano_inicio": 1996, "ano_fim": 1999, "motorizacao": "1.6", "combustivel": "gasolina", "plataforma": "Renault-Clio" },
-          { "nome": "Clio (2ª geração, nacional; Sedan desde 2000)", "ano_inicio": 1999, "ano_fim": 2016, "motorizacao": "1.0/1.6", "combustivel": "gasolina/flex", "plataforma": "Renault-Clio2" }
+          {
+            "nome": "Clio (1ª geração, importado Argentina)",
+            "ano_inicio": 1996,
+            "ano_fim": 1999,
+            "motorizacao": "1.6",
+            "combustivel": "gasolina",
+            "plataforma": "Renault-Clio"
+          },
+          {
+            "nome": "Clio (2ª geração, nacional; Sedan desde 2000)",
+            "ano_inicio": 1999,
+            "ano_fim": 2016,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Renault-Clio2"
+          }
         ]
       },
       {
         "modelo": "Logan",
         "versoes": [
-          { "nome": "Logan (1ª geração)", "ano_inicio": 2007, "ano_fim": 2013, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Renault-B0" },
-          { "nome": "Logan (2ª geração)", "ano_inicio": 2014, "ano_fim": 2024, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Renault-B0" }
+          {
+            "nome": "Logan (1ª geração)",
+            "ano_inicio": 2007,
+            "ano_fim": 2013,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          },
+          {
+            "nome": "Logan (2ª geração)",
+            "ano_inicio": 2014,
+            "ano_fim": 2024,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          }
         ]
       },
       {
         "modelo": "Sandero",
         "versoes": [
-          { "nome": "Sandero (1ª geração, facelift 2011)", "ano_inicio": 2007, "ano_fim": 2014, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Renault-B0" },
-          { "nome": "Sandero (2ª geração, facelift 2019; SCe desde 2016)", "ano_inicio": 2014, "ano_fim": 2022, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Renault-M0" },
-          { "nome": "Sandero Stepway (dentro do Sandero)", "ano_inicio": 2008, "ano_fim": 2019, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "Renault-B0-M0" }
+          {
+            "nome": "Sandero (1ª geração, facelift 2011)",
+            "ano_inicio": 2007,
+            "ano_fim": 2014,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          },
+          {
+            "nome": "Sandero (2ª geração, facelift 2019; SCe desde 2016)",
+            "ano_inicio": 2014,
+            "ano_fim": 2022,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Renault-M0"
+          },
+          {
+            "nome": "Sandero Stepway (dentro do Sandero)",
+            "ano_inicio": 2008,
+            "ano_fim": 2019,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0-M0"
+          }
         ]
       },
       {
         "modelo": "Stepway",
         "versoes": [
-          { "nome": "Stepway (standalone)", "ano_inicio": 2019, "ano_fim": 2025, "motorizacao": "1.0/1.6", "combustivel": "flex", "plataforma": "Renault-M0" }
+          {
+            "nome": "Stepway (standalone)",
+            "ano_inicio": 2019,
+            "ano_fim": 2025,
+            "motorizacao": "1.0/1.6",
+            "combustivel": "flex",
+            "plataforma": "Renault-M0"
+          }
         ]
       },
       {
         "modelo": "Duster",
         "versoes": [
-          { "nome": "Duster (1ª geração)", "ano_inicio": 2011, "ano_fim": 2020, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "Renault-B0" },
-          { "nome": "Duster (2ª geração)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.6/1.3 turbo", "combustivel": "flex", "plataforma": "Renault-B0" }
+          {
+            "nome": "Duster (1ª geração)",
+            "ano_inicio": 2011,
+            "ano_fim": 2020,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          },
+          {
+            "nome": "Duster (2ª geração)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.6/1.3 turbo",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          }
         ]
       },
       {
         "modelo": "Duster Oroch",
         "versoes": [
-          { "nome": "Duster Oroch (picape)", "ano_inicio": 2015, "ano_fim": null, "motorizacao": "1.6/2.0/1.3 turbo", "combustivel": "flex", "plataforma": "Renault-B0" }
+          {
+            "nome": "Duster Oroch (picape)",
+            "ano_inicio": 2015,
+            "ano_fim": null,
+            "motorizacao": "1.6/2.0/1.3 turbo",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          }
         ]
       },
       {
         "modelo": "Captur",
         "versoes": [
-          { "nome": "Captur", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "1.6/2.0/1.3 turbo", "combustivel": "flex", "plataforma": "Renault-B0" }
+          {
+            "nome": "Captur",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "1.6/2.0/1.3 turbo",
+            "combustivel": "flex",
+            "plataforma": "Renault-B0"
+          }
         ]
       },
       {
         "modelo": "Kwid",
         "versoes": [
-          { "nome": "Kwid", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "1.0", "combustivel": "flex", "plataforma": "Renault-CMF-A" }
+          {
+            "nome": "Kwid",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "1.0",
+            "combustivel": "flex",
+            "plataforma": "Renault-CMF-A"
+          }
         ]
       },
       {
         "modelo": "Scénic",
         "versoes": [
-          { "nome": "Scénic/Mégane Scénic", "ano_inicio": 1999, "ano_fim": 2011, "motorizacao": "1.6/2.0", "combustivel": "gasolina/flex", "plataforma": "Renault-Megane" }
+          {
+            "nome": "Scénic/Mégane Scénic",
+            "ano_inicio": 1999,
+            "ano_fim": 2011,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Renault-Megane"
+          }
         ]
       },
       {
         "modelo": "Mégane",
         "versoes": [
-          { "nome": "Mégane (sedan/hatch/grand tour)", "ano_inicio": 1998, "ano_fim": 2011, "motorizacao": "1.6/2.0", "combustivel": "gasolina/flex", "plataforma": "Renault-Megane" }
+          {
+            "nome": "Mégane (sedan/hatch/grand tour)",
+            "ano_inicio": 1998,
+            "ano_fim": 2011,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Renault-Megane"
+          }
         ]
       },
       {
         "modelo": "Fluence",
         "versoes": [
-          { "nome": "Fluence", "ano_inicio": 2011, "ano_fim": 2018, "motorizacao": "2.0", "combustivel": "flex", "plataforma": "Renault-Megane-III" }
+          {
+            "nome": "Fluence",
+            "ano_inicio": 2011,
+            "ano_fim": 2018,
+            "motorizacao": "2.0",
+            "combustivel": "flex",
+            "plataforma": "Renault-Megane-III"
+          }
         ]
       }
     ]
@@ -648,51 +1754,121 @@
       {
         "modelo": "206/207",
         "versoes": [
-          { "nome": "206 (nacional Porto Real)", "ano_inicio": 2001, "ano_fim": 2008, "motorizacao": "1.0/1.4/1.6", "combustivel": "gasolina/flex", "plataforma": "PSA-PF1" },
-          { "nome": "207 (reestilização do 206)", "ano_inicio": 2008, "ano_fim": 2015, "motorizacao": "1.4/1.6", "combustivel": "flex", "plataforma": "PSA-PF1" }
+          {
+            "nome": "206 (nacional Porto Real)",
+            "ano_inicio": 2001,
+            "ano_fim": 2008,
+            "motorizacao": "1.0/1.4/1.6",
+            "combustivel": "gasolina/flex",
+            "plataforma": "PSA-PF1"
+          },
+          {
+            "nome": "207 (reestilização do 206)",
+            "ano_inicio": 2008,
+            "ano_fim": 2015,
+            "motorizacao": "1.4/1.6",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          }
         ]
       },
       {
         "modelo": "208",
         "versoes": [
-          { "nome": "208 (1ª geração, nacional Porto Real)", "ano_inicio": 2013, "ano_fim": 2020, "motorizacao": "1.2/1.5/1.6 (THP GT)", "combustivel": "flex", "plataforma": "PSA-PF1" },
-          { "nome": "208 (2ª geração, importado Argentina)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.6/1.0/1.0 turbo", "combustivel": "flex", "plataforma": "PSA-CMP" }
+          {
+            "nome": "208 (1ª geração, nacional Porto Real)",
+            "ano_inicio": 2013,
+            "ano_fim": 2020,
+            "motorizacao": "1.2/1.5/1.6 (THP GT)",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          },
+          {
+            "nome": "208 (2ª geração, importado Argentina)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.6/1.0/1.0 turbo",
+            "combustivel": "flex",
+            "plataforma": "PSA-CMP"
+          }
         ]
       },
       {
         "modelo": "307",
         "versoes": [
-          { "nome": "307 (hatch/sedan/SW/CC)", "ano_inicio": 2002, "ano_fim": 2012, "motorizacao": "1.6/2.0", "combustivel": "gasolina/flex", "plataforma": "PSA-PF2" }
+          {
+            "nome": "307 (hatch/sedan/SW/CC)",
+            "ano_inicio": 2002,
+            "ano_fim": 2012,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "PSA-PF2"
+          }
         ]
       },
       {
         "modelo": "308",
         "versoes": [
-          { "nome": "308 (importado Argentina)", "ano_inicio": 2012, "ano_fim": 2018, "motorizacao": "1.6/2.0/1.6 THP", "combustivel": "flex", "plataforma": "PSA-PF2" }
+          {
+            "nome": "308 (importado Argentina)",
+            "ano_inicio": 2012,
+            "ano_fim": 2018,
+            "motorizacao": "1.6/2.0/1.6 THP",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF2"
+          }
         ]
       },
       {
         "modelo": "2008",
         "versoes": [
-          { "nome": "2008 (1ª geração)", "ano_inicio": 2015, "ano_fim": 2023, "motorizacao": "1.6/1.6 turbo", "combustivel": "flex", "plataforma": "PSA-PF1" }
+          {
+            "nome": "2008 (1ª geração)",
+            "ano_inicio": 2015,
+            "ano_fim": 2023,
+            "motorizacao": "1.6/1.6 turbo",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          }
         ]
       },
       {
         "modelo": "3008",
         "versoes": [
-          { "nome": "3008 (importado, 1ª geração)", "ano_inicio": 2010, "ano_fim": 2016, "motorizacao": "1.6 THP", "combustivel": "gasolina", "plataforma": "PSA-PF2" }
+          {
+            "nome": "3008 (importado, 1ª geração)",
+            "ano_inicio": 2010,
+            "ano_fim": 2016,
+            "motorizacao": "1.6 THP",
+            "combustivel": "gasolina",
+            "plataforma": "PSA-PF2"
+          }
         ]
       },
       {
         "modelo": "Partner",
         "versoes": [
-          { "nome": "Partner (van de passeio)", "ano_inicio": 2000, "ano_fim": null, "motorizacao": "1.6", "combustivel": "gasolina/flex", "plataforma": "PSA-PF1" }
+          {
+            "nome": "Partner (van de passeio)",
+            "ano_inicio": 2000,
+            "ano_fim": null,
+            "motorizacao": "1.6",
+            "combustivel": "gasolina/flex",
+            "plataforma": "PSA-PF1"
+          }
         ]
       },
       {
         "modelo": "Hoggar",
         "versoes": [
-          { "nome": "Hoggar (picape, base 207)", "ano_inicio": 2010, "ano_fim": 2014, "motorizacao": "1.4/1.6", "combustivel": "flex", "plataforma": "PSA-PF1" }
+          {
+            "nome": "Hoggar (picape, base 207)",
+            "ano_inicio": 2010,
+            "ano_fim": 2014,
+            "motorizacao": "1.4/1.6",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          }
         ]
       }
     ]
@@ -703,36 +1879,106 @@
       {
         "modelo": "C3",
         "versoes": [
-          { "nome": "C3 (1ª geração, facelift 2008)", "ano_inicio": 2003, "ano_fim": 2012, "motorizacao": "1.4/1.5/1.6", "combustivel": "flex", "plataforma": "PSA-PF1" },
-          { "nome": "C3 (2ª geração, 1.2 Puretech desde 2016)", "ano_inicio": 2012, "ano_fim": 2021, "motorizacao": "1.5/1.6/1.2", "combustivel": "flex", "plataforma": "PSA-PF1" },
-          { "nome": "C3 (3ª geração)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.0/1.6/1.0 turbo", "combustivel": "flex", "plataforma": "PSA-CMP-SmartCar" }
+          {
+            "nome": "C3 (1ª geração, facelift 2008)",
+            "ano_inicio": 2003,
+            "ano_fim": 2012,
+            "motorizacao": "1.4/1.5/1.6",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          },
+          {
+            "nome": "C3 (2ª geração, 1.2 Puretech desde 2016)",
+            "ano_inicio": 2012,
+            "ano_fim": 2021,
+            "motorizacao": "1.5/1.6/1.2",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          },
+          {
+            "nome": "C3 (3ª geração)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "1.0/1.6/1.0 turbo",
+            "combustivel": "flex",
+            "plataforma": "PSA-CMP-SmartCar"
+          }
         ]
       },
       {
         "modelo": "Xsara Picasso",
         "versoes": [
-          { "nome": "Xsara Picasso", "ano_inicio": 2001, "ano_fim": 2012, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "PSA-Xsara" }
+          {
+            "nome": "Xsara Picasso",
+            "ano_inicio": 2001,
+            "ano_fim": 2012,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "PSA-Xsara"
+          }
         ]
       },
       {
         "modelo": "C4",
         "versoes": [
-          { "nome": "C4 Pallas (sedan, importado Argentina)", "ano_inicio": 2007, "ano_fim": 2013, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "PSA-PF2" },
-          { "nome": "C4 hatch (VTR/GLX, importado Argentina)", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": "1.6/2.0", "combustivel": "flex", "plataforma": "PSA-PF2" },
-          { "nome": "C4 Lounge", "ano_inicio": 2013, "ano_fim": 2020, "motorizacao": "2.0/1.6 THP", "combustivel": "flex", "plataforma": "PSA-PF2" }
+          {
+            "nome": "C4 Pallas (sedan, importado Argentina)",
+            "ano_inicio": 2007,
+            "ano_fim": 2013,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF2"
+          },
+          {
+            "nome": "C4 hatch (VTR/GLX, importado Argentina)",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": "1.6/2.0",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF2"
+          },
+          {
+            "nome": "C4 Lounge",
+            "ano_inicio": 2013,
+            "ano_fim": 2020,
+            "motorizacao": "2.0/1.6 THP",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF2"
+          }
         ]
       },
       {
         "modelo": "C4 Cactus",
         "versoes": [
-          { "nome": "C4 Cactus", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.6/1.6 THP/1.2 Puretech", "combustivel": "flex", "plataforma": "PSA-PF1" }
+          {
+            "nome": "C4 Cactus",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.6/1.6 THP/1.2 Puretech",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          }
         ]
       },
       {
         "modelo": "Aircross",
         "versoes": [
-          { "nome": "C3 Aircross (1ª geração)", "ano_inicio": 2010, "ano_fim": 2015, "motorizacao": "1.5/1.6", "combustivel": "flex", "plataforma": "PSA-PF1" },
-          { "nome": "Aircross (2ª geração)", "ano_inicio": 2015, "ano_fim": 2020, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "PSA-PF1" }
+          {
+            "nome": "C3 Aircross (1ª geração)",
+            "ano_inicio": 2010,
+            "ano_fim": 2015,
+            "motorizacao": "1.5/1.6",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          },
+          {
+            "nome": "Aircross (2ª geração)",
+            "ano_inicio": 2015,
+            "ano_fim": 2020,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "PSA-PF1"
+          }
         ]
       }
     ]
@@ -740,49 +1986,323 @@
   {
     "marca": "Nissan",
     "modelos": [
-      { "modelo": "March", "versoes": [{ "nome": "March", "ano_inicio": 2011, "ano_fim": 2019, "motorizacao": null, "combustivel": "flex", "plataforma": "Renault-Nissan-CMF-B" }] },
-      { "modelo": "Versa", "versoes": [{ "nome": "Versa", "ano_inicio": 2011, "ano_fim": null, "motorizacao": null, "combustivel": "flex", "plataforma": "Renault-Nissan-CMF-B" }] },
-      { "modelo": "Kicks", "versoes": [{ "nome": "Kicks", "ano_inicio": 2016, "ano_fim": null, "motorizacao": null, "combustivel": "flex", "plataforma": "Renault-Nissan-CMF-B" }] },
-      { "modelo": "Sentra", "versoes": [{ "nome": "Sentra", "ano_inicio": 2007, "ano_fim": null, "motorizacao": null, "combustivel": "flex", "plataforma": null }] },
-      { "modelo": "Frontier", "versoes": [
-        { "nome": "Frontier (1ª geração)", "ano_inicio": 2002, "ano_fim": 2016, "motorizacao": null, "combustivel": "diesel", "plataforma": null },
-        { "nome": "Frontier (2ª geração)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": null, "combustivel": "diesel", "plataforma": null }
-      ] },
-      { "modelo": "Livina", "versoes": [{ "nome": "Livina/Grand Livina", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": null, "combustivel": "flex", "plataforma": null }] },
-      { "modelo": "Tiida", "versoes": [{ "nome": "Tiida", "ano_inicio": 2007, "ano_fim": 2013, "motorizacao": null, "combustivel": "flex", "plataforma": null }] }
+      {
+        "modelo": "March",
+        "versoes": [
+          {
+            "nome": "March",
+            "ano_inicio": 2011,
+            "ano_fim": 2019,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-CMF-B"
+          }
+        ]
+      },
+      {
+        "modelo": "Versa",
+        "versoes": [
+          {
+            "nome": "Versa",
+            "ano_inicio": 2011,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-CMF-B"
+          }
+        ]
+      },
+      {
+        "modelo": "Kicks",
+        "versoes": [
+          {
+            "nome": "Kicks",
+            "ano_inicio": 2016,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-CMF-B"
+          }
+        ]
+      },
+      {
+        "modelo": "Sentra",
+        "versoes": [
+          {
+            "nome": "Sentra",
+            "ano_inicio": 2007,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Frontier",
+        "versoes": [
+          {
+            "nome": "Frontier (1ª geração)",
+            "ano_inicio": 2002,
+            "ano_fim": 2016,
+            "motorizacao": null,
+            "combustivel": "diesel",
+            "plataforma": null
+          },
+          {
+            "nome": "Frontier (2ª geração)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "diesel",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Livina",
+        "versoes": [
+          {
+            "nome": "Livina/Grand Livina",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Tiida",
+        "versoes": [
+          {
+            "nome": "Tiida",
+            "ano_inicio": 2007,
+            "ano_fim": 2013,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": null
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Mitsubishi",
     "modelos": [
-      { "modelo": "L200/Triton", "versoes": [{ "nome": "L200/Triton (várias gerações)", "ano_inicio": 1998, "ano_fim": null, "motorizacao": null, "combustivel": "diesel", "plataforma": null }] },
-      { "modelo": "Pajero", "versoes": [{ "nome": "Pajero/Pajero Sport/TR4/Dakar", "ano_inicio": 1998, "ano_fim": null, "motorizacao": null, "combustivel": "diesel/gasolina", "plataforma": null }] },
-      { "modelo": "ASX", "versoes": [{ "nome": "ASX", "ano_inicio": 2011, "ano_fim": 2021, "motorizacao": null, "combustivel": "flex", "plataforma": null }] },
-      { "modelo": "Lancer", "versoes": [{ "nome": "Lancer (importado)", "ano_inicio": 1994, "ano_fim": 2017, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }] },
-      { "modelo": "Eclipse Cross", "versoes": [{ "nome": "Eclipse Cross", "ano_inicio": 2018, "ano_fim": null, "motorizacao": null, "combustivel": "flex", "plataforma": null }] },
-      { "modelo": "Outlander", "versoes": [{ "nome": "Outlander", "ano_inicio": 2007, "ano_fim": null, "motorizacao": null, "combustivel": "gasolina/flex", "plataforma": null }] }
+      {
+        "modelo": "L200/Triton",
+        "versoes": [
+          {
+            "nome": "L200/Triton (várias gerações)",
+            "ano_inicio": 1998,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "diesel",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Pajero",
+        "versoes": [
+          {
+            "nome": "Pajero/Pajero Sport/TR4/Dakar",
+            "ano_inicio": 1998,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "diesel/gasolina",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "ASX",
+        "versoes": [
+          {
+            "nome": "ASX",
+            "ano_inicio": 2011,
+            "ano_fim": 2021,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Lancer",
+        "versoes": [
+          {
+            "nome": "Lancer (importado)",
+            "ano_inicio": 1994,
+            "ano_fim": 2017,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Eclipse Cross",
+        "versoes": [
+          {
+            "nome": "Eclipse Cross",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Outlander",
+        "versoes": [
+          {
+            "nome": "Outlander",
+            "ano_inicio": 2007,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "gasolina/flex",
+            "plataforma": null
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Kia",
     "modelos": [
-      { "modelo": "Picanto", "versoes": [{ "nome": "Picanto (importado)", "ano_inicio": 2005, "ano_fim": 2017, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }] },
-      { "modelo": "Cerato", "versoes": [{ "nome": "Cerato", "ano_inicio": 2009, "ano_fim": 2018, "motorizacao": null, "combustivel": "gasolina/flex", "plataforma": null }] },
-      { "modelo": "Sportage", "versoes": [{ "nome": "Sportage (importado)", "ano_inicio": 2005, "ano_fim": null, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }] },
-      { "modelo": "Sorento", "versoes": [{ "nome": "Sorento", "ano_inicio": 2003, "ano_fim": null, "motorizacao": null, "combustivel": "gasolina/diesel", "plataforma": null }] },
-      { "modelo": "Soul", "versoes": [{ "nome": "Soul", "ano_inicio": 2010, "ano_fim": 2019, "motorizacao": null, "combustivel": "gasolina/flex", "plataforma": null }] }
+      {
+        "modelo": "Picanto",
+        "versoes": [
+          {
+            "nome": "Picanto (importado)",
+            "ano_inicio": 2005,
+            "ano_fim": 2017,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Cerato",
+        "versoes": [
+          {
+            "nome": "Cerato",
+            "ano_inicio": 2009,
+            "ano_fim": 2018,
+            "motorizacao": null,
+            "combustivel": "gasolina/flex",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Sportage",
+        "versoes": [
+          {
+            "nome": "Sportage (importado)",
+            "ano_inicio": 2005,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Sorento",
+        "versoes": [
+          {
+            "nome": "Sorento",
+            "ano_inicio": 2003,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "gasolina/diesel",
+            "plataforma": null
+          }
+        ]
+      },
+      {
+        "modelo": "Soul",
+        "versoes": [
+          {
+            "nome": "Soul",
+            "ano_inicio": 2010,
+            "ano_fim": 2019,
+            "motorizacao": null,
+            "combustivel": "gasolina/flex",
+            "plataforma": null
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Jeep",
     "modelos": [
-      { "modelo": "Renegade", "versoes": [{ "nome": "Renegade", "ano_inicio": 2015, "ano_fim": null, "motorizacao": null, "combustivel": "flex/diesel", "plataforma": "Fiat-Small-Wide" }] },
-      { "modelo": "Compass", "versoes": [
-        { "nome": "Compass (importado)", "ano_inicio": 2011, "ano_fim": 2016, "motorizacao": null, "combustivel": "gasolina", "plataforma": null },
-        { "nome": "Compass (nacional)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": null, "combustivel": "flex/diesel", "plataforma": "Fiat-Small-Wide" }
-      ] },
-      { "modelo": "Commander", "versoes": [{ "nome": "Commander", "ano_inicio": 2021, "ano_fim": null, "motorizacao": null, "combustivel": "flex", "plataforma": "Fiat-Small-Wide" }] },
-      { "modelo": "Grand Cherokee", "versoes": [{ "nome": "Grand Cherokee (importado)", "ano_inicio": 1993, "ano_fim": null, "motorizacao": null, "combustivel": "gasolina", "plataforma": null }] }
+      {
+        "modelo": "Renegade",
+        "versoes": [
+          {
+            "nome": "Renegade",
+            "ano_inicio": 2015,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex/diesel",
+            "plataforma": "Fiat-Small-Wide"
+          }
+        ]
+      },
+      {
+        "modelo": "Compass",
+        "versoes": [
+          {
+            "nome": "Compass (importado)",
+            "ano_inicio": 2011,
+            "ano_fim": 2016,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          },
+          {
+            "nome": "Compass (nacional)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex/diesel",
+            "plataforma": "Fiat-Small-Wide"
+          }
+        ]
+      },
+      {
+        "modelo": "Commander",
+        "versoes": [
+          {
+            "nome": "Commander",
+            "ano_inicio": 2021,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "flex",
+            "plataforma": "Fiat-Small-Wide"
+          }
+        ]
+      },
+      {
+        "modelo": "Grand Cherokee",
+        "versoes": [
+          {
+            "nome": "Grand Cherokee (importado)",
+            "ano_inicio": 1993,
+            "ano_fim": null,
+            "motorizacao": null,
+            "combustivel": "gasolina",
+            "plataforma": null
+          }
+        ]
+      }
     ]
   }
 ]

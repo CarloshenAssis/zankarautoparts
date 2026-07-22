@@ -12,7 +12,10 @@ export function BrandMark({
   logoUrl?: string;
 }) {
   const wordmark = (
-    <span className={`font-display font-black tracking-wide`} style={{ fontSize: getFontSize(size) }}>
+    <span
+      className={`font-display font-black tracking-wide`}
+      style={{ fontSize: getFontSize(size) }}
+    >
       ZAN
       <span className="text-primary">K</span>
       AR
@@ -65,4 +68,3 @@ function getFontSize(size: keyof typeof SIZES): string {
   const sizes = { sm: "18px", md: "24px", lg: "36px" };
   return sizes[size];
 }
-

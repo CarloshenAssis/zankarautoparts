@@ -17,20 +17,20 @@ Regra de negócio fixa do cliente: **catálogo 100% público/anônimo e indexáv
 
 ### 1.1 Decisão: manter a base, evoluir a infraestrutura
 
-| Camada | Escolha | Justificativa |
-|---|---|---|
-| Framework | **TanStack Start 1.x + React 19 + Vite + TypeScript strict** | Já validado em produção no protótipo irmão (deploy Vercel funcionando). Trocar de framework agora custaria tempo sem ganho — o problema do protótipo é ausência de backend, não o framework. |
-| Estilo | **Tailwind CSS v4 + shadcn/radix ("new-york")** | Design system já aprovado pelo cliente; portar 1:1. |
-| Banco de dados | **Postgres via Supabase** | Já há integração Supabase disponível no ambiente. Postgres relacional é o correto para catálogo normalizado + pedidos transacionais (estoque precisa de integridade real). Supabase entrega Postgres + Auth + Storage + RLS nativamente, reduzindo peças móveis. |
-| ORM/Query layer | **Drizzle ORM** sobre o Postgres do Supabase | Type-safe, migrations declarativas versionadas em código, leve, não conflita com Supabase Auth/RLS (Drizzle apenas fala SQL — as políticas RLS continuam sendo a fonte de verdade de segurança, não a ORM). Alternativa avaliada: Prisma — mais pesado, cold start pior em serverless; Drizzle é preferível na Vercel. |
-| Autenticação | **Supabase Auth** (e-mail/senha + magic-link opcional para admin) | Cobre os dois perfis (cliente e lojista) com RLS nativo via `auth.uid()`, sem reinventar sessão/JWT. |
-| Hosting | **Vercel** (já validado) | Nitro plugin + preset "vercel" já comprovados no protótipo. Documentar armadilhas abaixo. |
-| Storage de imagens | **Supabase Storage** (bucket público para fotos de produto, bucket privado para documentos fiscais futuros) com transformação/otimização de imagem via CDN | Evita depender de serviço externo adicional; já integrado ao mesmo projeto Supabase. |
-| Cache | **Vercel Edge Cache** em rotas de catálogo + **Vercel KV (Redis)** para contadores/rate limiting | Catálogo é público e muda pouco → cache agressivo em edge. Dados de pedido/conta nunca cacheados. |
-| Filas/background jobs | **Vercel Cron Functions** (sitemap, expiração de carrinhos, relatórios) — sem fila dedicada no MVP | Evita complexidade prematura; caminho de upgrade documentado (Inngest ou Supabase Edge Functions + `pg_cron`). |
-| E-mail transacional | **Resend** (ou Supabase SMTP) | Necessário pois login de cliente não é autocadastro — precisa de canal para entregar credenciais/convites. |
-| Observability/erros | **Sentry** (frontend + server), complementando o wrapper customizado `src/server.ts` | O wrapper atual só produz página de erro decente; não há captura/alerta. |
-| Package manager | **bun** (mantido) | Já validado no protótipo. |
+| Camada                | Escolha                                                                                                                                                    | Justificativa                                                                                                                                                                                                                                                                                                          |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework             | **TanStack Start 1.x + React 19 + Vite + TypeScript strict**                                                                                               | Já validado em produção no protótipo irmão (deploy Vercel funcionando). Trocar de framework agora custaria tempo sem ganho — o problema do protótipo é ausência de backend, não o framework.                                                                                                                           |
+| Estilo                | **Tailwind CSS v4 + shadcn/radix ("new-york")**                                                                                                            | Design system já aprovado pelo cliente; portar 1:1.                                                                                                                                                                                                                                                                    |
+| Banco de dados        | **Postgres via Supabase**                                                                                                                                  | Já há integração Supabase disponível no ambiente. Postgres relacional é o correto para catálogo normalizado + pedidos transacionais (estoque precisa de integridade real). Supabase entrega Postgres + Auth + Storage + RLS nativamente, reduzindo peças móveis.                                                       |
+| ORM/Query layer       | **Drizzle ORM** sobre o Postgres do Supabase                                                                                                               | Type-safe, migrations declarativas versionadas em código, leve, não conflita com Supabase Auth/RLS (Drizzle apenas fala SQL — as políticas RLS continuam sendo a fonte de verdade de segurança, não a ORM). Alternativa avaliada: Prisma — mais pesado, cold start pior em serverless; Drizzle é preferível na Vercel. |
+| Autenticação          | **Supabase Auth** (e-mail/senha + magic-link opcional para admin)                                                                                          | Cobre os dois perfis (cliente e lojista) com RLS nativo via `auth.uid()`, sem reinventar sessão/JWT.                                                                                                                                                                                                                   |
+| Hosting               | **Vercel** (já validado)                                                                                                                                   | Nitro plugin + preset "vercel" já comprovados no protótipo. Documentar armadilhas abaixo.                                                                                                                                                                                                                              |
+| Storage de imagens    | **Supabase Storage** (bucket público para fotos de produto, bucket privado para documentos fiscais futuros) com transformação/otimização de imagem via CDN | Evita depender de serviço externo adicional; já integrado ao mesmo projeto Supabase.                                                                                                                                                                                                                                   |
+| Cache                 | **Vercel Edge Cache** em rotas de catálogo + **Vercel KV (Redis)** para contadores/rate limiting                                                           | Catálogo é público e muda pouco → cache agressivo em edge. Dados de pedido/conta nunca cacheados.                                                                                                                                                                                                                      |
+| Filas/background jobs | **Vercel Cron Functions** (sitemap, expiração de carrinhos, relatórios) — sem fila dedicada no MVP                                                         | Evita complexidade prematura; caminho de upgrade documentado (Inngest ou Supabase Edge Functions + `pg_cron`).                                                                                                                                                                                                         |
+| E-mail transacional   | **Resend** (ou Supabase SMTP)                                                                                                                              | Necessário pois login de cliente não é autocadastro — precisa de canal para entregar credenciais/convites.                                                                                                                                                                                                             |
+| Observability/erros   | **Sentry** (frontend + server), complementando o wrapper customizado `src/server.ts`                                                                       | O wrapper atual só produz página de erro decente; não há captura/alerta.                                                                                                                                                                                                                                               |
+| Package manager       | **bun** (mantido)                                                                                                                                          | Já validado no protótipo.                                                                                                                                                                                                                                                                                              |
 
 ### 1.2 Pontos frágeis do deploy Vercel+Nitro descobertos no protótipo (replicar com cuidado)
 
@@ -88,6 +88,7 @@ Esta é a parte mais valiosa e mais delicada do produto: o que faz o cliente ach
 **Modelo relacional em cascata:** `marcas_veiculo` → `modelos_veiculo` → `versoes_veiculo` → `produto_compatibilidade`. Uma peça nunca se relaciona direto com marca/modelo — sempre com uma **versão** específica (que já carrega o intervalo de ano e, quando relevante, motorização/combustível). Isso evita o erro comum de "essa peça serve no Gol" sem dizer qual geração.
 
 Exemplo de dado real:
+
 ```
 Farol dianteiro (produto_id=15) é compatível com:
   ✓ Gol G5 (2008–2012)   → versao_id=8
@@ -101,6 +102,7 @@ produto_compatibilidade:
 ```
 
 **Fluxo no painel admin (cadastro/edição de peça):**
+
 1. Campo "Compatibilidade" com busca/autocomplete: o lojista digita `"Gol"` e o sistema sugere as versões cadastradas (`Gol G4 2005-2008`, `Gol G5 2008-2012`, `Gol G6 2013-2016`, ...).
 2. Seleção via checkboxes — pode marcar várias versões de uma vez, de modelos diferentes.
 3. **Sugestão automática por proximidade**: ao marcar uma versão (ex: `Gol G5 2008–2012`), o sistema propõe candidatos prováveis da mesma plataforma/geração (ex: `Voyage G5`, `Saveiro G5`) como checkboxes não marcados ("Talvez esta peça também sirva em:") — reduz drasticamente o trabalho de cadastro repetitivo. Implementação: agrupar `versoes_veiculo` por uma tag de plataforma/geração compartilhada (campo `plataforma` ou tabela de agrupamento `familia_veiculo`, a definir na Fase de schema) e sugerir versões da mesma família com faixa de ano sobreposta.
@@ -108,6 +110,7 @@ produto_compatibilidade:
 5. **Busca no catálogo público (lado cliente)**: filtro "Meu veículo" com os mesmos três selects em cascata (marca → modelo → versão) reaproveitando as mesmas tabelas — o cliente encontra peças filtrando por veículo, não só por categoria/texto.
 
 **Origem dos dados:**
+
 - `marcas_veiculo`/`modelos_veiculo`/`versoes_veiculo` (a "árvore" de veículos) podem ser **pré-carregados via seed** a partir de fontes públicas: Tabela FIPE, bases do Denatran, APIs gratuitas de veículos, ou listas prontas (GitHub). Isso é trabalho de importação único (script de seed), não desenvolvimento de feature.
 - `produto_compatibilidade` (qual peça serve em qual veículo) **não existe em nenhuma base pública** — é conhecimento proprietário da autopeças e precisa ser cadastrado manualmente pelo lojista, tela por tela. É exatamente por isso que os itens 2 (checkboxes rápidos) e 3 (sugestão automática) acima são prioridade de UX, não luxo.
 
@@ -163,32 +166,37 @@ Carrinho continua **client-side (localStorage)** para o visitante anônimo. Ao f
 RLS **habilitado em todas as tabelas**, sempre — público por política explícita, nunca por ausência de política.
 
 ### Papéis
+
 - `anon` — visitante não autenticado
 - `authenticated` + `customers.auth_user_id = auth.uid()` — cliente logado
 - `authenticated` + `admin_users.auth_user_id = auth.uid()` — lojista/funcionário (via função `is_admin(auth.uid())`)
 
 ### Público (leitura anônima)
+
 `products`, `product_images`, `categories`, `brands`, `marcas_veiculo/modelos_veiculo/versoes_veiculo`, `produto_compatibilidade`, `store_settings` (campos públicos). `SELECT` liberado onde `status='active'` e `deleted_at is null`. Escrita bloqueada para todos exceto admin.
 
 ### Autenticado (cliente logado)
+
 `orders`, `order_items`, `addresses`, `customers` (linha própria), `cart_items`. `SELECT/INSERT/UPDATE` restrito a `customer_id = (select id from customers where auth_user_id = auth.uid())`. Cliente nunca altera `status` de pedido nem `price_tier_id` diretamente.
 
 ### Pedido anônimo (guest)
+
 `INSERT` em `orders`/`order_items` com `customer_id null` **somente via RPC `create_guest_order(...)` `SECURITY DEFINER`**, com validação server-side de preço/estoque — nunca insert direto pela tabela, pra impedir forjar total/preço no client.
 
 ### Admin-only
+
 `admin_users`, `audit_log`, coluna `cost_price` (view pública sem essa coluna), `store_settings` (write), `price_tiers`, toda escrita em `products/categories/brands/marcas_veiculo/modelos_veiculo/versoes_veiculo`. `ALL` permitido só quando `is_admin(auth.uid())` e `tenant_id` correspondente.
 
 ### Resumo de permissões
 
-| Ação | Anônimo | Cliente logado | Lojista/admin |
-|---|---|---|---|
-| Ver catálogo | Sim | Sim | Sim |
-| Criar pedido | Sim (RPC guest) | Sim (vinculado) | Sim (manual/balcão) |
-| Ver histórico de pedidos | Não | Só os seus | Todos |
-| Ver preço diferenciado | Não | Sim, se tiver tier | N/A (vê custo também) |
-| CRUD produtos/categorias | Não | Não | Sim |
-| Criar conta de cliente | N/A | N/A | Sim (único fluxo) |
+| Ação                     | Anônimo         | Cliente logado     | Lojista/admin         |
+| ------------------------ | --------------- | ------------------ | --------------------- |
+| Ver catálogo             | Sim             | Sim                | Sim                   |
+| Criar pedido             | Sim (RPC guest) | Sim (vinculado)    | Sim (manual/balcão)   |
+| Ver histórico de pedidos | Não             | Só os seus         | Todos                 |
+| Ver preço diferenciado   | Não             | Sim, se tiver tier | N/A (vê custo também) |
+| CRUD produtos/categorias | Não             | Não                | Sim                   |
+| Criar conta de cliente   | N/A             | N/A                | Sim (único fluxo)     |
 
 ---
 
@@ -199,6 +207,7 @@ RLS **habilitado em todas as tabelas**, sempre — público por política explí
 **4.2 Pedido anônimo via WhatsApp (evoluído):** carrinho local → "Finalizar via WhatsApp" → RPC `create_guest_order` (valida estoque/preço, grava order+items, gera `order_number`) → mensagem WhatsApp inclui número do pedido → abre `wa.me` usando `store_settings.phone_whatsapp` (fonte única) → `status='pending_whatsapp'` até confirmação manual do lojista.
 
 **4.3 Login de cliente cadastrado (não é autocadastro):**
+
 1. Lojista cadastra o cliente no admin (nome, e-mail, telefone, tier opcional).
 2. Sistema gera `invite_token` (hash, expira em 72h), envia e-mail via Resend com link de ativação.
 3. Cliente define a própria senha na ativação (lojista nunca sabe a senha do cliente) → cria `auth.users` e vincula `customers.auth_user_id`.
@@ -265,12 +274,12 @@ RLS **habilitado em todas as tabelas**, sempre — público por política explí
 
 ## 9. Fases e Sprints
 
-1. **Fundação** — Supabase provisionado, schema completo via Drizzle, RLS em tudo, deploy Vercel replicando config Nitro, login admin real, CI com lint/typecheck/build smoke. *Risco: descompasso Vercel+Nitro (mitigado pelo checklist 1.2).*
-2. **Catálogo público real** — `/catalogo` e `/produto/$slug` com Postgres real, busca/filtros server-side, imagens reais, SEO básico. *Depende da Fase 1.*
-3. **Carrinho e pedido persistido (anônimo)** — checkout validado contra estoque real, RPC `create_guest_order`, número de pedido, WhatsApp correto, pedido visível na fila do admin. *Depende da Fase 2.*
-4. **Conta de cliente** — convite por e-mail, ativação, login, histórico, endereço salvo, checkout rápido. *Depende da Fase 3 + Resend configurado. Risco: deliverability de e-mail (SPF/DKIM) — validar cedo.*
-5. **Admin CRUD completo** — produtos/categorias/marcas com upload real, pedidos com status/histórico, clientes, configurações persistidas, dashboard real. *Depende das Fases 2–4.*
-6. **SEO, performance e polish** — structured data completo, Core Web Vitals na meta, ajuste do logo (pendente, avisado pelo cliente), acessibilidade, hardening de rate limit/observabilidade, teste de carga leve no checkout. *Depende de todas as anteriores.*
+1. **Fundação** — Supabase provisionado, schema completo via Drizzle, RLS em tudo, deploy Vercel replicando config Nitro, login admin real, CI com lint/typecheck/build smoke. _Risco: descompasso Vercel+Nitro (mitigado pelo checklist 1.2)._
+2. **Catálogo público real** — `/catalogo` e `/produto/$slug` com Postgres real, busca/filtros server-side, imagens reais, SEO básico. _Depende da Fase 1._
+3. **Carrinho e pedido persistido (anônimo)** — checkout validado contra estoque real, RPC `create_guest_order`, número de pedido, WhatsApp correto, pedido visível na fila do admin. _Depende da Fase 2._
+4. **Conta de cliente** — convite por e-mail, ativação, login, histórico, endereço salvo, checkout rápido. _Depende da Fase 3 + Resend configurado. Risco: deliverability de e-mail (SPF/DKIM) — validar cedo._
+5. **Admin CRUD completo** — produtos/categorias/marcas com upload real, pedidos com status/histórico, clientes, configurações persistidas, dashboard real. _Depende das Fases 2–4._
+6. **SEO, performance e polish** — structured data completo, Core Web Vitals na meta, ajuste do logo (pendente, avisado pelo cliente), acessibilidade, hardening de rate limit/observabilidade, teste de carga leve no checkout. _Depende de todas as anteriores._
 
 ---
 
@@ -284,17 +293,17 @@ Portar como está, sem redesenho: paleta exata (`#1F1F1F`, `#FFFFFF`, `#6C2BD9`,
 
 ## Anexo — Gambiarras do protótipo → resolução em produção
 
-| Gambiarra no protótipo | Resolução em produção |
-|---|---|
-| Login hardcoded no client | Supabase Auth + proteção de rota no servidor |
-| Checkout = WhatsApp manual sem persistência | Pedido persistido via RPC antes do redirecionamento |
-| CRUD sem handler | CRUD real com RLS + Storage |
-| Telefone WhatsApp hardcoded em 4 lugares | `store_settings.phone_whatsapp`, fonte única |
+| Gambiarra no protótipo                       | Resolução em produção                                                                                                                                                                           |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Login hardcoded no client                    | Supabase Auth + proteção de rota no servidor                                                                                                                                                    |
+| Checkout = WhatsApp manual sem persistência  | Pedido persistido via RPC antes do redirecionamento                                                                                                                                             |
+| CRUD sem handler                             | CRUD real com RLS + Storage                                                                                                                                                                     |
+| Telefone WhatsApp hardcoded em 4 lugares     | `store_settings.phone_whatsapp`, fonte única                                                                                                                                                    |
 | Compatibilidade de veículo como string livre | `marcas_veiculo/modelos_veiculo/versoes_veiculo` + `produto_compatibilidade`, com autocomplete, sugestão automática por família de plataforma e cadastro manual sempre disponível (seção 2.1.1) |
-| Categoria duplicada no Product | `category_id` único (FK) |
-| Preço congelado silenciosamente no carrinho | Validação no checkout + snapshot auditável |
-| Pedidos/clientes do admin inventados | Dados reais de `orders`/`customers` |
-| Imagens = gradiente CSS | Imagens reais via Supabase Storage |
-| Views/analytics fake | `view_count` real |
-| Sem paginação real | Paginação server-side |
-| Sem multi-tenant | `tenant_id` em todo o schema, single-tenant hoje |
+| Categoria duplicada no Product               | `category_id` único (FK)                                                                                                                                                                        |
+| Preço congelado silenciosamente no carrinho  | Validação no checkout + snapshot auditável                                                                                                                                                      |
+| Pedidos/clientes do admin inventados         | Dados reais de `orders`/`customers`                                                                                                                                                             |
+| Imagens = gradiente CSS                      | Imagens reais via Supabase Storage                                                                                                                                                              |
+| Views/analytics fake                         | `view_count` real                                                                                                                                                                               |
+| Sem paginação real                           | Paginação server-side                                                                                                                                                                           |
+| Sem multi-tenant                             | `tenant_id` em todo o schema, single-tenant hoje                                                                                                                                                |

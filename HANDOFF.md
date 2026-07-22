@@ -38,6 +38,7 @@ para o histórico completo dessa decisão).
 ## O que já está pronto (funcional, testado com typecheck+lint+build)
 
 **Fase 1 — Fundação**
+
 - Schema completo no Supabase com RLS em todas as tabelas (ver seção 2-3 do
   `PLANEJAMENTO.md` para o desenho completo): `tenants`, `admin_users`,
   `brands`, `categories`, `products`, `product_images`, `marcas_veiculo`,
@@ -56,6 +57,7 @@ para o histórico completo dessa decisão).
   `VITE_SUPABASE_ANON_KEY` no GitHub** para o build refletir valores reais.
 
 **Fase 2 — Catálogo público**
+
 - Home, `/catalogo` e `/produto/$id` (slug) buscam dados reais via Supabase
   (`src/lib/queries.ts`), zero mock. Busca full-text, filtro por
   categoria/marca, paginação ainda simples (client-side sobre o resultado do
@@ -65,12 +67,14 @@ para o histórico completo dessa decisão).
 - **Falta**: sitemap.xml dinâmico (Fase 6).
 
 **Fase 3 — Pedido persistido**
+
 - Carrinho continua local (localStorage), mas o checkout chama a RPC
   `create_guest_order` — o pedido é gravado no banco (com número gerado) antes
   de abrir o WhatsApp. Telefone da loja vem de `store_settings` (fonte única).
 - Admin → Pedidos mostra os pedidos reais, com botão para avançar status.
 
 **Fase 5 — Admin CRUD (parcial)**
+
 - **Produtos**: CRUD completo (criar/editar/excluir), upload de imagem real
   pro Storage, **compatibilidade de veículo integrada** (busca/autocomplete,
   checkbox, sugestão automática por família de plataforma, cadastro manual de
@@ -155,7 +159,7 @@ para o histórico completo dessa decisão).
    real do canonical: estava sendo devolvido dentro do array `meta` do
    `head()` (`{ rel: "canonical", href }`), mas `rel`/`href` são atributos
    de `<link>`, não de `<meta>` — nunca teria virado uma tag `<link
-   rel="canonical">` de verdade. Agora vai na chave `links` (mesmo padrão
+rel="canonical">` de verdade. Agora vai na chave `links` (mesmo padrão
    do `__root.tsx`). Adicionado também JSON-LD `Product` (preço,
    disponibilidade, marca, compatibilidade em `additionalProperty`) via
    `{ "script:ld+json": {...} }` na meta — suporte nativo do TanStack
@@ -207,16 +211,16 @@ para o histórico completo dessa decisão).
    lote novo:
    1. Salvar o JSON em `data/vehicles-seed/loteN.json` (mesmo formato de
       `lote1.json`: `[{marca, modelos:[{modelo, versoes:[{nome, ano_inicio,
-      ano_fim, motorizacao, combustivel, plataforma}]}]}]`).
+ano_fim, motorizacao, combustivel, plataforma}]}]}]`).
    2. Rodar `bun scripts/seed-vehicles/generate-sql.mjs data/vehicles-seed/loteN.json > /tmp/seed.sql`.
    3. Aplicar o SQL gerado via MCP do Supabase (`execute_sql`), em pedaços
       (o arquivo gerado fica grande — aplicar por marca/bloco evita
       estourar o limite de uma única chamada).
-   Lembrete de produto (confirmado pelo cliente): essa base é só o
-   catálogo de veículos existentes — `produto_compatibilidade` (peça↔veículo)
-   nunca é populada automaticamente por este seed. A vinculação é sempre
-   manual pelo lojista na tela de produto; o sistema no máximo sugere
-   candidatos não marcados por família/plataforma, nunca confirma sozinho.
+      Lembrete de produto (confirmado pelo cliente): essa base é só o
+      catálogo de veículos existentes — `produto_compatibilidade` (peça↔veículo)
+      nunca é populada automaticamente por este seed. A vinculação é sempre
+      manual pelo lojista na tela de produto; o sistema no máximo sugere
+      candidatos não marcados por família/plataforma, nunca confirma sozinho.
 
 ## Bug crítico corrigido: embeds do PostgREST tratados como array
 
@@ -228,7 +232,7 @@ assumindo que o Supabase sempre devolve embeds como array (`row.campo?.[0]`).
 PostgREST devolve um **objeto** (ou `null`), nunca um array. Só relação
 para-muitos vira array de verdade. O comentário antigo no código ("Untyped
 PostgREST client infers to-one embeds as arrays") estava incorreto — isso é
-inferência de *tipo* do TypeScript sem o client tipado (`createClient<Database>`
+inferência de _tipo_ do TypeScript sem o client tipado (`createClient<Database>`
 ainda não usado), não o formato real do JSON.
 
 Esse bug ficou invisível a sessão inteira porque `versoes_veiculo` estava
@@ -247,7 +251,7 @@ acesso direto ao host do Supabase** a partir de processos comuns (dev server,
 `curl`) — só as ferramentas MCP do Supabase conseguem falar com o projeto.
 Por isso não foi possível abrir o app rodando com dado real e mostrar
 visualmente nesta sessão (só consegui mostrar a tela de login, que não
-depende de fetch). Isso é uma característica *deste ambiente específico*, não
+depende de fetch). Isso é uma característica _deste ambiente específico_, não
 do código — rodando localmente ou no Vercel (que têm acesso de rede normal),
 não deve acontecer. Se a próxima sessão rodar num ambiente com rede aberta,
 vale testar de ponta a ponta (login real, cadastro de produto, fluxo de

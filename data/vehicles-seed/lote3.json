@@ -2,370 +2,1493 @@
   {
     "marca": "Nissan",
     "modelos": [
-      { "modelo": "March", "versoes": [
-        { "nome": "March (K13, importado do México)", "ano_inicio": 2011, "ano_fim": 2014, "motorizacao": "1.0/1.6 16V", "combustivel": "flex", "plataforma": "Renault-Nissan-V" },
-        { "nome": "New March (K13, nacional Resende/RJ)", "ano_inicio": 2014, "ano_fim": 2021, "motorizacao": "1.0/1.6 16V", "combustivel": "flex", "plataforma": "Renault-Nissan-V" }
-      ] },
-      { "modelo": "Versa", "versoes": [
-        { "nome": "Versa (1ª geração, renomeado V-Drive em 2020)", "ano_inicio": 2011, "ano_fim": 2021, "motorizacao": "1.0/1.6 16V", "combustivel": "flex", "plataforma": "Renault-Nissan-V" },
-        { "nome": "Versa (2ª geração)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.6 16V", "combustivel": "flex", "plataforma": "Renault-Nissan-V" }
-      ] },
-      { "modelo": "Kicks", "versoes": [
-        { "nome": "Kicks (1ª geração P15)", "ano_inicio": 2016, "ano_fim": 2025, "motorizacao": "1.6 16V", "combustivel": "flex", "plataforma": "Renault-Nissan-V" },
-        { "nome": "Kicks (2ª geração, CMF-B, nacional)", "ano_inicio": 2025, "ano_fim": null, "motorizacao": "1.0 turbo 3 cilindros, DCT 6 marchas", "combustivel": "flex", "plataforma": "Renault-Nissan-CMF-B" }
-      ] },
-      { "modelo": "Kait", "versoes": [
-        { "nome": "Nissan Kait (derivado do Kicks 1ª geração, P15)", "ano_inicio": 2025, "ano_fim": null, "motorizacao": "1.6 HR16DE CVT", "combustivel": "flex", "plataforma": "Renault-Nissan-V" }
-      ] },
-      { "modelo": "Sentra", "versoes": [
-        { "nome": "Sentra (B15, importado do México)", "ano_inicio": 2004, "ano_fim": 2006, "motorizacao": "1.8 16V", "combustivel": "gasolina", "plataforma": "Nissan-B15" },
-        { "nome": "Sentra (B16)", "ano_inicio": 2007, "ano_fim": 2013, "motorizacao": "2.0 16V", "combustivel": "gasolina/flex", "plataforma": "Nissan-MS" },
-        { "nome": "Sentra (B17, Novo Sentra)", "ano_inicio": 2013, "ano_fim": 2020, "motorizacao": "2.0 16V", "combustivel": "flex", "plataforma": "Renault-Nissan-CMF" }
-      ] },
-      { "modelo": "Frontier", "versoes": [
-        { "nome": "Frontier (1ª geração importada, cabine dupla AX/DX)", "ano_inicio": 1998, "ano_fim": 2001, "motorizacao": "2.8 diesel aspirado", "combustivel": "diesel", "plataforma": "Nissan-BoF" },
-        { "nome": "Frontier (D22, nacional São José dos Pinhais/PR)", "ano_inicio": 2002, "ano_fim": 2008, "motorizacao": "2.8 MWM / 2.5 TGV turbodiesel", "combustivel": "diesel", "plataforma": "Nissan-D22" },
-        { "nome": "Frontier (D40)", "ano_inicio": 2008, "ano_fim": 2016, "motorizacao": "2.5 16V turbodiesel", "combustivel": "diesel", "plataforma": "Nissan-D40" },
-        { "nome": "Frontier (D23)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "2.3 turbodiesel / biturbo", "combustivel": "diesel", "plataforma": "F-Alliance" }
-      ] },
-      { "modelo": "Livina", "versoes": [
-        { "nome": "Livina (nacional São José dos Pinhais/PR)", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": "1.6/1.8 16V", "combustivel": "flex", "plataforma": "Nissan-B" }
-      ] },
-      { "modelo": "Grand Livina", "versoes": [
-        { "nome": "Grand Livina (7 lugares)", "ano_inicio": 2009, "ano_fim": 2014, "motorizacao": "1.8 16V", "combustivel": "flex", "plataforma": "Nissan-B" }
-      ] },
-      { "modelo": "Tiida", "versoes": [
-        { "nome": "Tiida (hatch e sedã, importado do México)", "ano_inicio": 2007, "ano_fim": 2013, "motorizacao": "1.8 16V", "combustivel": "flex", "plataforma": "Nissan-C-C11" }
-      ] }
+      {
+        "modelo": "March",
+        "versoes": [
+          {
+            "nome": "March (K13, importado do México)",
+            "ano_inicio": 2011,
+            "ano_fim": 2014,
+            "motorizacao": "1.0/1.6 16V",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-V"
+          },
+          {
+            "nome": "New March (K13, nacional Resende/RJ)",
+            "ano_inicio": 2014,
+            "ano_fim": 2021,
+            "motorizacao": "1.0/1.6 16V",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-V"
+          }
+        ]
+      },
+      {
+        "modelo": "Versa",
+        "versoes": [
+          {
+            "nome": "Versa (1ª geração, renomeado V-Drive em 2020)",
+            "ano_inicio": 2011,
+            "ano_fim": 2021,
+            "motorizacao": "1.0/1.6 16V",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-V"
+          },
+          {
+            "nome": "Versa (2ª geração)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.6 16V",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-V"
+          }
+        ]
+      },
+      {
+        "modelo": "Kicks",
+        "versoes": [
+          {
+            "nome": "Kicks (1ª geração P15)",
+            "ano_inicio": 2016,
+            "ano_fim": 2025,
+            "motorizacao": "1.6 16V",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-V"
+          },
+          {
+            "nome": "Kicks (2ª geração, CMF-B, nacional)",
+            "ano_inicio": 2025,
+            "ano_fim": null,
+            "motorizacao": "1.0 turbo 3 cilindros, DCT 6 marchas",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-CMF-B"
+          }
+        ]
+      },
+      {
+        "modelo": "Kait",
+        "versoes": [
+          {
+            "nome": "Nissan Kait (derivado do Kicks 1ª geração, P15)",
+            "ano_inicio": 2025,
+            "ano_fim": null,
+            "motorizacao": "1.6 HR16DE CVT",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-V"
+          }
+        ]
+      },
+      {
+        "modelo": "Sentra",
+        "versoes": [
+          {
+            "nome": "Sentra (B15, importado do México)",
+            "ano_inicio": 2004,
+            "ano_fim": 2006,
+            "motorizacao": "1.8 16V",
+            "combustivel": "gasolina",
+            "plataforma": "Nissan-B15"
+          },
+          {
+            "nome": "Sentra (B16)",
+            "ano_inicio": 2007,
+            "ano_fim": 2013,
+            "motorizacao": "2.0 16V",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Nissan-MS"
+          },
+          {
+            "nome": "Sentra (B17, Novo Sentra)",
+            "ano_inicio": 2013,
+            "ano_fim": 2020,
+            "motorizacao": "2.0 16V",
+            "combustivel": "flex",
+            "plataforma": "Renault-Nissan-CMF"
+          }
+        ]
+      },
+      {
+        "modelo": "Frontier",
+        "versoes": [
+          {
+            "nome": "Frontier (1ª geração importada, cabine dupla AX/DX)",
+            "ano_inicio": 1998,
+            "ano_fim": 2001,
+            "motorizacao": "2.8 diesel aspirado",
+            "combustivel": "diesel",
+            "plataforma": "Nissan-BoF"
+          },
+          {
+            "nome": "Frontier (D22, nacional São José dos Pinhais/PR)",
+            "ano_inicio": 2002,
+            "ano_fim": 2008,
+            "motorizacao": "2.8 MWM / 2.5 TGV turbodiesel",
+            "combustivel": "diesel",
+            "plataforma": "Nissan-D22"
+          },
+          {
+            "nome": "Frontier (D40)",
+            "ano_inicio": 2008,
+            "ano_fim": 2016,
+            "motorizacao": "2.5 16V turbodiesel",
+            "combustivel": "diesel",
+            "plataforma": "Nissan-D40"
+          },
+          {
+            "nome": "Frontier (D23)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "2.3 turbodiesel / biturbo",
+            "combustivel": "diesel",
+            "plataforma": "F-Alliance"
+          }
+        ]
+      },
+      {
+        "modelo": "Livina",
+        "versoes": [
+          {
+            "nome": "Livina (nacional São José dos Pinhais/PR)",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": "1.6/1.8 16V",
+            "combustivel": "flex",
+            "plataforma": "Nissan-B"
+          }
+        ]
+      },
+      {
+        "modelo": "Grand Livina",
+        "versoes": [
+          {
+            "nome": "Grand Livina (7 lugares)",
+            "ano_inicio": 2009,
+            "ano_fim": 2014,
+            "motorizacao": "1.8 16V",
+            "combustivel": "flex",
+            "plataforma": "Nissan-B"
+          }
+        ]
+      },
+      {
+        "modelo": "Tiida",
+        "versoes": [
+          {
+            "nome": "Tiida (hatch e sedã, importado do México)",
+            "ano_inicio": 2007,
+            "ano_fim": 2013,
+            "motorizacao": "1.8 16V",
+            "combustivel": "flex",
+            "plataforma": "Nissan-C-C11"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Mitsubishi",
     "modelos": [
-      { "modelo": "L200/Triton", "versoes": [
-        { "nome": "L200 (2ª geração, nacional Catalão/GO)", "ano_inicio": 1999, "ano_fim": 2007, "motorizacao": "2.5 turbodiesel", "combustivel": "diesel", "plataforma": "Mitsubishi-BoF" },
-        { "nome": "L200 Sport/Outdoor/Savana", "ano_inicio": 2004, "ano_fim": 2012, "motorizacao": "2.5 turbodiesel", "combustivel": "diesel", "plataforma": "Mitsubishi-BoF" },
-        { "nome": "L200 Triton (geração global, nacional)", "ano_inicio": 2007, "ano_fim": 2016, "motorizacao": "3.2 diesel Common Rail / 3.5 V6 flex", "combustivel": "diesel/flex", "plataforma": "Mitsubishi-Triton" },
-        { "nome": "L200 Triton Sport/Outdoor (5ª geração)", "ano_inicio": 2017, "ano_fim": 2024, "motorizacao": "2.4 turbodiesel alumínio", "combustivel": "diesel", "plataforma": "Mitsubishi-Triton" },
-        { "nome": "L200 Triton (nova geração)", "ano_inicio": 2024, "ano_fim": null, "motorizacao": "2.4 biturbo diesel", "combustivel": "diesel", "plataforma": "Mitsubishi-Triton-nova" }
-      ] },
-      { "modelo": "Pajero", "versoes": [
-        { "nome": "Pajero (2ª geração)", "ano_inicio": 1991, "ano_fim": 2000, "motorizacao": "3.0/3.5 V6 gasolina / 2.8 diesel", "combustivel": "gasolina/diesel", "plataforma": "Mitsubishi-Pajero" },
-        { "nome": "Pajero (3ª geração, Pajero Full monobloco)", "ano_inicio": 2000, "ano_fim": 2006, "motorizacao": "3.5 V6 gasolina / 3.2 diesel Common Rail", "combustivel": "gasolina/diesel", "plataforma": "Mitsubishi-Pajero" },
-        { "nome": "Pajero Full (4ª geração)", "ano_inicio": 2006, "ano_fim": 2021, "motorizacao": "3.8 V6 gasolina / 3.2 diesel", "combustivel": "gasolina/diesel", "plataforma": "Mitsubishi-Pajero" }
-      ] },
-      { "modelo": "Pajero TR4", "versoes": [
-        { "nome": "Pajero TR4 (importado, Pajero iO)", "ano_inicio": 1998, "ano_fim": 2001, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "Mitsubishi-Pajero-Pinin" },
-        { "nome": "Pajero TR4 (nacional Catalão/GO)", "ano_inicio": 2002, "ano_fim": 2015, "motorizacao": "2.0", "combustivel": "gasolina/flex", "plataforma": "Mitsubishi-Pajero-Pinin" }
-      ] },
-      { "modelo": "Pajero Sport", "versoes": [
-        { "nome": "Pajero Sport (1ª geração)", "ano_inicio": 2004, "ano_fim": 2011, "motorizacao": "3.5 V6 flex / 2.5 turbodiesel", "combustivel": "flex/diesel", "plataforma": "Mitsubishi-BoF" },
-        { "nome": "Pajero Sport (2ª geração, base Triton Sport)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "2.4 turbodiesel", "combustivel": "diesel", "plataforma": "Mitsubishi-Triton" }
-      ] },
-      { "modelo": "Pajero Dakar", "versoes": [
-        { "nome": "Pajero Dakar", "ano_inicio": 2009, "ano_fim": 2017, "motorizacao": "3.2 turbodiesel / 3.5 V6 flex", "combustivel": "diesel/flex", "plataforma": "Mitsubishi-Triton" }
-      ] },
-      { "modelo": "ASX", "versoes": [
-        { "nome": "ASX", "ano_inicio": 2010, "ano_fim": 2021, "motorizacao": "2.0", "combustivel": "gasolina/flex", "plataforma": "Mitsubishi-GS" }
-      ] },
-      { "modelo": "Outlander Sport", "versoes": [
-        { "nome": "Outlander Sport (facelift do ASX)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "2.0 flex CVT", "combustivel": "flex", "plataforma": "Mitsubishi-GS" }
-      ] },
-      { "modelo": "Eclipse Cross", "versoes": [
-        { "nome": "Eclipse Cross", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.5 turbo", "combustivel": "gasolina", "plataforma": "Mitsubishi-GS" }
-      ] },
-      { "modelo": "Outlander", "versoes": [
-        { "nome": "Outlander (2ª/3ª geração, importado)", "ano_inicio": 2007, "ano_fim": null, "motorizacao": "2.0/2.4 gasolina / 3.0 V6", "combustivel": "gasolina", "plataforma": "Mitsubishi-GS" }
-      ] },
-      { "modelo": "Lancer", "versoes": [
-        { "nome": "Lancer (importado, montagem final em Catalão desde 2014)", "ano_inicio": 2011, "ano_fim": 2017, "motorizacao": "2.0", "combustivel": "gasolina", "plataforma": "Mitsubishi-GS" }
-      ] }
+      {
+        "modelo": "L200/Triton",
+        "versoes": [
+          {
+            "nome": "L200 (2ª geração, nacional Catalão/GO)",
+            "ano_inicio": 1999,
+            "ano_fim": 2007,
+            "motorizacao": "2.5 turbodiesel",
+            "combustivel": "diesel",
+            "plataforma": "Mitsubishi-BoF"
+          },
+          {
+            "nome": "L200 Sport/Outdoor/Savana",
+            "ano_inicio": 2004,
+            "ano_fim": 2012,
+            "motorizacao": "2.5 turbodiesel",
+            "combustivel": "diesel",
+            "plataforma": "Mitsubishi-BoF"
+          },
+          {
+            "nome": "L200 Triton (geração global, nacional)",
+            "ano_inicio": 2007,
+            "ano_fim": 2016,
+            "motorizacao": "3.2 diesel Common Rail / 3.5 V6 flex",
+            "combustivel": "diesel/flex",
+            "plataforma": "Mitsubishi-Triton"
+          },
+          {
+            "nome": "L200 Triton Sport/Outdoor (5ª geração)",
+            "ano_inicio": 2017,
+            "ano_fim": 2024,
+            "motorizacao": "2.4 turbodiesel alumínio",
+            "combustivel": "diesel",
+            "plataforma": "Mitsubishi-Triton"
+          },
+          {
+            "nome": "L200 Triton (nova geração)",
+            "ano_inicio": 2024,
+            "ano_fim": null,
+            "motorizacao": "2.4 biturbo diesel",
+            "combustivel": "diesel",
+            "plataforma": "Mitsubishi-Triton-nova"
+          }
+        ]
+      },
+      {
+        "modelo": "Pajero",
+        "versoes": [
+          {
+            "nome": "Pajero (2ª geração)",
+            "ano_inicio": 1991,
+            "ano_fim": 2000,
+            "motorizacao": "3.0/3.5 V6 gasolina / 2.8 diesel",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Mitsubishi-Pajero"
+          },
+          {
+            "nome": "Pajero (3ª geração, Pajero Full monobloco)",
+            "ano_inicio": 2000,
+            "ano_fim": 2006,
+            "motorizacao": "3.5 V6 gasolina / 3.2 diesel Common Rail",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Mitsubishi-Pajero"
+          },
+          {
+            "nome": "Pajero Full (4ª geração)",
+            "ano_inicio": 2006,
+            "ano_fim": 2021,
+            "motorizacao": "3.8 V6 gasolina / 3.2 diesel",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Mitsubishi-Pajero"
+          }
+        ]
+      },
+      {
+        "modelo": "Pajero TR4",
+        "versoes": [
+          {
+            "nome": "Pajero TR4 (importado, Pajero iO)",
+            "ano_inicio": 1998,
+            "ano_fim": 2001,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina",
+            "plataforma": "Mitsubishi-Pajero-Pinin"
+          },
+          {
+            "nome": "Pajero TR4 (nacional Catalão/GO)",
+            "ano_inicio": 2002,
+            "ano_fim": 2015,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Mitsubishi-Pajero-Pinin"
+          }
+        ]
+      },
+      {
+        "modelo": "Pajero Sport",
+        "versoes": [
+          {
+            "nome": "Pajero Sport (1ª geração)",
+            "ano_inicio": 2004,
+            "ano_fim": 2011,
+            "motorizacao": "3.5 V6 flex / 2.5 turbodiesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "Mitsubishi-BoF"
+          },
+          {
+            "nome": "Pajero Sport (2ª geração, base Triton Sport)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "2.4 turbodiesel",
+            "combustivel": "diesel",
+            "plataforma": "Mitsubishi-Triton"
+          }
+        ]
+      },
+      {
+        "modelo": "Pajero Dakar",
+        "versoes": [
+          {
+            "nome": "Pajero Dakar",
+            "ano_inicio": 2009,
+            "ano_fim": 2017,
+            "motorizacao": "3.2 turbodiesel / 3.5 V6 flex",
+            "combustivel": "diesel/flex",
+            "plataforma": "Mitsubishi-Triton"
+          }
+        ]
+      },
+      {
+        "modelo": "ASX",
+        "versoes": [
+          {
+            "nome": "ASX",
+            "ano_inicio": 2010,
+            "ano_fim": 2021,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Mitsubishi-GS"
+          }
+        ]
+      },
+      {
+        "modelo": "Outlander Sport",
+        "versoes": [
+          {
+            "nome": "Outlander Sport (facelift do ASX)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "2.0 flex CVT",
+            "combustivel": "flex",
+            "plataforma": "Mitsubishi-GS"
+          }
+        ]
+      },
+      {
+        "modelo": "Eclipse Cross",
+        "versoes": [
+          {
+            "nome": "Eclipse Cross",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.5 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "Mitsubishi-GS"
+          }
+        ]
+      },
+      {
+        "modelo": "Outlander",
+        "versoes": [
+          {
+            "nome": "Outlander (2ª/3ª geração, importado)",
+            "ano_inicio": 2007,
+            "ano_fim": null,
+            "motorizacao": "2.0/2.4 gasolina / 3.0 V6",
+            "combustivel": "gasolina",
+            "plataforma": "Mitsubishi-GS"
+          }
+        ]
+      },
+      {
+        "modelo": "Lancer",
+        "versoes": [
+          {
+            "nome": "Lancer (importado, montagem final em Catalão desde 2014)",
+            "ano_inicio": 2011,
+            "ano_fim": 2017,
+            "motorizacao": "2.0",
+            "combustivel": "gasolina",
+            "plataforma": "Mitsubishi-GS"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Kia",
     "modelos": [
-      { "modelo": "Picanto", "versoes": [
-        { "nome": "Picanto (1ª/2ª/3ª geração, importado)", "ano_inicio": 2007, "ano_fim": 2019, "motorizacao": "1.0/1.25", "combustivel": "gasolina", "plataforma": "Kia-A" },
-        { "nome": "Picanto (retomada)", "ano_inicio": 2024, "ano_fim": null, "motorizacao": "1.0", "combustivel": "flex", "plataforma": "Kia-A" }
-      ] },
-      { "modelo": "Cerato", "versoes": [
-        { "nome": "Cerato (2ª geração TD)", "ano_inicio": 2009, "ano_fim": 2013, "motorizacao": "1.6 16V", "combustivel": "gasolina", "plataforma": "Kia-J" },
-        { "nome": "Cerato (3ª geração YD)", "ano_inicio": 2013, "ano_fim": 2018, "motorizacao": "1.6 16V Gamma", "combustivel": "flex", "plataforma": "Kia-J" },
-        { "nome": "Cerato (4ª geração BD)", "ano_inicio": 2019, "ano_fim": 2022, "motorizacao": "2.0 16V", "combustivel": "flex", "plataforma": "Kia-J" }
-      ] },
-      { "modelo": "Sportage", "versoes": [
-        { "nome": "Sportage (2ª geração KM)", "ano_inicio": 2005, "ano_fim": 2010, "motorizacao": "2.0/2.7 V6 gasolina / 2.0 diesel", "combustivel": "gasolina/diesel", "plataforma": "Hyundai-Kia" },
-        { "nome": "Sportage (3ª geração SL)", "ano_inicio": 2011, "ano_fim": 2016, "motorizacao": "2.0 Nu", "combustivel": "gasolina/flex", "plataforma": "Hyundai-Kia" },
-        { "nome": "Sportage (4ª geração QL)", "ano_inicio": 2017, "ano_fim": 2022, "motorizacao": "2.0 16V", "combustivel": "flex", "plataforma": "Hyundai-Kia" },
-        { "nome": "Sportage (5ª geração NQ5)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.6 T-GDI híbrido", "combustivel": "hibrido", "plataforma": "Hyundai-Kia-N3" }
-      ] },
-      { "modelo": "Sorento", "versoes": [
-        { "nome": "Sorento (1ª geração JC)", "ano_inicio": 2004, "ano_fim": 2009, "motorizacao": "2.4/3.5 gasolina / 2.5 diesel", "combustivel": "gasolina/diesel", "plataforma": "Kia-BoF" },
-        { "nome": "Sorento (2ª geração XM)", "ano_inicio": 2010, "ano_fim": 2014, "motorizacao": "2.4 gasolina / 2.2 diesel", "combustivel": "gasolina/diesel", "plataforma": "Hyundai-Kia" },
-        { "nome": "Sorento (3ª geração UM)", "ano_inicio": 2015, "ano_fim": 2020, "motorizacao": "3.3 V6 / 2.4", "combustivel": "gasolina", "plataforma": "Hyundai-Kia" },
-        { "nome": "Sorento (4ª geração MQ4)", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "3.5 V6", "combustivel": "gasolina", "plataforma": "Hyundai-Kia-N3" }
-      ] },
-      { "modelo": "Soul", "versoes": [
-        { "nome": "Soul (1ª geração AM)", "ano_inicio": 2009, "ano_fim": 2013, "motorizacao": "1.6 Gamma", "combustivel": "gasolina/flex", "plataforma": "Kia-B" },
-        { "nome": "Soul (2ª geração PS)", "ano_inicio": 2014, "ano_fim": 2020, "motorizacao": "1.6", "combustivel": "flex", "plataforma": "Kia-B" }
-      ] }
+      {
+        "modelo": "Picanto",
+        "versoes": [
+          {
+            "nome": "Picanto (1ª/2ª/3ª geração, importado)",
+            "ano_inicio": 2007,
+            "ano_fim": 2019,
+            "motorizacao": "1.0/1.25",
+            "combustivel": "gasolina",
+            "plataforma": "Kia-A"
+          },
+          {
+            "nome": "Picanto (retomada)",
+            "ano_inicio": 2024,
+            "ano_fim": null,
+            "motorizacao": "1.0",
+            "combustivel": "flex",
+            "plataforma": "Kia-A"
+          }
+        ]
+      },
+      {
+        "modelo": "Cerato",
+        "versoes": [
+          {
+            "nome": "Cerato (2ª geração TD)",
+            "ano_inicio": 2009,
+            "ano_fim": 2013,
+            "motorizacao": "1.6 16V",
+            "combustivel": "gasolina",
+            "plataforma": "Kia-J"
+          },
+          {
+            "nome": "Cerato (3ª geração YD)",
+            "ano_inicio": 2013,
+            "ano_fim": 2018,
+            "motorizacao": "1.6 16V Gamma",
+            "combustivel": "flex",
+            "plataforma": "Kia-J"
+          },
+          {
+            "nome": "Cerato (4ª geração BD)",
+            "ano_inicio": 2019,
+            "ano_fim": 2022,
+            "motorizacao": "2.0 16V",
+            "combustivel": "flex",
+            "plataforma": "Kia-J"
+          }
+        ]
+      },
+      {
+        "modelo": "Sportage",
+        "versoes": [
+          {
+            "nome": "Sportage (2ª geração KM)",
+            "ano_inicio": 2005,
+            "ano_fim": 2010,
+            "motorizacao": "2.0/2.7 V6 gasolina / 2.0 diesel",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Hyundai-Kia"
+          },
+          {
+            "nome": "Sportage (3ª geração SL)",
+            "ano_inicio": 2011,
+            "ano_fim": 2016,
+            "motorizacao": "2.0 Nu",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Hyundai-Kia"
+          },
+          {
+            "nome": "Sportage (4ª geração QL)",
+            "ano_inicio": 2017,
+            "ano_fim": 2022,
+            "motorizacao": "2.0 16V",
+            "combustivel": "flex",
+            "plataforma": "Hyundai-Kia"
+          },
+          {
+            "nome": "Sportage (5ª geração NQ5)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "1.6 T-GDI híbrido",
+            "combustivel": "hibrido",
+            "plataforma": "Hyundai-Kia-N3"
+          }
+        ]
+      },
+      {
+        "modelo": "Sorento",
+        "versoes": [
+          {
+            "nome": "Sorento (1ª geração JC)",
+            "ano_inicio": 2004,
+            "ano_fim": 2009,
+            "motorizacao": "2.4/3.5 gasolina / 2.5 diesel",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Kia-BoF"
+          },
+          {
+            "nome": "Sorento (2ª geração XM)",
+            "ano_inicio": 2010,
+            "ano_fim": 2014,
+            "motorizacao": "2.4 gasolina / 2.2 diesel",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "Hyundai-Kia"
+          },
+          {
+            "nome": "Sorento (3ª geração UM)",
+            "ano_inicio": 2015,
+            "ano_fim": 2020,
+            "motorizacao": "3.3 V6 / 2.4",
+            "combustivel": "gasolina",
+            "plataforma": "Hyundai-Kia"
+          },
+          {
+            "nome": "Sorento (4ª geração MQ4)",
+            "ano_inicio": 2021,
+            "ano_fim": null,
+            "motorizacao": "3.5 V6",
+            "combustivel": "gasolina",
+            "plataforma": "Hyundai-Kia-N3"
+          }
+        ]
+      },
+      {
+        "modelo": "Soul",
+        "versoes": [
+          {
+            "nome": "Soul (1ª geração AM)",
+            "ano_inicio": 2009,
+            "ano_fim": 2013,
+            "motorizacao": "1.6 Gamma",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Kia-B"
+          },
+          {
+            "nome": "Soul (2ª geração PS)",
+            "ano_inicio": 2014,
+            "ano_fim": 2020,
+            "motorizacao": "1.6",
+            "combustivel": "flex",
+            "plataforma": "Kia-B"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Jeep",
     "modelos": [
-      { "modelo": "Renegade", "versoes": [
-        { "nome": "Renegade (1ª geração, nacional Goiana/PE)", "ano_inicio": 2015, "ano_fim": 2022, "motorizacao": "1.8 E.torQ flex / 2.0 Multijet diesel", "combustivel": "flex/diesel", "plataforma": "FCA-Small-Wide-4x4" },
-        { "nome": "Renegade (facelift, plataforma Adventure)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.3 turbo T270", "combustivel": "flex", "plataforma": "FCA-Small-Wide-4x4" }
-      ] },
-      { "modelo": "Compass", "versoes": [
-        { "nome": "Compass (1ª geração MK, importado)", "ano_inicio": 2011, "ano_fim": 2016, "motorizacao": "2.0/2.4 gasolina", "combustivel": "gasolina", "plataforma": "Jeep-Compass-MK" },
-        { "nome": "Compass (2ª geração MP, nacional Goiana/PE)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "2.0 flex / 2.0 diesel / 1.3 turbo flex / 4xe PHEV", "combustivel": "flex/diesel/phev", "plataforma": "FCA-Small-Wide-4x4" }
-      ] },
-      { "modelo": "Commander", "versoes": [
-        { "nome": "Commander (1ª geração XK, importado da Áustria, V8)", "ano_inicio": 2006, "ano_fim": 2008, "motorizacao": "4.7/5.7 V8", "combustivel": "gasolina", "plataforma": "Jeep-XK" },
-        { "nome": "Commander (nacional Goiana/PE, base Compass MP alongada)", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "1.3 turbo flex / 2.0 diesel", "combustivel": "flex/diesel", "plataforma": "FCA-Small-Wide-4x4-LWB" }
-      ] },
-      { "modelo": "Grand Cherokee", "versoes": [
-        { "nome": "Grand Cherokee (importado, várias gerações)", "ano_inicio": 1993, "ano_fim": null, "motorizacao": "3.6 V6 / 5.7 V8 / 3.0 V6 diesel / 4xe PHEV", "combustivel": "gasolina/diesel/phev", "plataforma": "Jeep-Grand-Cherokee" }
-      ] },
-      { "modelo": "Wrangler", "versoes": [
-        { "nome": "Wrangler (importado)", "ano_inicio": 2010, "ano_fim": null, "motorizacao": "2.0 turbo / 3.6 V6", "combustivel": "gasolina", "plataforma": "Jeep-Wrangler-BoF" }
-      ] }
+      {
+        "modelo": "Renegade",
+        "versoes": [
+          {
+            "nome": "Renegade (1ª geração, nacional Goiana/PE)",
+            "ano_inicio": 2015,
+            "ano_fim": 2022,
+            "motorizacao": "1.8 E.torQ flex / 2.0 Multijet diesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "FCA-Small-Wide-4x4"
+          },
+          {
+            "nome": "Renegade (facelift, plataforma Adventure)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "1.3 turbo T270",
+            "combustivel": "flex",
+            "plataforma": "FCA-Small-Wide-4x4"
+          }
+        ]
+      },
+      {
+        "modelo": "Compass",
+        "versoes": [
+          {
+            "nome": "Compass (1ª geração MK, importado)",
+            "ano_inicio": 2011,
+            "ano_fim": 2016,
+            "motorizacao": "2.0/2.4 gasolina",
+            "combustivel": "gasolina",
+            "plataforma": "Jeep-Compass-MK"
+          },
+          {
+            "nome": "Compass (2ª geração MP, nacional Goiana/PE)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "2.0 flex / 2.0 diesel / 1.3 turbo flex / 4xe PHEV",
+            "combustivel": "flex/diesel/phev",
+            "plataforma": "FCA-Small-Wide-4x4"
+          }
+        ]
+      },
+      {
+        "modelo": "Commander",
+        "versoes": [
+          {
+            "nome": "Commander (1ª geração XK, importado da Áustria, V8)",
+            "ano_inicio": 2006,
+            "ano_fim": 2008,
+            "motorizacao": "4.7/5.7 V8",
+            "combustivel": "gasolina",
+            "plataforma": "Jeep-XK"
+          },
+          {
+            "nome": "Commander (nacional Goiana/PE, base Compass MP alongada)",
+            "ano_inicio": 2021,
+            "ano_fim": null,
+            "motorizacao": "1.3 turbo flex / 2.0 diesel",
+            "combustivel": "flex/diesel",
+            "plataforma": "FCA-Small-Wide-4x4-LWB"
+          }
+        ]
+      },
+      {
+        "modelo": "Grand Cherokee",
+        "versoes": [
+          {
+            "nome": "Grand Cherokee (importado, várias gerações)",
+            "ano_inicio": 1993,
+            "ano_fim": null,
+            "motorizacao": "3.6 V6 / 5.7 V8 / 3.0 V6 diesel / 4xe PHEV",
+            "combustivel": "gasolina/diesel/phev",
+            "plataforma": "Jeep-Grand-Cherokee"
+          }
+        ]
+      },
+      {
+        "modelo": "Wrangler",
+        "versoes": [
+          {
+            "nome": "Wrangler (importado)",
+            "ano_inicio": 2010,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo / 3.6 V6",
+            "combustivel": "gasolina",
+            "plataforma": "Jeep-Wrangler-BoF"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Suzuki",
     "modelos": [
-      { "modelo": "Jimny", "versoes": [
-        { "nome": "Jimny (3ª geração)", "ano_inicio": 2012, "ano_fim": 2018, "motorizacao": "1.3", "combustivel": "gasolina", "plataforma": "Suzuki-Jimny" },
-        { "nome": "Jimny/Jimny Sierra (4ª geração)", "ano_inicio": 2021, "ano_fim": null, "motorizacao": "1.5", "combustivel": "gasolina", "plataforma": "Suzuki-Jimny" }
-      ] },
-      { "modelo": "Vitara", "versoes": [
-        { "nome": "Vitara (LY)", "ano_inicio": 2017, "ano_fim": 2022, "motorizacao": "1.4 turbo", "combustivel": "gasolina", "plataforma": "Suzuki-Global-C" }
-      ] },
-      { "modelo": "S-Cross", "versoes": [
-        { "nome": "S-Cross", "ano_inicio": 2014, "ano_fim": 2023, "motorizacao": "1.6 aspirado / 1.4 turbo", "combustivel": "gasolina", "plataforma": "Suzuki-Global-C" }
-      ] }
+      {
+        "modelo": "Jimny",
+        "versoes": [
+          {
+            "nome": "Jimny (3ª geração)",
+            "ano_inicio": 2012,
+            "ano_fim": 2018,
+            "motorizacao": "1.3",
+            "combustivel": "gasolina",
+            "plataforma": "Suzuki-Jimny"
+          },
+          {
+            "nome": "Jimny/Jimny Sierra (4ª geração)",
+            "ano_inicio": 2021,
+            "ano_fim": null,
+            "motorizacao": "1.5",
+            "combustivel": "gasolina",
+            "plataforma": "Suzuki-Jimny"
+          }
+        ]
+      },
+      {
+        "modelo": "Vitara",
+        "versoes": [
+          {
+            "nome": "Vitara (LY)",
+            "ano_inicio": 2017,
+            "ano_fim": 2022,
+            "motorizacao": "1.4 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "Suzuki-Global-C"
+          }
+        ]
+      },
+      {
+        "modelo": "S-Cross",
+        "versoes": [
+          {
+            "nome": "S-Cross",
+            "ano_inicio": 2014,
+            "ano_fim": 2023,
+            "motorizacao": "1.6 aspirado / 1.4 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "Suzuki-Global-C"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Chery",
     "modelos": [
-      { "modelo": "QQ", "versoes": [
-        { "nome": "Chery QQ", "ano_inicio": 2011, "ano_fim": 2019, "motorizacao": "1.0/1.1", "combustivel": "gasolina/flex", "plataforma": "Chery-QQ" }
-      ] },
-      { "modelo": "Celer", "versoes": [
-        { "nome": "Chery Celer (hatch/sedã, nacional Jacareí/SP)", "ano_inicio": 2013, "ano_fim": 2017, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Chery-A" }
-      ] },
-      { "modelo": "Tiggo 2", "versoes": [
-        { "nome": "Tiggo 2", "ano_inicio": 2017, "ano_fim": 2022, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "Chery-T1X" }
-      ] },
-      { "modelo": "Tiggo 3x", "versoes": [
-        { "nome": "Tiggo 3x", "ano_inicio": 2021, "ano_fim": 2022, "motorizacao": "1.0 turbo", "combustivel": "flex", "plataforma": "Chery-Fulwin-T1X" }
-      ] },
-      { "modelo": "Tiggo 5x", "versoes": [
-        { "nome": "Tiggo 5x/5x Pro (nacional Anápolis/GO)", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.5 TCI turbo", "combustivel": "flex", "plataforma": "Chery-T1X" }
-      ] },
-      { "modelo": "Tiggo 7", "versoes": [
-        { "nome": "Tiggo 7/7 Pro", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.5 turbo (Pro Hybrid PHEV)", "combustivel": "flex/phev", "plataforma": "Chery-T1X" }
-      ] },
-      { "modelo": "Tiggo 8", "versoes": [
-        { "nome": "Tiggo 8/8 Pro", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.6 turbo / 2.0 turbo (Pro Plug-in Hybrid)", "combustivel": "flex/phev", "plataforma": "Chery-T1X" }
-      ] },
-      { "modelo": "Arrizo 5", "versoes": [
-        { "nome": "Arrizo 5/5e", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.5 turbo flex / elétrico (5e)", "combustivel": "flex/eletrico", "plataforma": "Chery-A" }
-      ] },
-      { "modelo": "Arrizo 6", "versoes": [
-        { "nome": "Arrizo 6/6 Pro", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.5 turbo (Pro Hybrid)", "combustivel": "flex/hibrido", "plataforma": "Chery-A" }
-      ] }
+      {
+        "modelo": "QQ",
+        "versoes": [
+          {
+            "nome": "Chery QQ",
+            "ano_inicio": 2011,
+            "ano_fim": 2019,
+            "motorizacao": "1.0/1.1",
+            "combustivel": "gasolina/flex",
+            "plataforma": "Chery-QQ"
+          }
+        ]
+      },
+      {
+        "modelo": "Celer",
+        "versoes": [
+          {
+            "nome": "Chery Celer (hatch/sedã, nacional Jacareí/SP)",
+            "ano_inicio": 2013,
+            "ano_fim": 2017,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Chery-A"
+          }
+        ]
+      },
+      {
+        "modelo": "Tiggo 2",
+        "versoes": [
+          {
+            "nome": "Tiggo 2",
+            "ano_inicio": 2017,
+            "ano_fim": 2022,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "Chery-T1X"
+          }
+        ]
+      },
+      {
+        "modelo": "Tiggo 3x",
+        "versoes": [
+          {
+            "nome": "Tiggo 3x",
+            "ano_inicio": 2021,
+            "ano_fim": 2022,
+            "motorizacao": "1.0 turbo",
+            "combustivel": "flex",
+            "plataforma": "Chery-Fulwin-T1X"
+          }
+        ]
+      },
+      {
+        "modelo": "Tiggo 5x",
+        "versoes": [
+          {
+            "nome": "Tiggo 5x/5x Pro (nacional Anápolis/GO)",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.5 TCI turbo",
+            "combustivel": "flex",
+            "plataforma": "Chery-T1X"
+          }
+        ]
+      },
+      {
+        "modelo": "Tiggo 7",
+        "versoes": [
+          {
+            "nome": "Tiggo 7/7 Pro",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.5 turbo (Pro Hybrid PHEV)",
+            "combustivel": "flex/phev",
+            "plataforma": "Chery-T1X"
+          }
+        ]
+      },
+      {
+        "modelo": "Tiggo 8",
+        "versoes": [
+          {
+            "nome": "Tiggo 8/8 Pro",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.6 turbo / 2.0 turbo (Pro Plug-in Hybrid)",
+            "combustivel": "flex/phev",
+            "plataforma": "Chery-T1X"
+          }
+        ]
+      },
+      {
+        "modelo": "Arrizo 5",
+        "versoes": [
+          {
+            "nome": "Arrizo 5/5e",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.5 turbo flex / elétrico (5e)",
+            "combustivel": "flex/eletrico",
+            "plataforma": "Chery-A"
+          }
+        ]
+      },
+      {
+        "modelo": "Arrizo 6",
+        "versoes": [
+          {
+            "nome": "Arrizo 6/6 Pro",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.5 turbo (Pro Hybrid)",
+            "combustivel": "flex/hibrido",
+            "plataforma": "Chery-A"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "JAC",
     "modelos": [
-      { "modelo": "J3", "versoes": [
-        { "nome": "J3 (hatch) / J3 Turin (sedã)", "ano_inicio": 2011, "ano_fim": 2017, "motorizacao": "1.4/1.5", "combustivel": "gasolina/flex", "plataforma": "JAC-A" }
-      ] },
-      { "modelo": "J2", "versoes": [
-        { "nome": "J2", "ano_inicio": 2012, "ano_fim": 2019, "motorizacao": "1.4", "combustivel": "flex", "plataforma": "JAC-A" }
-      ] },
-      { "modelo": "J5", "versoes": [
-        { "nome": "J5", "ano_inicio": 2013, "ano_fim": 2018, "motorizacao": "1.5", "combustivel": "flex", "plataforma": "JAC-Heyue" }
-      ] },
-      { "modelo": "J6", "versoes": [
-        { "nome": "J6 (minivan)", "ano_inicio": 2011, "ano_fim": 2015, "motorizacao": "2.0 16V", "combustivel": "gasolina", "plataforma": "JAC-Heyue" }
-      ] },
-      { "modelo": "T40", "versoes": [
-        { "nome": "T40 (SUV)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "1.5/1.6", "combustivel": "flex", "plataforma": "JAC-A" }
-      ] },
-      { "modelo": "T50", "versoes": [
-        { "nome": "T50 (SUV)", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.5 turbo", "combustivel": "flex", "plataforma": "JAC-SS" }
-      ] },
-      { "modelo": "T60", "versoes": [
-        { "nome": "T60/T60 Plus (SUV)", "ano_inicio": 2017, "ano_fim": 2022, "motorizacao": "1.5 turbo / 1.6", "combustivel": "flex", "plataforma": "JAC-SS" }
-      ] },
-      { "modelo": "iEV", "versoes": [
-        { "nome": "iEV20/iEV40 (elétricos)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "JAC-EV" }
-      ] }
+      {
+        "modelo": "J3",
+        "versoes": [
+          {
+            "nome": "J3 (hatch) / J3 Turin (sedã)",
+            "ano_inicio": 2011,
+            "ano_fim": 2017,
+            "motorizacao": "1.4/1.5",
+            "combustivel": "gasolina/flex",
+            "plataforma": "JAC-A"
+          }
+        ]
+      },
+      {
+        "modelo": "J2",
+        "versoes": [
+          {
+            "nome": "J2",
+            "ano_inicio": 2012,
+            "ano_fim": 2019,
+            "motorizacao": "1.4",
+            "combustivel": "flex",
+            "plataforma": "JAC-A"
+          }
+        ]
+      },
+      {
+        "modelo": "J5",
+        "versoes": [
+          {
+            "nome": "J5",
+            "ano_inicio": 2013,
+            "ano_fim": 2018,
+            "motorizacao": "1.5",
+            "combustivel": "flex",
+            "plataforma": "JAC-Heyue"
+          }
+        ]
+      },
+      {
+        "modelo": "J6",
+        "versoes": [
+          {
+            "nome": "J6 (minivan)",
+            "ano_inicio": 2011,
+            "ano_fim": 2015,
+            "motorizacao": "2.0 16V",
+            "combustivel": "gasolina",
+            "plataforma": "JAC-Heyue"
+          }
+        ]
+      },
+      {
+        "modelo": "T40",
+        "versoes": [
+          {
+            "nome": "T40 (SUV)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "1.5/1.6",
+            "combustivel": "flex",
+            "plataforma": "JAC-A"
+          }
+        ]
+      },
+      {
+        "modelo": "T50",
+        "versoes": [
+          {
+            "nome": "T50 (SUV)",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.5 turbo",
+            "combustivel": "flex",
+            "plataforma": "JAC-SS"
+          }
+        ]
+      },
+      {
+        "modelo": "T60",
+        "versoes": [
+          {
+            "nome": "T60/T60 Plus (SUV)",
+            "ano_inicio": 2017,
+            "ano_fim": 2022,
+            "motorizacao": "1.5 turbo / 1.6",
+            "combustivel": "flex",
+            "plataforma": "JAC-SS"
+          }
+        ]
+      },
+      {
+        "modelo": "iEV",
+        "versoes": [
+          {
+            "nome": "iEV20/iEV40 (elétricos)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "JAC-EV"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "BYD",
     "modelos": [
-      { "modelo": "Dolphin Mini", "versoes": [
-        { "nome": "Dolphin Mini", "ano_inicio": 2024, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "BYD-e-Platform-3.0" }
-      ] },
-      { "modelo": "Dolphin", "versoes": [
-        { "nome": "Dolphin/Dolphin GS/Plus/SE", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "BYD-e-Platform-3.0" }
-      ] },
-      { "modelo": "Yuan Plus", "versoes": [
-        { "nome": "Yuan Plus (Atto 3)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "BYD-e-Platform-3.0" }
-      ] },
-      { "modelo": "Yuan Pro", "versoes": [
-        { "nome": "Yuan Pro", "ano_inicio": 2024, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "BYD-e-Platform-3.0" }
-      ] },
-      { "modelo": "Song Plus", "versoes": [
-        { "nome": "Song Plus DM-i/Premium", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "1.5 + elétrico", "combustivel": "phev", "plataforma": "BYD-DM-i" }
-      ] },
-      { "modelo": "Song Pro", "versoes": [
-        { "nome": "Song Pro DM-i", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "1.5 + elétrico", "combustivel": "phev", "plataforma": "BYD-DM-i" }
-      ] },
-      { "modelo": "King", "versoes": [
-        { "nome": "King DM-i", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "1.5 + elétrico", "combustivel": "phev", "plataforma": "BYD-DM-i" }
-      ] },
-      { "modelo": "Han", "versoes": [
-        { "nome": "Han", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "BYD-e-Platform-3.0" }
-      ] },
-      { "modelo": "Seal", "versoes": [
-        { "nome": "Seal", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "BYD-e-Platform-3.0" }
-      ] }
+      {
+        "modelo": "Dolphin Mini",
+        "versoes": [
+          {
+            "nome": "Dolphin Mini",
+            "ano_inicio": 2024,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "BYD-e-Platform-3.0"
+          }
+        ]
+      },
+      {
+        "modelo": "Dolphin",
+        "versoes": [
+          {
+            "nome": "Dolphin/Dolphin GS/Plus/SE",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "BYD-e-Platform-3.0"
+          }
+        ]
+      },
+      {
+        "modelo": "Yuan Plus",
+        "versoes": [
+          {
+            "nome": "Yuan Plus (Atto 3)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "BYD-e-Platform-3.0"
+          }
+        ]
+      },
+      {
+        "modelo": "Yuan Pro",
+        "versoes": [
+          {
+            "nome": "Yuan Pro",
+            "ano_inicio": 2024,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "BYD-e-Platform-3.0"
+          }
+        ]
+      },
+      {
+        "modelo": "Song Plus",
+        "versoes": [
+          {
+            "nome": "Song Plus DM-i/Premium",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "1.5 + elétrico",
+            "combustivel": "phev",
+            "plataforma": "BYD-DM-i"
+          }
+        ]
+      },
+      {
+        "modelo": "Song Pro",
+        "versoes": [
+          {
+            "nome": "Song Pro DM-i",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "1.5 + elétrico",
+            "combustivel": "phev",
+            "plataforma": "BYD-DM-i"
+          }
+        ]
+      },
+      {
+        "modelo": "King",
+        "versoes": [
+          {
+            "nome": "King DM-i",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "1.5 + elétrico",
+            "combustivel": "phev",
+            "plataforma": "BYD-DM-i"
+          }
+        ]
+      },
+      {
+        "modelo": "Han",
+        "versoes": [
+          {
+            "nome": "Han",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "BYD-e-Platform-3.0"
+          }
+        ]
+      },
+      {
+        "modelo": "Seal",
+        "versoes": [
+          {
+            "nome": "Seal",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "BYD-e-Platform-3.0"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "GWM",
     "modelos": [
-      { "modelo": "Haval H6", "versoes": [
-        { "nome": "Haval H6 (HEV/PHEV)", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "1.5 turbo híbrido / PHEV", "combustivel": "hibrido/phev", "plataforma": "GWM-LEMON" }
-      ] },
-      { "modelo": "Poer", "versoes": [
-        { "nome": "Poer/Poer P30 (picape)", "ano_inicio": 2022, "ano_fim": null, "motorizacao": "2.0 turbodiesel", "combustivel": "diesel", "plataforma": "GWM-P-series" }
-      ] },
-      { "modelo": "Ora 03", "versoes": [
-        { "nome": "Ora 03", "ano_inicio": 2023, "ano_fim": null, "motorizacao": "motor elétrico", "combustivel": "eletrico", "plataforma": "GWM-e-platform" }
-      ] }
+      {
+        "modelo": "Haval H6",
+        "versoes": [
+          {
+            "nome": "Haval H6 (HEV/PHEV)",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "1.5 turbo híbrido / PHEV",
+            "combustivel": "hibrido/phev",
+            "plataforma": "GWM-LEMON"
+          }
+        ]
+      },
+      {
+        "modelo": "Poer",
+        "versoes": [
+          {
+            "nome": "Poer/Poer P30 (picape)",
+            "ano_inicio": 2022,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbodiesel",
+            "combustivel": "diesel",
+            "plataforma": "GWM-P-series"
+          }
+        ]
+      },
+      {
+        "modelo": "Ora 03",
+        "versoes": [
+          {
+            "nome": "Ora 03",
+            "ano_inicio": 2023,
+            "ano_fim": null,
+            "motorizacao": "motor elétrico",
+            "combustivel": "eletrico",
+            "plataforma": "GWM-e-platform"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Land Rover",
     "modelos": [
-      { "modelo": "Discovery Sport", "versoes": [
-        { "nome": "Discovery Sport (1ª geração, nacional Itatiaia/RJ)", "ano_inicio": 2015, "ano_fim": null, "motorizacao": "2.0 turbo gasolina/flex (P250) / 2.0 diesel (D200)", "combustivel": "gasolina/flex/diesel", "plataforma": "JLR-D8-PTA" }
-      ] },
-      { "modelo": "Range Rover Evoque", "versoes": [
-        { "nome": "Range Rover Evoque (1ª geração)", "ano_inicio": 2011, "ano_fim": 2019, "motorizacao": "2.0 turbo gasolina / 2.2 diesel", "combustivel": "gasolina/diesel", "plataforma": "JLR-LR-MS" },
-        { "nome": "Range Rover Evoque (2ª geração)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "2.0 turbo flex (P250)", "combustivel": "flex", "plataforma": "JLR-PTA" }
-      ] },
-      { "modelo": "Defender", "versoes": [
-        { "nome": "Defender (nova geração)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "2.0/3.0 turbo", "combustivel": "gasolina/diesel", "plataforma": "JLR-MLA" }
-      ] },
-      { "modelo": "Discovery", "versoes": [
-        { "nome": "Discovery (5ª geração)", "ano_inicio": 2017, "ano_fim": null, "motorizacao": "2.0/3.0 diesel e gasolina", "combustivel": "diesel/gasolina", "plataforma": "JLR-D7" }
-      ] }
+      {
+        "modelo": "Discovery Sport",
+        "versoes": [
+          {
+            "nome": "Discovery Sport (1ª geração, nacional Itatiaia/RJ)",
+            "ano_inicio": 2015,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo gasolina/flex (P250) / 2.0 diesel (D200)",
+            "combustivel": "gasolina/flex/diesel",
+            "plataforma": "JLR-D8-PTA"
+          }
+        ]
+      },
+      {
+        "modelo": "Range Rover Evoque",
+        "versoes": [
+          {
+            "nome": "Range Rover Evoque (1ª geração)",
+            "ano_inicio": 2011,
+            "ano_fim": 2019,
+            "motorizacao": "2.0 turbo gasolina / 2.2 diesel",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "JLR-LR-MS"
+          },
+          {
+            "nome": "Range Rover Evoque (2ª geração)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo flex (P250)",
+            "combustivel": "flex",
+            "plataforma": "JLR-PTA"
+          }
+        ]
+      },
+      {
+        "modelo": "Defender",
+        "versoes": [
+          {
+            "nome": "Defender (nova geração)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "2.0/3.0 turbo",
+            "combustivel": "gasolina/diesel",
+            "plataforma": "JLR-MLA"
+          }
+        ]
+      },
+      {
+        "modelo": "Discovery",
+        "versoes": [
+          {
+            "nome": "Discovery (5ª geração)",
+            "ano_inicio": 2017,
+            "ano_fim": null,
+            "motorizacao": "2.0/3.0 diesel e gasolina",
+            "combustivel": "diesel/gasolina",
+            "plataforma": "JLR-D7"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Mercedes-Benz",
     "modelos": [
-      { "modelo": "Classe A", "versoes": [
-        { "nome": "Classe A (W176)", "ano_inicio": 2013, "ano_fim": 2018, "motorizacao": "1.6/2.0 turbo", "combustivel": "gasolina", "plataforma": "MB-MFA" },
-        { "nome": "Classe A Sedan (V177)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.3 turbo", "combustivel": "gasolina", "plataforma": "MB-MFA2" }
-      ] },
-      { "modelo": "GLA", "versoes": [
-        { "nome": "GLA (X156)", "ano_inicio": 2014, "ano_fim": 2020, "motorizacao": "1.6/2.0 turbo", "combustivel": "gasolina", "plataforma": "MB-MFA" },
-        { "nome": "GLA (H247)", "ano_inicio": 2020, "ano_fim": null, "motorizacao": "1.3 turbo", "combustivel": "gasolina", "plataforma": "MB-MFA2" }
-      ] },
-      { "modelo": "CLA", "versoes": [
-        { "nome": "CLA (C117)", "ano_inicio": 2013, "ano_fim": 2019, "motorizacao": "1.6/2.0 turbo", "combustivel": "gasolina", "plataforma": "MB-MFA" },
-        { "nome": "CLA (C118)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.3/2.0 turbo", "combustivel": "gasolina", "plataforma": "MB-MFA2" }
-      ] }
+      {
+        "modelo": "Classe A",
+        "versoes": [
+          {
+            "nome": "Classe A (W176)",
+            "ano_inicio": 2013,
+            "ano_fim": 2018,
+            "motorizacao": "1.6/2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "MB-MFA"
+          },
+          {
+            "nome": "Classe A Sedan (V177)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.3 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "MB-MFA2"
+          }
+        ]
+      },
+      {
+        "modelo": "GLA",
+        "versoes": [
+          {
+            "nome": "GLA (X156)",
+            "ano_inicio": 2014,
+            "ano_fim": 2020,
+            "motorizacao": "1.6/2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "MB-MFA"
+          },
+          {
+            "nome": "GLA (H247)",
+            "ano_inicio": 2020,
+            "ano_fim": null,
+            "motorizacao": "1.3 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "MB-MFA2"
+          }
+        ]
+      },
+      {
+        "modelo": "CLA",
+        "versoes": [
+          {
+            "nome": "CLA (C117)",
+            "ano_inicio": 2013,
+            "ano_fim": 2019,
+            "motorizacao": "1.6/2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "MB-MFA"
+          },
+          {
+            "nome": "CLA (C118)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.3/2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "MB-MFA2"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "BMW",
     "modelos": [
-      { "modelo": "Série 1", "versoes": [
-        { "nome": "Série 1 (F20, importado)", "ano_inicio": 2012, "ano_fim": 2019, "motorizacao": "1.6/2.0 turbo", "combustivel": "gasolina", "plataforma": "BMW-UKL" }
-      ] },
-      { "modelo": "Série 2", "versoes": [
-        { "nome": "Série 2 (F22/F44)", "ano_inicio": 2014, "ano_fim": null, "motorizacao": "2.0 turbo", "combustivel": "gasolina", "plataforma": "BMW-UKL" }
-      ] },
-      { "modelo": "X1", "versoes": [
-        { "nome": "X1 (E84 importado; F48 nacional Araquari/SC; U11)", "ano_inicio": 2010, "ano_fim": null, "motorizacao": "2.0 turbo", "combustivel": "gasolina", "plataforma": "BMW-UKL-FAAR" }
-      ] }
+      {
+        "modelo": "Série 1",
+        "versoes": [
+          {
+            "nome": "Série 1 (F20, importado)",
+            "ano_inicio": 2012,
+            "ano_fim": 2019,
+            "motorizacao": "1.6/2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "BMW-UKL"
+          }
+        ]
+      },
+      {
+        "modelo": "Série 2",
+        "versoes": [
+          {
+            "nome": "Série 2 (F22/F44)",
+            "ano_inicio": 2014,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "BMW-UKL"
+          }
+        ]
+      },
+      {
+        "modelo": "X1",
+        "versoes": [
+          {
+            "nome": "X1 (E84 importado; F48 nacional Araquari/SC; U11)",
+            "ano_inicio": 2010,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "BMW-UKL-FAAR"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Audi",
     "modelos": [
-      { "modelo": "A3", "versoes": [
-        { "nome": "A3 (8P, nacional São José dos Pinhais/PR até ~2006, depois importado)", "ano_inicio": 1999, "ano_fim": 2013, "motorizacao": "1.6/1.8/2.0", "combustivel": "gasolina", "plataforma": "VW-PQ35" },
-        { "nome": "A3 Sedan (8V, nacional São José dos Pinhais/PR)", "ano_inicio": 2013, "ano_fim": 2020, "motorizacao": "1.4/1.8/2.0 TFSI", "combustivel": "gasolina", "plataforma": "VW-MQB" }
-      ] },
-      { "modelo": "Q3", "versoes": [
-        { "nome": "Q3 (8U)", "ano_inicio": 2012, "ano_fim": 2018, "motorizacao": "1.4/2.0 TFSI", "combustivel": "gasolina", "plataforma": "VW-PQ35" },
-        { "nome": "Q3 (F3)", "ano_inicio": 2019, "ano_fim": null, "motorizacao": "1.4 TFSI", "combustivel": "gasolina", "plataforma": "VW-MQB" }
-      ] }
+      {
+        "modelo": "A3",
+        "versoes": [
+          {
+            "nome": "A3 (8P, nacional São José dos Pinhais/PR até ~2006, depois importado)",
+            "ano_inicio": 1999,
+            "ano_fim": 2013,
+            "motorizacao": "1.6/1.8/2.0",
+            "combustivel": "gasolina",
+            "plataforma": "VW-PQ35"
+          },
+          {
+            "nome": "A3 Sedan (8V, nacional São José dos Pinhais/PR)",
+            "ano_inicio": 2013,
+            "ano_fim": 2020,
+            "motorizacao": "1.4/1.8/2.0 TFSI",
+            "combustivel": "gasolina",
+            "plataforma": "VW-MQB"
+          }
+        ]
+      },
+      {
+        "modelo": "Q3",
+        "versoes": [
+          {
+            "nome": "Q3 (8U)",
+            "ano_inicio": 2012,
+            "ano_fim": 2018,
+            "motorizacao": "1.4/2.0 TFSI",
+            "combustivel": "gasolina",
+            "plataforma": "VW-PQ35"
+          },
+          {
+            "nome": "Q3 (F3)",
+            "ano_inicio": 2019,
+            "ano_fim": null,
+            "motorizacao": "1.4 TFSI",
+            "combustivel": "gasolina",
+            "plataforma": "VW-MQB"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Subaru",
     "modelos": [
-      { "modelo": "Forester", "versoes": [
-        { "nome": "Forester (2ª geração SG)", "ano_inicio": 2003, "ano_fim": 2008, "motorizacao": "2.0 boxer aspirado / 2.5 turbo (XT)", "combustivel": "gasolina", "plataforma": "Subaru-Impreza" },
-        { "nome": "Forester (3ª geração SH)", "ano_inicio": 2008, "ano_fim": 2013, "motorizacao": "2.0 boxer / 2.5 turbo", "combustivel": "gasolina", "plataforma": "Subaru-Impreza" },
-        { "nome": "Forester (4ª geração SJ)", "ano_inicio": 2013, "ano_fim": 2018, "motorizacao": "2.0 boxer aspirado / 2.0 turbo (XT)", "combustivel": "gasolina", "plataforma": "Subaru-Impreza" },
-        { "nome": "Forester (5ª geração SK)", "ano_inicio": 2019, "ano_fim": 2024, "motorizacao": "2.0 boxer aspirado / e-Boxer híbrido leve", "combustivel": "gasolina/hibrido", "plataforma": "Subaru-Global-Platform" }
-      ] },
-      { "modelo": "Impreza", "versoes": [
-        { "nome": "Impreza/WRX/WRX STI (3ª geração GE/GH/GR)", "ano_inicio": 2008, "ano_fim": 2014, "motorizacao": "1.5/2.0 aspirado / WRX 2.5 turbo / STI 2.5 turbo", "combustivel": "gasolina", "plataforma": "Subaru-Impreza" }
-      ] },
-      { "modelo": "WRX", "versoes": [
-        { "nome": "WRX/WRX STI (4ª geração VA, importados pela CAOA)", "ano_inicio": 2015, "ano_fim": 2018, "motorizacao": "WRX 2.0 turbo CVT / STI 2.5 turbo manual", "combustivel": "gasolina", "plataforma": "Subaru-Impreza" }
-      ] },
-      { "modelo": "XV", "versoes": [
-        { "nome": "XV/Crosstrek", "ano_inicio": 2012, "ano_fim": 2022, "motorizacao": "2.0 boxer aspirado CVT AWD / e-Boxer híbrido leve", "combustivel": "gasolina/hibrido", "plataforma": "Subaru-Impreza-SGP" }
-      ] }
+      {
+        "modelo": "Forester",
+        "versoes": [
+          {
+            "nome": "Forester (2ª geração SG)",
+            "ano_inicio": 2003,
+            "ano_fim": 2008,
+            "motorizacao": "2.0 boxer aspirado / 2.5 turbo (XT)",
+            "combustivel": "gasolina",
+            "plataforma": "Subaru-Impreza"
+          },
+          {
+            "nome": "Forester (3ª geração SH)",
+            "ano_inicio": 2008,
+            "ano_fim": 2013,
+            "motorizacao": "2.0 boxer / 2.5 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "Subaru-Impreza"
+          },
+          {
+            "nome": "Forester (4ª geração SJ)",
+            "ano_inicio": 2013,
+            "ano_fim": 2018,
+            "motorizacao": "2.0 boxer aspirado / 2.0 turbo (XT)",
+            "combustivel": "gasolina",
+            "plataforma": "Subaru-Impreza"
+          },
+          {
+            "nome": "Forester (5ª geração SK)",
+            "ano_inicio": 2019,
+            "ano_fim": 2024,
+            "motorizacao": "2.0 boxer aspirado / e-Boxer híbrido leve",
+            "combustivel": "gasolina/hibrido",
+            "plataforma": "Subaru-Global-Platform"
+          }
+        ]
+      },
+      {
+        "modelo": "Impreza",
+        "versoes": [
+          {
+            "nome": "Impreza/WRX/WRX STI (3ª geração GE/GH/GR)",
+            "ano_inicio": 2008,
+            "ano_fim": 2014,
+            "motorizacao": "1.5/2.0 aspirado / WRX 2.5 turbo / STI 2.5 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "Subaru-Impreza"
+          }
+        ]
+      },
+      {
+        "modelo": "WRX",
+        "versoes": [
+          {
+            "nome": "WRX/WRX STI (4ª geração VA, importados pela CAOA)",
+            "ano_inicio": 2015,
+            "ano_fim": 2018,
+            "motorizacao": "WRX 2.0 turbo CVT / STI 2.5 turbo manual",
+            "combustivel": "gasolina",
+            "plataforma": "Subaru-Impreza"
+          }
+        ]
+      },
+      {
+        "modelo": "XV",
+        "versoes": [
+          {
+            "nome": "XV/Crosstrek",
+            "ano_inicio": 2012,
+            "ano_fim": 2022,
+            "motorizacao": "2.0 boxer aspirado CVT AWD / e-Boxer híbrido leve",
+            "combustivel": "gasolina/hibrido",
+            "plataforma": "Subaru-Impreza-SGP"
+          }
+        ]
+      }
     ]
   },
   {
     "marca": "Volvo",
     "modelos": [
-      { "modelo": "240", "versoes": [
-        { "nome": "240 (importado)", "ano_inicio": 1980, "ano_fim": 1993, "motorizacao": "2.3", "combustivel": "gasolina", "plataforma": "Volvo-200" }
-      ] },
-      { "modelo": "740/760", "versoes": [
-        { "nome": "740/760 (importado)", "ano_inicio": 1980, "ano_fim": 1992, "motorizacao": "2.3", "combustivel": "gasolina", "plataforma": "Volvo-700" }
-      ] },
-      { "modelo": "850", "versoes": [
-        { "nome": "850 (importado)", "ano_inicio": 1992, "ano_fim": 1997, "motorizacao": "2.0/2.5 / T5 turbo", "combustivel": "gasolina", "plataforma": "Volvo-850" }
-      ] },
-      { "modelo": "940/960", "versoes": [
-        { "nome": "940/960 (importado)", "ano_inicio": 1990, "ano_fim": 1998, "motorizacao": "2.3", "combustivel": "gasolina", "plataforma": "Volvo-900" }
-      ] },
-      { "modelo": "XC40", "versoes": [
-        { "nome": "XC40", "ano_inicio": 2018, "ano_fim": null, "motorizacao": "1.5/2.0 turbo / T5 Recharge PHEV / elétrico (EX40/C40)", "combustivel": "gasolina/phev/eletrico", "plataforma": "Volvo-CMA" }
-      ] },
-      { "modelo": "XC60", "versoes": [
-        { "nome": "XC60", "ano_inicio": 2009, "ano_fim": null, "motorizacao": "2.0 turbo / T8 PHEV", "combustivel": "gasolina/phev", "plataforma": "Volvo-SPA" }
-      ] },
-      { "modelo": "S60", "versoes": [
-        { "nome": "S60", "ano_inicio": 2001, "ano_fim": null, "motorizacao": "2.0 turbo / T8 PHEV", "combustivel": "gasolina/phev", "plataforma": "Volvo-SPA" }
-      ] },
-      { "modelo": "XC90", "versoes": [
-        { "nome": "XC90", "ano_inicio": 2003, "ano_fim": null, "motorizacao": "2.0 turbo / T8 PHEV", "combustivel": "gasolina/phev", "plataforma": "Volvo-SPA" }
-      ] }
+      {
+        "modelo": "240",
+        "versoes": [
+          {
+            "nome": "240 (importado)",
+            "ano_inicio": 1980,
+            "ano_fim": 1993,
+            "motorizacao": "2.3",
+            "combustivel": "gasolina",
+            "plataforma": "Volvo-200"
+          }
+        ]
+      },
+      {
+        "modelo": "740/760",
+        "versoes": [
+          {
+            "nome": "740/760 (importado)",
+            "ano_inicio": 1980,
+            "ano_fim": 1992,
+            "motorizacao": "2.3",
+            "combustivel": "gasolina",
+            "plataforma": "Volvo-700"
+          }
+        ]
+      },
+      {
+        "modelo": "850",
+        "versoes": [
+          {
+            "nome": "850 (importado)",
+            "ano_inicio": 1992,
+            "ano_fim": 1997,
+            "motorizacao": "2.0/2.5 / T5 turbo",
+            "combustivel": "gasolina",
+            "plataforma": "Volvo-850"
+          }
+        ]
+      },
+      {
+        "modelo": "940/960",
+        "versoes": [
+          {
+            "nome": "940/960 (importado)",
+            "ano_inicio": 1990,
+            "ano_fim": 1998,
+            "motorizacao": "2.3",
+            "combustivel": "gasolina",
+            "plataforma": "Volvo-900"
+          }
+        ]
+      },
+      {
+        "modelo": "XC40",
+        "versoes": [
+          {
+            "nome": "XC40",
+            "ano_inicio": 2018,
+            "ano_fim": null,
+            "motorizacao": "1.5/2.0 turbo / T5 Recharge PHEV / elétrico (EX40/C40)",
+            "combustivel": "gasolina/phev/eletrico",
+            "plataforma": "Volvo-CMA"
+          }
+        ]
+      },
+      {
+        "modelo": "XC60",
+        "versoes": [
+          {
+            "nome": "XC60",
+            "ano_inicio": 2009,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo / T8 PHEV",
+            "combustivel": "gasolina/phev",
+            "plataforma": "Volvo-SPA"
+          }
+        ]
+      },
+      {
+        "modelo": "S60",
+        "versoes": [
+          {
+            "nome": "S60",
+            "ano_inicio": 2001,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo / T8 PHEV",
+            "combustivel": "gasolina/phev",
+            "plataforma": "Volvo-SPA"
+          }
+        ]
+      },
+      {
+        "modelo": "XC90",
+        "versoes": [
+          {
+            "nome": "XC90",
+            "ano_inicio": 2003,
+            "ano_fim": null,
+            "motorizacao": "2.0 turbo / T8 PHEV",
+            "combustivel": "gasolina/phev",
+            "plataforma": "Volvo-SPA"
+          }
+        ]
+      }
     ]
   }
 ]

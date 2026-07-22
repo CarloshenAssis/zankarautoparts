@@ -532,9 +532,9 @@ export function ProductForm({
             {images.map((img, i) => (
               <div
                 key={img.previewUrl}
-                className="group relative aspect-square overflow-hidden rounded-md border border-border"
+                className="group relative aspect-square overflow-hidden rounded-md border border-border bg-gradient-to-br from-[#2a1f35] via-[#1f1f1f] to-[#0f0f12]"
               >
-                <img src={img.previewUrl} alt="" className="h-full w-full object-cover" />
+                <img src={img.previewUrl} alt="" className="h-full w-full object-contain p-2" />
                 {i === 0 && (
                   <span className="absolute left-2 top-2 rounded bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
                     Capa

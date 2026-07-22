@@ -175,11 +175,13 @@ function DashboardPage() {
               return (
                 <div key={p.id} className="rounded-md border border-border bg-background p-3">
                   {img ? (
-                    <img
-                      src={productImageUrl(img.storage_path)}
-                      alt={p.name}
-                      className="aspect-video w-full rounded object-cover"
-                    />
+                    <div className="aspect-video w-full overflow-hidden rounded bg-gradient-to-br from-[#2a1f35] via-[#1f1f1f] to-[#0f0f12]">
+                      <img
+                        src={productImageUrl(img.storage_path)}
+                        alt={p.name}
+                        className="h-full w-full object-contain p-2"
+                      />
+                    </div>
                   ) : (
                     <div className="aspect-video rounded bg-gradient-metal" />
                   )}
