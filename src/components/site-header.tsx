@@ -1,15 +1,23 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, ShoppingCart, MessageCircle, Menu } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/lib/cart";
 import { Button } from "@/components/ui/button";
 import { BrandMark } from "@/components/brand-mark";
+import { getStoreSettings } from "@/lib/queries";
 
 export function SiteHeader() {
   const { count } = useCart();
   const navigate = useNavigate();
   const [q, setQ] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string>();
+
+  useEffect(() => {
+    getStoreSettings().then((settings) => {
+      if (settings?.logo_url) setLogoUrl(settings.logo_url);
+    });
+  }, []);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +29,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 md:gap-6 md:px-6 md:py-4">
         {/* Logo */}
         <Link to="/" className="shrink-0">
-          <BrandMark hideTextOnMobile />
+          <BrandMark hideTextOnMobile logoUrl={logoUrl} />
         </Link>
 
         {/* Search */}

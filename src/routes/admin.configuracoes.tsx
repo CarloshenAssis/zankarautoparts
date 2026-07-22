@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Upload, Instagram, Facebook, Youtube } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { CarSilhouette } from "@/components/brand-mark";
 import { getStoreSettings } from "@/lib/queries";
 import { updateStoreSettings } from "@/lib/admin-queries";
+import { uploadStoreLogo } from "@/lib/upload";
 
 export const Route = createFileRoute("/admin/configuracoes")({
   loader: async () => ({ storeSettings: await getStoreSettings() }),
@@ -16,6 +16,7 @@ export const Route = createFileRoute("/admin/configuracoes")({
 
 function ConfigPage() {
   const { storeSettings } = Route.useLoaderData();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState({
     legalName: storeSettings?.legal_name ?? "",
     cnpj: storeSettings?.cnpj ?? "",
@@ -32,13 +33,28 @@ function ConfigPage() {
     instagram: storeSettings?.social_links?.instagram ?? "",
     facebook: storeSettings?.social_links?.facebook ?? "",
     youtube: storeSettings?.social_links?.youtube ?? "",
+    logoUrl: storeSettings?.logo_url ?? "",
   });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   function set<K extends keyof typeof form>(key: K, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
     setSaved(false);
+  }
+
+  async function handleLogoUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const url = await uploadStoreLogo(file);
+      set("logoUrl", url);
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function handleSave(e: React.FormEvent) {
@@ -67,20 +83,37 @@ function ConfigPage() {
           <h2 className="font-display text-lg font-bold">Identidade da loja</h2>
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
             <div className="grid h-24 w-24 shrink-0 place-items-center rounded-lg bg-gradient-red">
-              <CarSilhouette className="h-10 w-10 text-primary-foreground" />
+              {form.logoUrl ? (
+                <img
+                  src={form.logoUrl}
+                  alt="Logo da loja"
+                  className="max-h-full max-w-full object-contain"
+                />
+              ) : (
+                <span className="text-center text-xs font-semibold text-primary-foreground">
+                  ZANKAR
+                </span>
+              )}
             </div>
             <div className="flex-1">
               <Label className="text-sm font-semibold">Logo da loja</Label>
               <p className="text-xs text-muted-foreground">
-                A logo atual é a marca ZANKAR padrão — upload de logo customizada entra numa fase
-                seguinte.
+                Envie a logo customizada da sua loja (PNG, JPG, SVG)
               </p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/png,image/jpeg,image/svg+xml"
+                onChange={handleLogoUpload}
+                className="hidden"
+              />
               <button
                 type="button"
-                disabled
-                className="mt-2 inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-muted-foreground opacity-60"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="mt-2 inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm transition hover:bg-primary/10 disabled:opacity-60"
               >
-                <Upload className="h-4 w-4" /> Enviar nova imagem
+                <Upload className="h-4 w-4" /> {uploading ? "Enviando..." : "Enviar nova imagem"}
               </button>
             </div>
           </div>
