@@ -147,7 +147,7 @@ export function ProductDetailPage({
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain p-6"
               />
             ) : (
               <div className="absolute inset-0 grid place-items-center">

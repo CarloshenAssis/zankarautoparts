@@ -39,7 +39,7 @@ export function ProductCard({ product }: { product: Product }) {
             alt={primaryImage.alt_text ?? product.name}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain p-4"
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
