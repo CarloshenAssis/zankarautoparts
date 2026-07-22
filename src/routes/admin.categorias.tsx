@@ -41,13 +41,23 @@ function CategoriasPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState("");
   const [editIcon, setEditIcon] = useState(ICON_OPTIONS[0]);
+  const [seedResult, setSeedResult] = useState<{ created: number; error?: string } | null>(null);
 
   async function handleSeedCategories() {
     if (!confirm("Adicionar 18 categorias principais do mercado?")) return;
     setSeeding(true);
+    setSeedResult(null);
     try {
-      await seedMainCategories();
-      router.invalidate();
+      const result = await seedMainCategories();
+      setSeedResult(result);
+      if (result.created > 0) {
+        setTimeout(() => router.invalidate(), 500);
+      }
+    } catch (err) {
+      setSeedResult({
+        created: 0,
+        error: err instanceof Error ? err.message : "Erro ao adicionar categorias",
+      });
     } finally {
       setSeeding(false);
     }
@@ -99,7 +109,20 @@ function CategoriasPage() {
             Organize as peças em grupos para facilitar a busca dos clientes
           </p>
         </div>
-        <div className="flex shrink-0 gap-2">
+        <div className="flex flex-col shrink-0 gap-2">
+          {seedResult && (
+            <div
+              className={`rounded-md px-4 py-2 text-sm font-medium ${
+                seedResult.error
+                  ? "bg-destructive/20 text-destructive"
+                  : "bg-success/20 text-success"
+              }`}
+            >
+              {seedResult.error
+                ? `❌ ${seedResult.error}`
+                : `✅ ${seedResult.created} categorias adicionadas`}
+            </div>
+          )}
           <Button
             onClick={handleSeedCategories}
             disabled={seeding}
