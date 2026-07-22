@@ -66,6 +66,7 @@ export type StoreSettings = {
   email: string | null;
   website: string | null;
   phone_whatsapp: string | null;
+  logo_url: string | null;
   address: {
     street?: string;
     district?: string;

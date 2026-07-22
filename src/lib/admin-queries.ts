@@ -102,6 +102,7 @@ export const updateStoreSettings = createServerFn({ method: "POST" })
       instagram: string;
       facebook: string;
       youtube: string;
+      logoUrl?: string;
     }) => input,
   )
   .handler(async ({ data }) => {
@@ -114,6 +115,7 @@ export const updateStoreSettings = createServerFn({ method: "POST" })
         phone_whatsapp: data.phoneWhatsapp,
         email: data.email,
         website: data.website,
+        ...(data.logoUrl !== undefined ? { logo_url: data.logoUrl || null } : {}),
         address: {
           street: data.street,
           district: data.district,
@@ -678,22 +680,18 @@ export const seedMainCategories = createServerFn({ method: "POST" }).handler(asy
     { name: "Embreagem", icon: "wrench" },
   ];
 
-  const existing = await supabase.from("categories").select("name");
-  if (existing.error) throw existing.error;
-  const existingNames = new Set((existing.data ?? []).map((c: { name: string }) => c.name));
+  const existing = await supabase.from("categories").select("slug");
+  if (existing.error) throw new Error(existing.error.message);
+  const existingSlugs = new Set((existing.data ?? []).map((c: { slug: string }) => c.slug));
 
   const toInsert = categories
-    .filter((c) => !existingNames.has(c.name))
-    .map((c) => ({
-      name: c.name,
-      slug: slugify(c.name),
-      icon: c.icon,
-    }));
+    .map((c) => ({ name: c.name, slug: slugify(c.name), icon: c.icon }))
+    .filter((c) => !existingSlugs.has(c.slug));
 
   if (toInsert.length === 0) return { ok: true, created: 0 };
 
   const { error } = await supabase.from("categories").insert(toInsert);
-  if (error) throw error;
+  if (error) throw new Error(error.message);
 
   return { ok: true, created: toInsert.length };
 });

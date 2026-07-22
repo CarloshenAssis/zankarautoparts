@@ -98,6 +98,19 @@ function HomePage() {
                     params={linkProps.params}
                     className="group relative block aspect-square overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-[#4b1e78] via-[#341463] to-[#1f1f1f] shadow-red transition hover:border-primary"
                   >
+                    {primaryImage ? (
+                      <img
+                        src={productImageUrl(primaryImage.storage_path)}
+                        alt={primaryImage.alt_text ?? product.name}
+                        loading="eager"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-contain p-16 opacity-90 transition group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 grid place-items-center">
+                        <Package className="h-32 w-32 text-white/15" strokeWidth={1} />
+                      </div>
+                    )}
                     <div className="absolute inset-0 flex flex-col justify-between p-8">
                       <div>
                         <div className="text-xs font-bold uppercase tracking-widest text-primary">
@@ -108,19 +121,6 @@ function HomePage() {
                           {product.category?.name}
                         </div>
                       </div>
-                      {primaryImage ? (
-                        <img
-                          src={productImageUrl(primaryImage.storage_path)}
-                          alt={primaryImage.alt_text ?? product.name}
-                          loading="eager"
-                          decoding="async"
-                          className="absolute inset-0 -z-10 h-full w-full object-contain p-16 opacity-90 transition group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 -z-10 grid place-items-center">
-                          <Package className="h-32 w-32 text-white/15" strokeWidth={1} />
-                        </div>
-                      )}
                       <div className="rounded-lg bg-black/40 p-4 backdrop-blur">
                         <div className="text-xs uppercase text-muted-foreground">A partir de</div>
                         <div className="font-display text-4xl font-bold text-primary">

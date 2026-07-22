@@ -17,7 +17,6 @@ import {
   Users,
   Settings,
   Search,
-  Bell,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { BrandMark } from "@/components/brand-mark";
@@ -94,15 +93,6 @@ function AdminLayout() {
           >
             Ver loja →
           </Link>
-          <button
-            className="relative grid h-10 w-10 place-items-center rounded-md border border-border hover:border-primary"
-            aria-label="Notificações"
-          >
-            <Bell className="h-5 w-5" />
-            <span className="absolute right-1.5 top-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground">
-              3
-            </span>
-          </button>
           <div className="flex items-center gap-2 rounded-md border border-border bg-card px-2.5 py-1.5">
             <div className="grid h-8 w-8 place-items-center rounded-full bg-gradient-red text-xs font-bold text-primary-foreground">
               {initials}
