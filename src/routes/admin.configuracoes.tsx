@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Upload, Instagram, Facebook, Youtube } from "lucide-react";
+import { Upload, Instagram, Facebook, Youtube, KeyRound } from "lucide-react";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { getStoreSettings } from "@/lib/queries";
 import { updateStoreSettings } from "@/lib/admin-queries";
 import { uploadStoreLogo } from "@/lib/upload";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export const Route = createFileRoute("/admin/configuracoes")({
   loader: async () => ({ storeSettings: await getStoreSettings() }),
@@ -38,10 +39,44 @@ function ConfigPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [changingPassword, setChangingPassword] = useState(false);
+  const [passwordMessage, setPasswordMessage] = useState<{
+    error?: string;
+    success?: boolean;
+  } | null>(null);
 
   function set<K extends keyof typeof form>(key: K, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
     setSaved(false);
+  }
+
+  async function handleChangePassword(e: React.FormEvent) {
+    e.preventDefault();
+    setPasswordMessage(null);
+    if (newPassword.length < 6) {
+      setPasswordMessage({ error: "A senha precisa ter pelo menos 6 caracteres." });
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setPasswordMessage({ error: "As senhas não coincidem." });
+      return;
+    }
+    setChangingPassword(true);
+    try {
+      const supabase = createSupabaseBrowserClient();
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) {
+        setPasswordMessage({ error: error.message });
+        return;
+      }
+      setPasswordMessage({ success: true });
+      setNewPassword("");
+      setConfirmPassword("");
+    } finally {
+      setChangingPassword(false);
+    }
   }
 
   async function handleLogoUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -294,6 +329,66 @@ function ConfigPage() {
             {saving ? "Salvando..." : "Salvar alterações"}
           </Button>
         </div>
+      </form>
+
+      {/* Trocar senha */}
+      <form onSubmit={handleChangePassword} className="mt-6 space-y-6">
+        <section className="rounded-lg border border-border bg-card p-6">
+          <h2 className="flex items-center gap-2 font-display text-lg font-bold">
+            <KeyRound className="h-5 w-5 text-primary" /> Trocar senha
+          </h2>
+          <p className="text-sm text-muted-foreground">Altere a senha de acesso ao painel</p>
+
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <div>
+              <Label htmlFor="new-password" className="text-sm font-semibold">
+                Nova senha
+              </Label>
+              <Input
+                id="new-password"
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Mínimo 6 caracteres"
+                className="mt-1.5 h-11"
+                autoComplete="new-password"
+              />
+            </div>
+            <div>
+              <Label htmlFor="confirm-password" className="text-sm font-semibold">
+                Confirmar nova senha
+              </Label>
+              <Input
+                id="confirm-password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="mt-1.5 h-11"
+                autoComplete="new-password"
+              />
+            </div>
+          </div>
+
+          {passwordMessage?.error && (
+            <p className="mt-4 rounded-md border border-destructive/40 bg-destructive/10 px-4 py-2 text-sm text-destructive">
+              {passwordMessage.error}
+            </p>
+          )}
+          {passwordMessage?.success && (
+            <p className="mt-4 rounded-md border border-success/40 bg-success/10 px-4 py-2 text-sm text-success">
+              Senha alterada com sucesso.
+            </p>
+          )}
+
+          <Button
+            type="submit"
+            size="lg"
+            className="mt-4 h-12 bg-gradient-red font-bold hover:brightness-110"
+            disabled={changingPassword || !newPassword}
+          >
+            {changingPassword ? "Alterando..." : "Trocar senha"}
+          </Button>
+        </section>
       </form>
     </div>
   );
