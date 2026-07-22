@@ -1,7 +1,7 @@
 const SIZES = {
-  sm: { box: "h-9 w-9", icon: "h-5 w-5", word: "text-lg", dash: "w-2.5" },
-  md: { box: "h-11 w-11", icon: "h-6 w-6", word: "text-2xl", dash: "w-3" },
-  lg: { box: "h-16 w-16", icon: "h-9 w-9", word: "text-4xl", dash: "w-4" },
+  sm: { box: "h-9 w-9", icon: "h-5 w-5", word: "text-lg", kSize: "h-7 w-5", dash: 10 },
+  md: { box: "h-11 w-11", icon: "h-6 w-6", word: "text-2xl", kSize: "h-8 w-6", dash: 12 },
+  lg: { box: "h-16 w-16", icon: "h-9 w-9", word: "text-4xl", kSize: "h-12 w-8", dash: 16 },
 } as const;
 
 export function BrandMark({
@@ -17,19 +17,37 @@ export function BrandMark({
 }) {
   const s = SIZES[size];
 
+  const KLightning = () => (
+    <svg viewBox="0 0 32 40" fill="none" className={`${s.kSize} inline-block align-text-top`} aria-hidden="true">
+      <path
+        d="M 18 2 L 8 16 L 16 16 L 6 38 L 20 18 L 14 18 Z"
+        fill="url(#kGradient)"
+        stroke="#6c2bd9"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+      <defs>
+        <linearGradient id="kGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6c2bd9" />
+          <stop offset="100%" stopColor="#4b1e78" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+
   const wordmark = (
-    <span className={`font-display ${s.word} font-black tracking-wide`}>
+    <span className={`font-display ${s.word} font-black tracking-wide inline-flex items-baseline`}>
       ZAN
-      <span className="bg-gradient-red bg-clip-text text-transparent">K</span>
+      <KLightning />
       AR
     </span>
   );
 
   const tagline = (
     <span className="mt-1 flex items-center gap-2 text-primary">
-      <span className={`h-px ${s.dash} bg-primary/60`} />
+      <span className={`h-px bg-primary/60`} style={{ width: `${s.dash}px` }} />
       <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">Auto Parts</span>
-      <span className={`h-px ${s.dash} bg-primary/60`} />
+      <span className={`h-px bg-primary/60`} style={{ width: `${s.dash}px` }} />
     </span>
   );
 
