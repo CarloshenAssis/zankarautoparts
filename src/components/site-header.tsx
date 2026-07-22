@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "@/lib/cart";
 import { Button } from "@/components/ui/button";
 import { BrandMark } from "@/components/brand-mark";
-import { getStoreSettings } from "@/lib/queries";
+import { getCachedLogoUrl } from "@/lib/logo-cache";
 
 export function SiteHeader() {
   const { count } = useCart();
@@ -14,8 +14,8 @@ export function SiteHeader() {
   const [logoUrl, setLogoUrl] = useState<string>();
 
   useEffect(() => {
-    getStoreSettings().then((settings) => {
-      if (settings?.logo_url) setLogoUrl(settings.logo_url);
+    getCachedLogoUrl().then((url) => {
+      if (url) setLogoUrl(url);
     });
   }, []);
 
