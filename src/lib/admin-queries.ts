@@ -651,3 +651,48 @@ export const deleteCustomer = createServerFn({ method: "POST" })
     if (error) throw error;
     return { ok: true };
   });
+
+export const seedMainCategories = createServerFn({ method: "POST" }).handler(async () => {
+  const admin = await getCurrentAdmin();
+  if (!admin) throw new Error("Unauthorized");
+
+  const supabase = createSupabaseServerClient();
+  const categories = [
+    { name: "Freios", description: "Pastilhas, discos, cilindros de freio" },
+    { name: "Filtros", description: "Filtro de ar, óleo, combustível e cabine" },
+    { name: "Amortecedores", description: "Amortecedores e molas de suspensão" },
+    { name: "Pneus", description: "Pneus para diversos modelos" },
+    { name: "Velas de Ignição", description: "Velas de ignição e eletrodos" },
+    { name: "Fluidos", description: "Óleo motor, arrefecimento, direção" },
+    { name: "Correias", description: "Correias de distribuição e correntes" },
+    { name: "Iluminação", description: "Faróis, lanternas, lâmpadas e LEDs" },
+    { name: "Suspensão", description: "Componentes de suspensão e estabilizadores" },
+    { name: "Motor", description: "Cilindros, pistões, válvulas e juntas" },
+    { name: "Transmissão", description: "Óleo de câmbio, filtro e componentes" },
+    { name: "Direção", description: "Óleo, mangueiras e componentes de direção" },
+    { name: "Sistema Elétrico", description: "Alternador, motor de arranque e fiação" },
+    { name: "Acabamento", description: "Tapetes, protetores e almofadas" },
+    { name: "Bateria", description: "Baterias para partida" },
+    { name: "Radiador", description: "Radiador, termostato e mangueiras" },
+    { name: "Ar Condicionado", description: "Compressor, filtro e refrigerante" },
+    { name: "Embreagem", description: "Disco e rolamento de embreagem" },
+  ];
+
+  const existing = await supabase.from("categories").select("name");
+  const existingNames = new Set((existing.data ?? []).map((c: { name: string }) => c.name));
+
+  const toInsert = categories
+    .filter((c) => !existingNames.has(c.name))
+    .map((c) => ({
+      name: c.name,
+      description: c.description,
+      slug: slugify(c.name),
+    }));
+
+  if (toInsert.length === 0) return { ok: true, created: 0 };
+
+  const { error } = await supabase.from("categories").insert(toInsert);
+  if (error) throw error;
+
+  return { ok: true, created: toInsert.length };
+});

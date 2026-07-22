@@ -139,7 +139,7 @@ export function ProductDetailPage({
       <div className="mx-auto grid max-w-7xl gap-8 px-6 pb-12 lg:grid-cols-2">
         {/* Gallery */}
         <div>
-          <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-gradient-to-br from-[#2a1f35] via-[#1f1f1f] to-[#0f0f12] diagonal-stripes shadow-card">
+          <div className="relative w-full overflow-hidden rounded-xl border border-border bg-gradient-to-br from-[#2a1f35] via-[#1f1f1f] to-[#0f0f12] diagonal-stripes shadow-card" style={{ aspectRatio: "4/5" }}>
             {activeImage ? (
               <img
                 src={productImageUrl(activeImage.storage_path)}

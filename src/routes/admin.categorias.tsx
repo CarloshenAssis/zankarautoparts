@@ -1,9 +1,9 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { Plus, Edit2, Trash2 } from "lucide-react";
+import { Plus, Edit2, Trash2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { getCategories } from "@/lib/queries";
 import { categoryIcon } from "@/lib/icon-map";
-import { createCategory, updateCategory, deleteCategory } from "@/lib/admin-queries";
+import { createCategory, updateCategory, deleteCategory, seedMainCategories } from "@/lib/admin-queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -37,9 +37,21 @@ function CategoriasPage() {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState(ICON_OPTIONS[0]);
   const [saving, setSaving] = useState(false);
+  const [seeding, setSeeding] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState("");
   const [editIcon, setEditIcon] = useState(ICON_OPTIONS[0]);
+
+  async function handleSeedCategories() {
+    if (!confirm("Adicionar 18 categorias principais do mercado?")) return;
+    setSeeding(true);
+    try {
+      await seedMainCategories();
+      router.invalidate();
+    } finally {
+      setSeeding(false);
+    }
+  }
 
   async function handleCreate() {
     if (!name.trim()) return;
@@ -87,12 +99,22 @@ function CategoriasPage() {
             Organize as peças em grupos para facilitar a busca dos clientes
           </p>
         </div>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button size="lg" className="h-12 bg-gradient-red font-bold shrink-0">
-              <Plus className="mr-2 h-5 w-5" /> Nova categoria
-            </Button>
-          </DialogTrigger>
+        <div className="flex shrink-0 gap-2">
+          <Button
+            onClick={handleSeedCategories}
+            disabled={seeding}
+            variant="outline"
+            size="lg"
+            className="h-12 font-bold"
+          >
+            <Sparkles className="mr-2 h-5 w-5" /> {seeding ? "Adicionando..." : "Adicionar principais"}
+          </Button>
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" className="h-12 bg-gradient-red font-bold shrink-0">
+                <Plus className="mr-2 h-5 w-5" /> Nova categoria
+              </Button>
+            </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Nova categoria</DialogTitle>
@@ -130,7 +152,8 @@ function CategoriasPage() {
               </Button>
             </DialogFooter>
           </DialogContent>
-        </Dialog>
+          </Dialog>
+        </div>
       </div>
 
       <Dialog open={editingId !== null} onOpenChange={(v) => !v && setEditingId(null)}>
